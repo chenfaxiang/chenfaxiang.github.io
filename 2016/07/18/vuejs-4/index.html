@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这是描述测试">
+    <meta name="keyword" content="chenfx blog 博客">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="嘿，高衙锅" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Vuejs学习笔记(四)｜嘿，高衙锅
+        
+    </title>
+
+    <link rel="canonical" href="http://www.chenfx.com.cn/2016/07/18/vuejs-4/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+	header.intro-header {
+		background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+	}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    嘿，高衙锅
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					          
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="/tags/">tags</a>
+                                </li>
+                            
+                        
+                    
+					
+                    
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://opoze7s40.bkt.clouddn.com/blog-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Vuejs学习笔记(四)</h1>
+                    
+                    <span class="meta">
+                         作者 ：嘿，高衙锅
+                        <span>
+                          日期 2016-07-18
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Vue.js"
+                           title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Vuejs学习笔记(四)
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p> 条件渲染</p>
+<p>（一）.v-for下标索引的两种使用方法</p>
+<p>1.在使用v-for进行数组数据的展示时，我们可以用一个特殊的变量$index，这个$index是默认的，它能够展示当前数组中的 下标索引 ，在代码中的写法是： 双大括号包$index ，这样就能够展示当前的索引值。如果需要得到索引值所对应的 键值 ，即只需要使用另外一个特殊的变量 $key 即可得到，同样也可以给对象键值定义一个变量。</p>
+<p>2.在v-for中给索引指定一个别名为index，例如：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">v-<span class="keyword">for</span>=<span class="string">"(index,item) in content"</span></div></pre></td></tr></table></figure></p>
+<p>这样index就是索引的别名了，可以直接操作大括号包index查看当前数组的索引。</p>
+<a id="more"></a>
+<p>（二）.事件修饰符</p>
+<p>在事件处理器中经常调用event.preventDefault()或event.stopPropagation()，我们可以在方法内轻松做到，但是让方法是纯粹的数据逻辑而不处理DOM事件细节更好；这种情况下，v-on提供了两个事件修饰符，即 .prevent 和 .stop 。</p>
+<p>例如：<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;a v-on:click.stop="doThis"&gt;这是一个事件修饰符事件&lt;/a&gt;</div><div class="line"></div><div class="line">&lt;form v-on:submit.prevent="onSubmit"&gt;这是阻止默认提交事件&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>不仅有事件修饰符，还有按键修饰符，如enter键的：</p>
+<p>例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input v-on:keyup.enter=<span class="string">"submit"</span>&gt;</div><div class="line">&lt;input v-on:keyup.13="submit"&gt;</div></pre></td></tr></table></figure></p>
+<p>在HTML使用监听事件 v-on的好处 ：</p>
+<p>1.在HTML代码中能够轻松的定位JavaScript代码中对应的方法；</p>
+<p>2.因为不需要在JavaScript里手动绑定事件，ViewModel代码可以是非常纯粹的逻辑，和DOM完全解耦，更易于测试；</p>
+<p>3.当一个ViewModel被销毁时，所有的事件处理器都会自动被删除，不需要自己去清理；</p>
+<p>（三）.参数特性</p>
+<p>当我们在使用v-model的时候能够很好的将input框中的数据实时的反应到页面上，有时候我们需要对input框中的一些数据添加一些特殊的特性，即有下面的学习：</p>
+<p>1.lazy属性，将input事件中更新的改到change事件中同步；</p>
+<p>写法：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input v-model=<span class="string">"msg"</span> lazy&gt;</div></pre></td></tr></table></figure></p>
+<p>2.number属性，将input框中的值直接转换成数值</p>
+<p>写法：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input v-model=<span class="string">"age"</span> number&gt;</div></pre></td></tr></table></figure></p>
+<p>3.debounce属性，设置一个小延时，在input中做更改了之后在延时完才实时展示到页面上</p>
+<p>写法：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input v-model=<span class="string">"msg"</span> debounce=<span class="string">"500"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p> 注意 ：debounce参数不会延迟input事件，它延迟写入底层数据，因此在使用debounce时应当用vm.$watch()响应数据变化，若要延迟DOM事件，应当使用debounce过滤器。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/07/29/vuejs-5/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(五)">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/07/15/vuejs-3/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(三)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <!-- 加入新的评论系统 -->
+                  
+                    <!-- 来必力City版安装代码 -->
+                    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+                        <script type="text/javascript">
+                            (function(d, s) {
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            })(document, 'script');
+                        </script>
+                        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                    </div>
+                    <!-- City版安装代码已完成 -->
+                  
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <!--
+                <section>
+                    <! no hr -->
+                    <!-- <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Vue.js"
+                           title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                </section>
+                -->
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://tangyc.top">前端唐小胖</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 来必力City版安装代码 -->
+        <!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+            <script type="text/javascript">
+                (function(d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+
+                    if (typeof LivereTower === 'function') { return; }
+
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
+            </script>
+            <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div> -->
+        <!-- City版安装代码已完成 -->
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chenfax">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/cfx2016">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chenfaxiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 嘿，高衙锅 2017
+                    <br>
+                    <!--<span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>-->
+                    <!--<br>-->
+                    <!--Theme by <a href="https://haojen.github.io/">Haojen Ma</a>-->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.chenfx.com.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+<!--  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','<!-- %= config.swiftype_key% --><!-- ','2.0.0'); -->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://opoze7s40.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg">
+</body>
+
+</html>

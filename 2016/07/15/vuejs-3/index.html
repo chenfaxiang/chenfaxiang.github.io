@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这是描述测试">
+    <meta name="keyword" content="chenfx blog 博客">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="嘿，高衙锅" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Vuejs学习笔记(三)｜嘿，高衙锅
+        
+    </title>
+
+    <link rel="canonical" href="http://www.chenfx.com.cn/2016/07/15/vuejs-3/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+	header.intro-header {
+		background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+	}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    嘿，高衙锅
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					          
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="/tags/">tags</a>
+                                </li>
+                            
+                        
+                    
+					
+                    
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://opoze7s40.bkt.clouddn.com/blog-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Vuejs学习笔记(三)</h1>
+                    
+                    <h2 class="subheading">hi, vue.js</h2>
+                    
+                    <span class="meta">
+                         作者 ：嘿，高衙锅
+                        <span>
+                          日期 2016-07-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Vue.js"
+                           title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Vuejs学习笔记(三)
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>Class与Style绑定</p>
+<p>数据绑定的常见需求是操作元素的class列表和它的内联样式，我们用v-bind处理它们的时候只需要计算出表达式最终的字符串即可，但是，字符串的拼接容易出错；最后，vuejs中在v-bind用于class和style时，vuejs对它进行了增强，表达式的结果类型除了字符串之外，还可以是对象或数组。</p>
+<a id="more"></a>
+<p>(一).绑定HTML Class</p>
+<p>绑定class有两种方法，一种是用Mustache标签绑定class，另一种是用v-bind：class写，在编写代码的时候尽量只选择一种，避免两种混用。</p>
+<h1 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h1><p>1.我们可以传给v-bind:class一个对象，这样可以动态的切换class；除此之外，v-bind:class指令可以和普通的class特性共存：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"static"</span> v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'class-a':isA,'class-b':isB&#125;"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data:&#123;</div><div class="line"></div><div class="line">    <span class="attr">isA</span>:<span class="literal">true</span>,</div><div class="line"></div><div class="line">    <span class="attr">isB</span>:<span class="literal">false</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如下图所示：</p>
+<p><img src="images/vue3-1.png" alt="vue学习图片3-1"></p>
+<p>2.也可以直接给v-bind:class绑定数据里的一个对象：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"classObject"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data:&#123;</div><div class="line"></div><div class="line">    <span class="attr">classObject</span>:&#123;</div><div class="line"></div><div class="line">        <span class="string">'class-a'</span>:<span class="literal">true</span>,</div><div class="line"></div><div class="line">        <span class="string">'class-b'</span>:<span class="literal">false</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如下图所示：</p>
+<p><img src="images/vue3-2.png" alt="vue学习图片3-2"></p>
+<h1 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h1><p>3.除了使用上面的两种方法外，还可以把一个数组传给v-bind:class，以应用一个class列表，只要是在这个数据里面的都会应用到class上；<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;div v-bind:class"[classA,classB]"&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data: &#123;</div><div class="line"></div><div class="line">    classA:'class-a',</div><div class="line"></div><div class="line">    classB:'class-b'</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如下图所示：</p>
+<p><img src="images/vue3-3.png" alt="vue学习图片3-3"></p>
+<p>数组语法可以直接应用一组class列表，但是有时候只需要其中一个，那么我们在选择的时候可以使用三元表达式进行判断添加。</p>
+<p>(二).绑定内联样式</p>
+<p>1.v-bind:style的对象语法很直观，与CSS差不多；但是，它是一个JavaScript对象，css属性命名可以用驼峰式或短横线分割式。但是在使用时尽量只用一种，不要混用。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div v-bind:style=<span class="string">"&#123;color:activeColor,fontSize:fontSize+'px',textAlign:textAlign&#125;"</span></div><div class="line"></div><div class="line">data: &#123;</div><div class="line"></div><div class="line">    <span class="attr">activeColor</span>:<span class="string">'red'</span>,</div><div class="line"></div><div class="line">    <span class="attr">fontSize</span>:<span class="number">20</span>,</div><div class="line"></div><div class="line">    <span class="attr">textAlign</span>:<span class="string">'center'</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如下图所示：</p>
+<p><img src="images/vue3-4.png" alt="vue学习图片3-4"></p>
+<p>2.这种方法虽然能够直接在标签上绑定我们想要的样式信息，如果样式一多就显得格外混乱，因此我们能够直接在样式上绑定一个对象，这样将所有的样式信息写在对象里面，让标签看着更清晰；<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div v-bind:style=<span class="string">"styleObject"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data: &#123;</div><div class="line"></div><div class="line">    <span class="attr">styleObject</span>: &#123;</div><div class="line"></div><div class="line">        <span class="attr">color</span>:<span class="string">'red'</span>,</div><div class="line"></div><div class="line">        <span class="attr">fontSize</span>:<span class="string">'20px'</span>,</div><div class="line"></div><div class="line">        <span class="attr">textAlign</span>:<span class="string">'center'</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如下图所示：</p>
+<p><img src="images/vue3-5.png" alt="vue学习图片3-5"></p>
+<p>除上面的方法外，还要给标签添加更多不一样的样式时，可以利用数组语法将多个样式对象应用到一个元素上；<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div v-bind:style=<span class="string">"[styleObject1,styleObject2]"</span>&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>(三).条件渲染</p>
+<p>1.v-if——v-else</p>
+<p>写法：<br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;h1 v-if="ok"&gt;成功执行&lt;/h1&gt;</div><div class="line"></div><div class="line">&lt;h1 v-else&gt;失败执行&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/07/18/vuejs-4/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(四)">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/07/12/vuejs-2/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(二)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <!-- 加入新的评论系统 -->
+                  
+                    <!-- 来必力City版安装代码 -->
+                    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+                        <script type="text/javascript">
+                            (function(d, s) {
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            })(document, 'script');
+                        </script>
+                        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                    </div>
+                    <!-- City版安装代码已完成 -->
+                  
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#对象语法"><span class="toc-text">对象语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组语法"><span class="toc-text">数组语法</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <!--
+                <section>
+                    <! no hr -->
+                    <!-- <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Vue.js"
+                           title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                </section>
+                -->
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://tangyc.top">前端唐小胖</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 来必力City版安装代码 -->
+        <!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+            <script type="text/javascript">
+                (function(d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+
+                    if (typeof LivereTower === 'function') { return; }
+
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
+            </script>
+            <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div> -->
+        <!-- City版安装代码已完成 -->
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chenfax">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/cfx2016">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chenfaxiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 嘿，高衙锅 2017
+                    <br>
+                    <!--<span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>-->
+                    <!--<br>-->
+                    <!--Theme by <a href="https://haojen.github.io/">Haojen Ma</a>-->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.chenfx.com.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+<!--  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','<!-- %= config.swiftype_key% --><!-- ','2.0.0'); -->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://opoze7s40.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg">
+</body>
+
+</html>

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这是描述测试">
+    <meta name="keyword" content="chenfx blog 博客">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="嘿，高衙锅" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        CSS3新特性｜嘿，高衙锅
+        
+    </title>
+
+    <link rel="canonical" href="http://www.chenfx.com.cn/2017/06/18/css3新特性/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+	header.intro-header {
+		background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+	}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    嘿，高衙锅
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					          
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="/tags/">tags</a>
+                                </li>
+                            
+                        
+                    
+					
+                    
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://opoze7s40.bkt.clouddn.com/blog-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>CSS3新特性</h1>
+                    
+                    <span class="meta">
+                         作者 ：嘿，高衙锅
+                        <span>
+                          日期 2017-06-18
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#CSS3"
+                           title="CSS3">CSS3</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            CSS3新特性
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>CSS3出现已经有一段时间了，在项目中用到的情况可能也不在少数，但是真正的了解CSS3增加的新特性吗，我的回答是NO；当然不知道是可以学的，下面是对这块只是学习后的一些学习记录。</p>
+<a id="more"></a>
+<h2 id="一张图展示css-level1-3的选择器"><a href="#一张图展示css-level1-3的选择器" class="headerlink" title="一张图展示css level1-3的选择器"></a>一张图展示css level1-3的选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>通配选择符，可匹配任意元素</td>
+<td>通用选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E</td>
+<td>匹配类型为E的元素</td>
+<td>类型选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E[foo]</td>
+<td>匹配某元素，此元素含有”foo”属性</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性等于bar</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo~=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是由空格链接的多个值组成，其中有一个等于bar</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo^=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值由bar开始</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo$=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值由bar结束</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo*=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值包含bar</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:root</td>
+<td>匹配某元素所在文档的根元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配元素类型为E且是其父元素的第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配元素类型为E且是其父元素的倒数第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>匹配父元素的第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>匹配父元素的倒数第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-child</td>
+<td>匹配元素类型为E且是父元素的第一个子元素</td>
+<td>结构伪类选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配元素类型为E且是父元素的最后一个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配父元素的第一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td>匹配父元素的最后一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配元素类型为E且是父元素中唯一的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配父元素中唯一子元素是E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配不包含子节点(包括文本)的E元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:link/E:visited</td>
+<td>前者匹配已定义href属性的a元素(未访问)，后者匹配已访问过的a元素</td>
+<td>链接伪类选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E:active/E:hover/E:focus</td>
+<td>分别匹配被激活过、被鼠标经过、获得焦点的E元素</td>
+<td>用户操作伪类选择器</td>
+<td>1、2</td>
+</tr>
+<tr>
+<td>E:target</td>
+<td>匹配URI中锚点指定的元素</td>
+<td>目标伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:lang(fr)</td>
+<td>匹配E元素，且该元素显示内容的语言类型是fr</td>
+<td>语言伪类选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E:enabled/E:disabled</td>
+<td>选择所有可用、不可用的E元素</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:cheched</td>
+<td>选择所有选中的E元素(主要用于checkbox和radio)</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E::first-line</td>
+<td>E元素内的第一行文本</td>
+<td>首行伪类选择器(伪选择器)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E::first-letter</td>
+<td>匹配E元素内的第一个字符</td>
+<td>首字符伪类选择器(伪选择器)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E::before</td>
+<td>匹配E元素前的内容</td>
+<td>伪元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E::after</td>
+<td>匹配E元素后的内容</td>
+<td>伪元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E.warning</td>
+<td>匹配类名为warning的元素</td>
+<td>类选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E#isId</td>
+<td>匹配Id为isId的元素</td>
+<td>ID选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E:not(s)</td>
+<td>匹配类型为E，不匹配选择符为s的元素</td>
+<td>否定选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E F</td>
+<td>选择包含在E元素中的F元素</td>
+<td>包含选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E &gt; F</td>
+<td>匹配F元素，且该元素为所匹配E元素的子元素</td>
+<td>子包含选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E + F</td>
+<td>匹配与E元素相邻的第一个F元素，且F元素在E元素之后</td>
+<td>通用兄弟元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E ~ F</td>
+<td>匹配位于E元素后面所有的F元素</td>
+<td>通用兄弟元素选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>上图中展示了目前CSS1-3支持的所有选择器，借鉴的W3C的内容。</p>
+<h2 id="W3C描述的新增特性"><a href="#W3C描述的新增特性" class="headerlink" title="W3C描述的新增特性"></a>W3C描述的新增特性</h2><p>在<a href="https://www.w3cschool.cn/css_series/css_series-cmbf24qi.html" target="_blank" rel="external">W3CSchool讲述CSS3新增特性</a>的章节中将CSS3新增的特性按照功能分为了6个部分，每个部分又分别包含了几个方面，总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>新增特性名</th>
+<th>对应的小分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择器的拓展</td>
+<td>属性选择器、结构伪类选择器、UI元素状态伪类选择器、目标伪类选择器、否定选择器、通用兄弟选择器</td>
+</tr>
+<tr>
+<td>页面布局的加强</td>
+<td>多列式布局、可变更的盒模型、可伸缩的布局</td>
+</tr>
+<tr>
+<td>元素修饰的加强</td>
+<td>RGBA和透明度、圆角支持、多背景图片支持、渐变效果支持、阴影和反射效果</td>
+</tr>
+<tr>
+<td>开放字体的支持</td>
+<td>CSS3提供@font-face特性为页面自定义字体的展示提供支持</td>
+</tr>
+<tr>
+<td>多终端的适配</td>
+<td>通过媒体查询（media queries）可以让你为不同的设备基于它们的能力定义不同的样式</td>
+</tr>
+<tr>
+<td>动画支持</td>
+<td>过渡(transition)、旋转缩放(transform)、执行动画(animation)</td>
+</tr>
+</tbody>
+</table>
+<p>然而，目前只是对选择器拓展，即CSS3新增的选择器属性进行了学习理解，后面的特性需要继续学习；</p>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><ul>
+<li>从上面最开始整理的图表中可以看出三个CSS3新增的3个属性选择器名称及其相应的功能，如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E[foo^=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是由bar开始</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo$=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是有bar结束</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[Foo*=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值包含bar</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>属性选择器示例<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">	div[foo^="bar"],</div><div class="line">	div[foo$="bar"],</div><div class="line">	div[foo*="bar"] &#123;</div><div class="line">		margin: 0 auto;</div><div class="line">		width: 400px;</div><div class="line">		height: 30px;</div><div class="line">		font-size: 20px;</div><div class="line">		border: 1px solid black;</div><div class="line">		margin-bottom: 10px;</div><div class="line">	&#125;</div><div class="line">	.bar-att[foo^="bar"] &#123;</div><div class="line">		color: red;</div><div class="line">	&#125;</div><div class="line">	.att-bar[foo$="bar"] &#123;</div><div class="line">		color: blue;</div><div class="line">	&#125;</div><div class="line">	.attr-bar-con[foo*="bar"] &#123;</div><div class="line">		color: green;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="external">需查看属性选择器示例的可点击此处图片地址</a><br>通过<a href="http://www.caniuse.com" target="_blank" rel="external">查询兼容性</a>：除了IE6，其他浏览器都已经支持。</p>
+<h3 id="结构伪类选择器"><a href="#结构伪类选择器" class="headerlink" title="结构伪类选择器"></a>结构伪类选择器</h3><ul>
+<li>结构伪类选择器一共12个，在CSS3中新增了11个，E:first-child是在css2中就已经加入了，其归类如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:root</td>
+<td>匹配某元素所在文档的根元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配元素类型为E且是其父元素的第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配元素类型为E且是其父元素的倒数第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>匹配父元素的第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>匹配父元素的倒数第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配元素类型为E且是父元素的最后一个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配父元素的第一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td>匹配父元素的最后一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配元素类型为E且是父元素中唯一的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配父元素中唯一子元素是E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配不包含子节点(包括文本)的E元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>看着不多，但在这几个结构伪类选择器里面很容易把人弄混淆，记得使用之前分清楚其用途；</p>
+<ul>
+<li>结构伪类选择器 (挑选了几个作为示例，其他的类似)<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">	li:nth-of-type(1) &#123;</div><div class="line">		font-size: 30px;</div><div class="line">		color: green;</div><div class="line">	&#125;</div><div class="line">	li:nth-child(2) &#123;</div><div class="line">		font-size: 20px;</div><div class="line">		color: red;</div><div class="line">	&#125;</div><div class="line">	li:nth-last-child(1) &#123;</div><div class="line">		font-size: 12px;</div><div class="line">		color: blue;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="external">需查看结构伪类选择器示例的可点击此处图片地址</a></p>
+<h3 id="UI元素状态伪类选择器"><a href="#UI元素状态伪类选择器" class="headerlink" title="UI元素状态伪类选择器"></a>UI元素状态伪类选择器</h3><ul>
+<li>UI元素状态伪类选择器整理如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:enabled/E:disabled</td>
+<td>选择所有可用、不可用的E元素</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:cheched</td>
+<td>选择所有选中的E元素(主要用于checkbox和radio)</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>通过其选择器定义很明显的看出改选择器是什么功能，能够做什么用处，当然，这里也有示例进行验证；</p>
+<ul>
+<li>UI元素状态伪类选择器<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">	.attr-abled-radio &#123;</div><div class="line">		width: 330px;</div><div class="line">		margin-bottom: 10px;</div><div class="line">	&#125;</div><div class="line">	.attr-abled-radio:enabled &#123;</div><div class="line">		font-size: 16px;</div><div class="line">		border: 1px solid red;</div><div class="line">	&#125;</div><div class="line">	.attr-abled-radio:disabled &#123;</div><div class="line">		font-size: 20px;</div><div class="line">		border: 1px solid blue;</div><div class="line">	&#125;</div><div class="line">	.attr-checked:checked &#123;</div><div class="line">		font-size: 24px;</div><div class="line">		border: 1px solid green;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/UI%E5%85%83%E7%B4%A0.jpg" target="_blank" rel="external">需查看UI元素状态伪类选择器示例的可点击此处图片地址</a></p>
+<h3 id="目标伪类选择器"><a href="#目标伪类选择器" class="headerlink" title="目标伪类选择器"></a>目标伪类选择器</h3><ul>
+<li>这个新增的选择器感觉不是很好理解，通俗的讲，就是页面上有一个id=thisID的div元素，而此时在URL中接了一个#thisID的话，就会给id为thisID的div加上定义的样式。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:target</td>
+<td>匹配URI中锚点指定的元素</td>
+<td>目标伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>这个选择器不是很好做示例，但是通过前面的含义理解也能够成功记住。</p>
+<h3 id="否定伪类选择器"><a href="#否定伪类选择器" class="headerlink" title="否定伪类选择器"></a>否定伪类选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:not(s)</td>
+<td>匹配类型为E，不匹配选择符为s的元素</td>
+<td>否定选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>选择器名字通俗易懂，它的作用是在匹配的一些列元素剔除选择符为s的元素，相当于做了个筛选。</p>
+<ul>
+<li>否定伪类选择器<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">	.attr-abled-radio &#123;</div><div class="line">		width: 330px;</div><div class="line">		margin-bottom: 10px;</div><div class="line">	&#125;</div><div class="line">	.attr-abled-radio:not(input) &#123;</div><div class="line">		font-size: 16px;</div><div class="line">		border: 1px solid red;</div><div class="line">		color: red;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E5%90%A6%E5%AE%9A%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="external">需查看否定伪类选择器示例的可以点击此处图片地址</a></p>
+<h3 id="通用兄弟元素选择器"><a href="#通用兄弟元素选择器" class="headerlink" title="通用兄弟元素选择器"></a>通用兄弟元素选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E ~ F</td>
+<td>匹配位于E元素后面所有的F元素</td>
+<td>通用兄弟元素选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>新增通用元素选择器是匹配位于E元素后面所有的F元素，很好理解；而 E + F 选择器是匹配E后面第一个F元素，两个有类似功能，但是又有很大区别，注意理解。</p>
+<ul>
+<li>通用兄弟元素选择器<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">	h3 &#123;</div><div class="line">		width: 300px;</div><div class="line">		height: 20px;</div><div class="line">		font-size: 16px;</div><div class="line">		line-height: 20px;</div><div class="line">		color: red;</div><div class="line">	&#125;</div><div class="line">	h3 ~ p &#123;</div><div class="line">		font-size: 22px;</div><div class="line">		line-height: 30px;</div><div class="line">		color: blue;</div><div class="line">	&#125;</div><div class="line">	h4 &#123;</div><div class="line">		border-top: 2px dashed #ccc;</div><div class="line">	&#125;</div><div class="line">	h4 + h5 &#123;</div><div class="line">		font-size: 14px;</div><div class="line">		color: green;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E9%80%9A%E7%94%A8%E5%85%84%E5%BC%9F%E5%85%83%E7%B4%A0.jpg" target="_blank" rel="external">需查看通用兄弟元素选择器示例的可以点击此处图片地址</a></p>
+<p>上面所有的选择器属性都经过亲自验证，虽然有些用的场景不多，但是通过选择器含义还是可以明确知道其作用。END</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/03/08/一个基于vue+webpack的单页面应用/" data-toggle="tooltip" data-placement="top"
+                           title="一个基于vue+webpack的单页面应用">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <!-- 加入新的评论系统 -->
+                  
+                    <!-- 来必力City版安装代码 -->
+                    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+                        <script type="text/javascript">
+                            (function(d, s) {
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            })(document, 'script');
+                        </script>
+                        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                    </div>
+                    <!-- City版安装代码已完成 -->
+                  
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图展示css-level1-3的选择器"><span class="toc-text">一张图展示css level1-3的选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#W3C描述的新增特性"><span class="toc-text">W3C描述的新增特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器"><span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构伪类选择器"><span class="toc-text">结构伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UI元素状态伪类选择器"><span class="toc-text">UI元素状态伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标伪类选择器"><span class="toc-text">目标伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#否定伪类选择器"><span class="toc-text">否定伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用兄弟元素选择器"><span class="toc-text">通用兄弟元素选择器</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <!--
+                <section>
+                    <! no hr -->
+                    <!-- <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#CSS3"
+                           title="CSS3">CSS3</a>
+                        
+                    </div>
+                </section>
+                -->
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://tangyc.top">前端唐小胖</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 来必力City版安装代码 -->
+        <!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+            <script type="text/javascript">
+                (function(d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+
+                    if (typeof LivereTower === 'function') { return; }
+
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
+            </script>
+            <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div> -->
+        <!-- City版安装代码已完成 -->
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chenfax">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/cfx2016">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chenfaxiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 嘿，高衙锅 2017
+                    <br>
+                    <!--<span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>-->
+                    <!--<br>-->
+                    <!--Theme by <a href="https://haojen.github.io/">Haojen Ma</a>-->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.chenfx.com.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+<!--  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','<!-- %= config.swiftype_key% --><!-- ','2.0.0'); -->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://opoze7s40.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg">
+</body>
+
+</html>

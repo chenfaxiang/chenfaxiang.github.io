@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这是描述测试">
+    <meta name="keyword" content="chenfx blog 博客">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="嘿，高衙锅" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        attr和prop理解｜嘿，高衙锅
+        
+    </title>
+
+    <link rel="canonical" href="http://www.chenfx.com.cn/2017/01/05/attr和prop的理解/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+	header.intro-header {
+		background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+	}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    嘿，高衙锅
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					          
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="/tags/">tags</a>
+                                </li>
+                            
+                        
+                    
+					
+                    
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://opoze7s40.bkt.clouddn.com/blog-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>attr和prop理解</h1>
+                    
+                    <span class="meta">
+                         作者 ：嘿，高衙锅
+                        <span>
+                          日期 2017-01-05
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#JavaScript"
+                           title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            attr和prop理解
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>在高版本的JQuery引入prop()方法后一直没有把它和attr()做过多的区别，经常是用attr()处理问题，少有时候用prop()，由于前期的学习及结果的正确<br>性而没有过多的去关心理解这两者的区别；在最近的一次开发中遇到了类似bug,由此在什么时候该用attr()？什么时候该用prop()？产生了思考。</p>
+<a id="more"></a>
+<ul>
+<li>.attr()，它从jQuery1.0就已经存在，官方文档说的是读写dom的attribute值；</li>
+<li>.prop()，它在jquery1.6才引入，官方文档说的是读写property值；</li>
+</ul>
+<blockquote>
+<p>其实attr()和prop()都是获取和设置指定的属性，均表示”属性”的意思；但在JQuery中attribute和property是两个不同的概念，attribute表示HTML文档节点的属性，property表示js对象的属性。如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;!-- 这里的id、<span class="class"><span class="keyword">class</span>、<span class="title">type</span>、<span class="title">checked</span>均是该元素文档节点的<span class="title">attribute</span> --&gt;</span></div><div class="line">&lt;<span class="title">input</span> <span class="title">id</span>=<span class="string">"content-test"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-test"</span> type=<span class="string">"checkbox"</span> checked&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line"><span class="comment">// 这里的name、color、address均是obj的property</span></div><div class="line"><span class="keyword">var</span> testObj = &#123; <span class="attr">name</span>: <span class="string">"test"</span>, <span class="attr">color</span>: <span class="string">"red"</span>, <span class="attr">address</span>: <span class="string">"china"</span> &#125;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>那么在jquery底层实现中attr()和prop()都是通过什么实现的呢，其实它们都是通过JS原生的element对象实现的，其主要依赖的函数是element对象的getAttribute()和setAttribute()两个方法。<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input id=<span class="string">"content-test"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-test"</span> type=<span class="string">"checkbox"</span> checked=<span class="string">"checked"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> content = <span class="built_in">document</span>.getElementById(<span class="string">"content-test"</span>);</div><div class="line">    <span class="keyword">var</span> $content = $(content);</div><div class="line">    </div><div class="line">    <span class="comment">// 相当于 content.setAttribute("checked", 'checked');</span></div><div class="line">    $content.attr(<span class="string">"checked"</span>, <span class="string">"checked"</span>);       <span class="comment">// 设置checked="checked"</span></div><div class="line">    </div><div class="line">    <span class="comment">// 相当于 content.getAttribute("checked");</span></div><div class="line">    <span class="keyword">var</span> checkStage = $content.attr(<span class="string">"checked"</span>); <span class="comment">// "checked"</span></div><div class="line">    </div><div class="line">    <span class="comment">/** prop()依赖的是JS原生的 element[property] 和 element[property] = value; **/</span></div><div class="line">    </div><div class="line">    <span class="comment">// 相当于 content["checked"] = "checked值";</span></div><div class="line">    $content.prop(<span class="string">"checked"</span>, <span class="string">"checked值"</span>);     <span class="comment">// 设置checked值到checked属性</span></div><div class="line">    </div><div class="line">    <span class="comment">// 相当于 content["pid"];</span></div><div class="line">    <span class="keyword">var</span> checkStage = $content.prop(<span class="string">"checked"</span>); <span class="comment">// checked值 —— true</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当然，我们在jquery中使用的这些方法被封装之后使我们操作起来更方便，并跨浏览器兼容。</p>
+<ul>
+<li>上面了解到了两者的实现方式，它们最终的区别最终是什么呢？如下：<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;input id=<span class="string">"content-test1"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-test1"</span> type=<span class="string">"checkbox"</span> checked=<span class="string">"checked"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;input id=<span class="string">"content-test2"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-test2"</span> type=<span class="string">"checkbox"</span> checked&gt;&lt;/div&gt;</div><div class="line">&lt;input id=<span class="string">"content-test3"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-test3"</span> type=<span class="string">"checkbox"</span>&gt;&lt;/div&gt;</div><div class="line">   </div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> $content1 = $(<span class="string">"#content-test1"</span>);</div><div class="line">    <span class="keyword">var</span> $content2 = $(<span class="string">"#content-test2"</span>);</div><div class="line">    <span class="keyword">var</span> $content3 = $(<span class="string">"#content-test3"</span>);</div><div class="line">    </div><div class="line">    <span class="comment">// 获取第一个input的checked状态值</span></div><div class="line">    $content1.attr(<span class="string">"checked"</span>); <span class="comment">// 得到结果是得字符串值checked</span></div><div class="line">    $content1.prop(<span class="string">"checked"</span>); <span class="comment">// 得到结果是布尔值true</span></div><div class="line">    </div><div class="line">    <span class="comment">// 获取第二个input的checked状态值</span></div><div class="line">    $content2.attr(<span class="string">"checked"</span>); <span class="comment">// 得到结果是字符串值checked</span></div><div class="line">    $content2.prop(<span class="string">"checked"</span>); <span class="comment">// 得到结果是布尔值true</span></div><div class="line">    </div><div class="line">    <span class="comment">// 获取第三个input的checked状态值</span></div><div class="line">    $content3.attr(<span class="string">"checked"</span>); <span class="comment">// 得到结果是undefined</span></div><div class="line">    $content3.prop(<span class="string">"checked"</span>); <span class="comment">// 得到结果是布尔值false</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过结果比对发现，在使用attr()和prop()得到的结果在input上没有checked选中状态时才会有所不同，结果表明prop()会得到对应的布尔值，attr()<br>在没有将属性值没有正确的写成字符串时会得到undefined。（在 checked = “ “的情况下attr和prop也都会得到正确的值，所以用的时候注意了）。</p>
+<ul>
+<li><p>讨论了半天，发现在使用attr()和prop()都能够正确的得到我们所想的情况，那究竟该如何使用这两个方法呢，根据官方文档所示，在dom结构中如果是其固有属性，即在W3C标准里就含有的属性，在处理时使用prop() ———— 例如：class,id,checked等；我们自定义的属性在处理时使用attr() ———— 例如：action=”test”；最后上一个官方建议使用的attr()和prop()的情况表(下图来源网络)：<br><img src="images/prop使用情况表.png" alt="attr/prop使用情况表"></p>
+</li>
+<li><p>上述都是自己的学习理解，不足之处，请多多指正。。。</p>
+</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/01/20/leancloud和微信小程序/" data-toggle="tooltip" data-placement="top"
+                           title="微信小程序（一）">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/07/29/vuejs-5/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(五)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <!-- 加入新的评论系统 -->
+                  
+                    <!-- 来必力City版安装代码 -->
+                    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+                        <script type="text/javascript">
+                            (function(d, s) {
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            })(document, 'script');
+                        </script>
+                        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                    </div>
+                    <!-- City版安装代码已完成 -->
+                  
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <!--
+                <section>
+                    <! no hr -->
+                    <!-- <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#JavaScript"
+                           title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                </section>
+                -->
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://tangyc.top">前端唐小胖</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 来必力City版安装代码 -->
+        <!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+            <script type="text/javascript">
+                (function(d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+
+                    if (typeof LivereTower === 'function') { return; }
+
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
+            </script>
+            <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div> -->
+        <!-- City版安装代码已完成 -->
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chenfax">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/cfx2016">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chenfaxiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 嘿，高衙锅 2017
+                    <br>
+                    <!--<span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>-->
+                    <!--<br>-->
+                    <!--Theme by <a href="https://haojen.github.io/">Haojen Ma</a>-->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.chenfx.com.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+<!--  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','<!-- %= config.swiftype_key% --><!-- ','2.0.0'); -->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://opoze7s40.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg">
+</body>
+
+</html>

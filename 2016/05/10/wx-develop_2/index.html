@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="这是描述测试">
+    <meta name="keyword" content="chenfx blog 博客">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="嘿，高衙锅" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)｜嘿，高衙锅
+        
+    </title>
+
+    <link rel="canonical" href="http://www.chenfx.com.cn/2016/05/10/wx-develop_2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+	header.intro-header {
+		background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+	}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    嘿，高衙锅
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					          
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="/tags/">tags</a>
+                                </li>
+                            
+                        
+                    
+					
+                    
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://opoze7s40.bkt.clouddn.com/blog-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://opoze7s40.bkt.clouddn.com/blog-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)</h1>
+                    
+                    <span class="meta">
+                         作者 ：嘿，高衙锅
+                        <span>
+                          日期 2016-05-10
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#微信"
+                           title="微信">微信</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>在第一节完成微信demo部署到SAE服务器的基础上，本次学习了怎样进行关注公众号进行默认回复、回复关键词时进行反馈及反馈信息分为文本和图文信息展示。</p>
+<a id="more"></a>
+<h2 id="关注公众号自动回复"><a href="#关注公众号自动回复" class="headerlink" title="关注公众号自动回复"></a>关注公众号自动回复</h2><p>在使用微信时时常会关注别人的微信号，在关注成功之后系统会默认回复一条信息进行提示，因此这里进行了学习；通过查看开发者文档发现微信目前提供五种消息类型，分别为：</p>
+<ol>
+<li>文本消息(text);</li>
+<li>图片消息(image);</li>
+<li>地理位置消息(location);</li>
+<li>链接消息(link);</li>
+<li>事件推送(event);</li>
+</ol>
+<ul>
+<li>接收到消息后首先会对消息类型进行判断，然后再针对不同的消息类型做出处理，通过文档发现关注微信号属于订阅事件即在被关注时会产生一个订阅事件(subscribe事件)；那么，判断此事件后就能够做出相应的提示和操作；在函数responseMsg()中添加如下代码即可：<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">$ev = $postObj-&gt;Event;  </div><div class="line"><span class="keyword">if</span> ($ev == <span class="string">"subscribe"</span>) &#123;</div><div class="line">    $msgType = <span class="string">"text"</span>;</div><div class="line">    $contentStr = <span class="string">"欢迎关注chen發xiang的个人微信公众号!\n回复'1'：查看个人简历\n回复'2'：查看工作经历\n回复'3'：查看爱好特长"</span>;</div><div class="line">             </div><div class="line">    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);</div><div class="line">                echo $resultStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="回复关键词时进行反馈-反馈分为文本和图文展示"><a href="#回复关键词时进行反馈-反馈分为文本和图文展示" class="headerlink" title="回复关键词时进行反馈(反馈分为文本和图文展示)"></a>回复关键词时进行反馈(反馈分为文本和图文展示)</h2><ul>
+<li>在完成上面的内容之后，进行消息回复，回复1、2、3和其他分别展示不同的内容，这里可以通过switch对回复的关键字判断在之后再进行回复显示；仍然在responseMsg()函数中添加代码，如下：<figure class="highlight"><table><tr><td class="code"><pre><div class="line">if(!empty( $keyword )) &#123;</div><div class="line">    //$msgType = "text";</div><div class="line">    switch ($keyword) &#123;</div><div class="line">        case '1':</div><div class="line">            //$contentStr = "查看个人简历!";</div><div class="line">            $textTpl = "&lt;xml&gt;</div><div class="line">                            &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</div><div class="line">                            &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</div><div class="line">                            &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</div><div class="line">                            &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;</div><div class="line">                            &lt;ArticleCount&gt;1&lt;/ArticleCount&gt;</div><div class="line">                            &lt;Articles&gt;</div><div class="line">                                &lt;item&gt;</div><div class="line">                                    &lt;Title&gt;&lt;![CDATA[欢迎关注chenfaxiang]]&gt;&lt;/Title&gt; </div><div class="line">                                    &lt;Description&gt;&lt;![CDATA[description1]]&gt;&lt;/Description&gt;</div><div class="line">                                    &lt;PicUrl&gt;&lt;![CDATA[http://1.wxchenfx.applinzi.com/images/1.jpg]]&gt;&lt;/PicUrl&gt;</div><div class="line">                                    &lt;Url&gt;&lt;![CDATA[http:www.chenfx.com.cn]]&gt;&lt;/Url&gt;</div><div class="line">                                &lt;/item&gt;</div><div class="line">                                &lt;item&gt;</div><div class="line">                                    &lt;Title&gt;&lt;![CDATA[个人简历]]&gt;&lt;/Title&gt;</div><div class="line">                                    &lt;Description&gt;&lt;![CDATA[description]]&gt;&lt;/Description&gt;</div><div class="line">                                    &lt;PicUrl&gt;&lt;![CDATA[http://1.wxchenfx.applinzi.com/images/1.jpg]]&gt;&lt;/PicUrl&gt;</div><div class="line">                                    &lt;Url&gt;&lt;![CDATA[http:www.chenfx.com.cn]]&gt;&lt;/Url&gt;</div><div class="line">                                &lt;/item&gt;</div><div class="line">                            &lt;/Articles&gt;</div><div class="line">                        &lt;/xml&gt;";</div><div class="line">                        break;</div><div class="line">        case '2':</div><div class="line">            //$contentStr = "查看工作经历!";</div><div class="line">            break;</div><div class="line">        case '3':</div><div class="line">            //$contentStr = "查看爱好特长!"; </div><div class="line">            break;</div><div class="line">        default:</div><div class="line">            //$contentStr = "其他功能正在开发中……";</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">            	</div><div class="line">	//$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);</div><div class="line">    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time);</div><div class="line">	echo $resultStr;</div><div class="line">&#125;else&#123;</div><div class="line">	echo "Input something...";</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>代码中用双斜线(//)注释掉了一些内容和未注释的内容，在查看开发者文档就可以发现这里是文本模式和图文模式，在回复关键字1时文本模式有文本介绍，图文模式当然就是以图文素材的模式进行显示，图文模式中有两个<code>&lt;item&gt;</code>标签，这里即为双图展示，如果去掉一个即为单图模式，单图模式中<code>&lt;description&gt;</code>才会有所功能体现，多图模式下其没有任何作用；除此之外，有<code>&lt;title&gt;</code>进行题目提醒及图片地址<code>&lt;PicUrl&gt;</code>和图文信息访问地址<code>&lt;Url&gt;</code>；最后通过函数<code>sprintf()</code>将信息进行处理及返回就能够成功在微信上得到自己所编辑的信息。如下图：<br><img src="images/wx_develop2_1.png" alt="订阅回复/图文信息"></p>
+<p>END<del>~</del>~</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/07/10/vuejs-1/" data-toggle="tooltip" data-placement="top"
+                           title="Vuejs学习笔记(一)">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/05/02/wx-develop_1/" data-toggle="tooltip" data-placement="top"
+                           title="1.微信公众平台开发模式(微信上输入后进行默认回复)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <!-- 加入新的评论系统 -->
+                  
+                    <!-- 来必力City版安装代码 -->
+                    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+                        <script type="text/javascript">
+                            (function(d, s) {
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            })(document, 'script');
+                        </script>
+                        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                    </div>
+                    <!-- City版安装代码已完成 -->
+                  
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关注公众号自动回复"><span class="toc-text">关注公众号自动回复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回复关键词时进行反馈-反馈分为文本和图文展示"><span class="toc-text">回复关键词时进行反馈(反馈分为文本和图文展示)</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <!--
+                <section>
+                    <! no hr -->
+                    <!-- <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#微信"
+                           title="微信">微信</a>
+                        
+                    </div>
+                </section>
+                -->
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://tangyc.top">前端唐小胖</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 来必力City版安装代码 -->
+        <!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1">
+            <script type="text/javascript">
+                (function(d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+
+                    if (typeof LivereTower === 'function') { return; }
+
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
+            </script>
+            <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div> -->
+        <!-- City版安装代码已完成 -->
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chenfax">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/cfx2016">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chenfaxiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 嘿，高衙锅 2017
+                    <br>
+                    <!--<span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>-->
+                    <!--<br>-->
+                    <!--Theme by <a href="https://haojen.github.io/">Haojen Ma</a>-->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.chenfx.com.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+<!--  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','<!-- %= config.swiftype_key% --><!-- ','2.0.0'); -->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://opoze7s40.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg">
+</body>
+
+</html>
