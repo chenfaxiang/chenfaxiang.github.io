@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,微信公众号," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本课学习了微信开发模式中利用官方demo进行任意输入后默认回复功能！这里使用的是新浪云提供的免费服务器作为代码仓库进行开发，首先申请一个新浪云开发者账号并进行实名认证，可能审核需要点儿时间，等到SAE空间申请成功之后就可以进行开发了（微信公众号已经申请成功）。">
+<meta name="keywords" content="JavaScript,微信公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.微信公众平台开发模式(微信上输入后进行默认回复)">
+<meta property="og:url" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="本课学习了微信开发模式中利用官方demo进行任意输入后默认回复功能！这里使用的是新浪云提供的免费服务器作为代码仓库进行开发，首先申请一个新浪云开发者账号并进行实名认证，可能审核需要点儿时间，等到SAE空间申请成功之后就可以进行开发了（微信公众号已经申请成功）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/wx-develop1-1.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/wx-develop1-2.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/wx-develop1-3.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/wx-develop1-4.png">
+<meta property="og:updated_time" content="2017-11-30T09:17:35.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1.微信公众平台开发模式(微信上输入后进行默认回复)">
+<meta name="twitter:description" content="本课学习了微信开发模式中利用官方demo进行任意输入后默认回复功能！这里使用的是新浪云提供的免费服务器作为代码仓库进行开发，首先申请一个新浪云开发者账号并进行实名认证，可能审核需要点儿时间，等到SAE空间申请成功之后就可以进行开发了（微信公众号已经申请成功）。">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/wx-develop1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/"/>
+
+
+
+
+
+  <title>1.微信公众平台开发模式(微信上输入后进行默认回复) | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2016/05/02/wx-develop-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1.微信公众平台开发模式(微信上输入后进行默认回复)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-02T20:30:06+08:00">
+                2016-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本课学习了微信开发模式中利用官方demo进行任意输入后默认回复功能！这里使用的是新浪云提供的免费服务器作为代码仓库进行开发，首先申请一个新浪云开发者账号并进行实名认证，可能审核需要点儿时间，等到SAE空间申请成功之后就可以进行开发了（微信公众号已经申请成功）。</p>
+<a id="more"></a>
+<h2 id="在SAE上创建空的php应用"><a href="#在SAE上创建空的php应用" class="headerlink" title="在SAE上创建空的php应用"></a>在SAE上创建空的php应用</h2><ol>
+<li>在以上条件的基础上我们即可进行初步开发，首先进入SAE空间的控制台创建空应用，如下图：<img src="/2016/05/02/wx-develop-1/wx-develop1-1.png" title="SAE中创建空应用">
+在创建应用成功之后进入代码管理，此时将进行仓库选择（云空间、git、svn），根据自己的需要和爱好进行选择即可；SAE应用及仓库搞定，进入下一步；</li>
+<li>将在微信开发者官网下载的demo代码上传到服务器，根据自己选择的不同仓库进行操作，在进行代码上传时最好遵循网页规则，将文件名更改为index.php比较好；</li>
+</ol>
+<h2 id="在微信开发者平台进行开发者的服务器配置"><a href="#在微信开发者平台进行开发者的服务器配置" class="headerlink" title="在微信开发者平台进行开发者的服务器配置"></a>在微信开发者平台进行开发者的服务器配置</h2><ol>
+<li>完成以上步骤后，进入微信开发者平台后，在栏目的最下方可以看见开发者模式，首先启用服务器配置（在启用服务器配置后公众号的编辑模式下进行的所有编辑将不能用了），再进行服务器配置（这里的配置即是对服务器已经上传的微信开发代码进行token验证）；如下图：<img src="/2016/05/02/wx-develop-1/wx-develop1-2.png" title="微信token验证">
+最后保存时提示验证成功即可；如果出现未验证成功的情况有可能是在提交微信demo代码时token值有误。</li>
+<li>以上步骤的完成并不能够成功在微信APP上进行输入任意字符进行统一回复的功能，因为此时查看demo代码即可发现并没有对responseMsg()函数进行调用，调用的是验证函数valid()，其valid()函数在第一次进行调用时进行验证，验证通过之后就废了（意思是将其注释掉都没关系）；通过第一、二步骤后更改demo文件中的调用函数，如下图：<img src="/2016/05/02/wx-develop-1/wx-develop1-3.png" title="微信demo文件更改">
+最后贴一张微信测试的图片：<img src="/2016/05/02/wx-develop-1/wx-develop1-4.png" title="微信测试图片">
+最后，通过以上的步骤就完成了微信开发的初步成功，后续学习都在此基础上完成。。。。</li>
+</ol>
+<p>OVER。。。敬请指正。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/微信公众号/" rel="tag"># 微信公众号</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/01/wx-public-platform/" rel="next" title="微信公众平台编辑模式简介">
+                <i class="fa fa-chevron-left"></i> 微信公众平台编辑模式简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/wx-develop-2/" rel="prev" title="2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)">
+                2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在SAE上创建空的php应用"><span class="nav-number">1.</span> <span class="nav-text">在SAE上创建空的php应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在微信开发者平台进行开发者的服务器配置"><span class="nav-number">2.</span> <span class="nav-text">在微信开发者平台进行开发者的服务器配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

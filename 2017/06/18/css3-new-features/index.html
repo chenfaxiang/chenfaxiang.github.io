@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSS3," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS3出现已经有一段时间了，在项目中用到的情况可能也不在少数，但是真正的了解CSS3增加的新特性吗，我的回答是NO；当然不知道是可以学的，下面是对这块只是学习后的一些学习记录。">
+<meta name="keywords" content="CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3 new features">
+<meta property="og:url" content="http://www.chenfx.com.cn/2017/06/18/css3-new-features/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="CSS3出现已经有一段时间了，在项目中用到的情况可能也不在少数，但是真正的了解CSS3增加的新特性吗，我的回答是NO；当然不知道是可以学的，下面是对这块只是学习后的一些学习记录。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-30T09:33:55.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css3 new features">
+<meta name="twitter:description" content="CSS3出现已经有一段时间了，在项目中用到的情况可能也不在少数，但是真正的了解CSS3增加的新特性吗，我的回答是NO；当然不知道是可以学的，下面是对这块只是学习后的一些学习记录。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2017/06/18/css3-new-features/"/>
+
+
+
+
+
+  <title>css3 new features | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2017/06/18/css3-new-features/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css3 new features</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T20:30:06+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS3出现已经有一段时间了，在项目中用到的情况可能也不在少数，但是真正的了解CSS3增加的新特性吗，我的回答是NO；当然不知道是可以学的，下面是对这块只是学习后的一些学习记录。</p>
+<a id="more"></a>
+<h2 id="一张图展示css-level1-3的选择器"><a href="#一张图展示css-level1-3的选择器" class="headerlink" title="一张图展示css level1-3的选择器"></a>一张图展示css level1-3的选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>通配选择符，可匹配任意元素</td>
+<td>通用选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E</td>
+<td>匹配类型为E的元素</td>
+<td>类型选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E[foo]</td>
+<td>匹配某元素，此元素含有”foo”属性</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性等于bar</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo~=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是由空格链接的多个值组成，其中有一个等于bar</td>
+<td>属性选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E[foo^=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值由bar开始</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo$=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值由bar结束</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo*=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值包含bar</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:root</td>
+<td>匹配某元素所在文档的根元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配元素类型为E且是其父元素的第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配元素类型为E且是其父元素的倒数第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>匹配父元素的第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>匹配父元素的倒数第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-child</td>
+<td>匹配元素类型为E且是父元素的第一个子元素</td>
+<td>结构伪类选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配元素类型为E且是父元素的最后一个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配父元素的第一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td>匹配父元素的最后一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配元素类型为E且是父元素中唯一的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配父元素中唯一子元素是E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配不包含子节点(包括文本)的E元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:link/E:visited</td>
+<td>前者匹配已定义href属性的a元素(未访问)，后者匹配已访问过的a元素</td>
+<td>链接伪类选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E:active/E:hover/E:focus</td>
+<td>分别匹配被激活过、被鼠标经过、获得焦点的E元素</td>
+<td>用户操作伪类选择器</td>
+<td>1、2</td>
+</tr>
+<tr>
+<td>E:target</td>
+<td>匹配URI中锚点指定的元素</td>
+<td>目标伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:lang(fr)</td>
+<td>匹配E元素，且该元素显示内容的语言类型是fr</td>
+<td>语言伪类选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E:enabled/E:disabled</td>
+<td>选择所有可用、不可用的E元素</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:cheched</td>
+<td>选择所有选中的E元素(主要用于checkbox和radio)</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E::first-line</td>
+<td>E元素内的第一行文本</td>
+<td>首行伪类选择器(伪选择器)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E::first-letter</td>
+<td>匹配E元素内的第一个字符</td>
+<td>首字符伪类选择器(伪选择器)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E::before</td>
+<td>匹配E元素前的内容</td>
+<td>伪元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E::after</td>
+<td>匹配E元素后的内容</td>
+<td>伪元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E.warning</td>
+<td>匹配类名为warning的元素</td>
+<td>类选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E#isId</td>
+<td>匹配Id为isId的元素</td>
+<td>ID选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E:not(s)</td>
+<td>匹配类型为E，不匹配选择符为s的元素</td>
+<td>否定选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E F</td>
+<td>选择包含在E元素中的F元素</td>
+<td>包含选择器</td>
+<td>1</td>
+</tr>
+<tr>
+<td>E &gt; F</td>
+<td>匹配F元素，且该元素为所匹配E元素的子元素</td>
+<td>子包含选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E + F</td>
+<td>匹配与E元素相邻的第一个F元素，且F元素在E元素之后</td>
+<td>通用兄弟元素选择器</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E ~ F</td>
+<td>匹配位于E元素后面所有的F元素</td>
+<td>通用兄弟元素选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>上图中展示了目前CSS1-3支持的所有选择器，借鉴的W3C的内容。</p>
+<h2 id="W3C描述的新增特性"><a href="#W3C描述的新增特性" class="headerlink" title="W3C描述的新增特性"></a>W3C描述的新增特性</h2><p>在<a href="https://www.w3cschool.cn/css_series/css_series-cmbf24qi.html" target="_blank" rel="noopener">W3CSchool讲述CSS3新增特性</a>的章节中将CSS3新增的特性按照功能分为了6个部分，每个部分又分别包含了几个方面，总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>新增特性名</th>
+<th>对应的小分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择器的拓展</td>
+<td>属性选择器、结构伪类选择器、UI元素状态伪类选择器、目标伪类选择器、否定选择器、通用兄弟选择器</td>
+</tr>
+<tr>
+<td>页面布局的加强</td>
+<td>多列式布局、可变更的盒模型、可伸缩的布局</td>
+</tr>
+<tr>
+<td>元素修饰的加强</td>
+<td>RGBA和透明度、圆角支持、多背景图片支持、渐变效果支持、阴影和反射效果</td>
+</tr>
+<tr>
+<td>开放字体的支持</td>
+<td>CSS3提供@font-face特性为页面自定义字体的展示提供支持</td>
+</tr>
+<tr>
+<td>多终端的适配</td>
+<td>通过媒体查询（media queries）可以让你为不同的设备基于它们的能力定义不同的样式</td>
+</tr>
+<tr>
+<td>动画支持</td>
+<td>过渡(transition)、旋转缩放(transform)、执行动画(animation)</td>
+</tr>
+</tbody>
+</table>
+<p>然而，目前只是对选择器拓展，即CSS3新增的选择器属性进行了学习理解，后面的特性需要继续学习；</p>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><ul>
+<li>从上面最开始整理的图表中可以看出三个CSS3新增的3个属性选择器名称及其相应的功能，如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E[foo^=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是由bar开始</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[foo$=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值是有bar结束</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E[Foo*=”bar”]</td>
+<td>匹配某元素，此元素的”foo”属性值包含bar</td>
+<td>属性选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>属性选择器示例<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">	<span class="selector-tag">div</span><span class="selector-attr">[foo^="bar"]</span>,</span><br><span class="line">	<span class="selector-tag">div</span><span class="selector-attr">[foo$="bar"]</span>,</span><br><span class="line">	<span class="selector-tag">div</span><span class="selector-attr">[foo*="bar"]</span> &#123;</span><br><span class="line">		<span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">		<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">		<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.bar-att</span><span class="selector-attr">[foo^="bar"]</span> &#123;</span><br><span class="line">		<span class="attribute">color</span>: red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.att-bar</span><span class="selector-attr">[foo$="bar"]</span> &#123;</span><br><span class="line">		<span class="attribute">color</span>: blue;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.attr-bar-con</span><span class="selector-attr">[foo*="bar"]</span> &#123;</span><br><span class="line">		<span class="attribute">color</span>: green;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="noopener">需查看属性选择器示例的可点击此处图片地址</a><br>通过<a href="http://www.caniuse.com" target="_blank" rel="noopener">查询兼容性</a>：除了IE6，其他浏览器都已经支持。</p>
+<h3 id="结构伪类选择器"><a href="#结构伪类选择器" class="headerlink" title="结构伪类选择器"></a>结构伪类选择器</h3><ul>
+<li>结构伪类选择器一共12个，在CSS3中新增了11个，E:first-child是在css2中就已经加入了，其归类如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:root</td>
+<td>匹配某元素所在文档的根元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配元素类型为E且是其父元素的第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配元素类型为E且是其父元素的倒数第N个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>匹配父元素的第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>匹配父元素的倒数第N个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配元素类型为E且是父元素的最后一个子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配父元素的第一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td>匹配父元素的最后一个类型为E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配元素类型为E且是父元素中唯一的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配父元素中唯一子元素是E的子元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配不包含子节点(包括文本)的E元素</td>
+<td>结构伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>看着不多，但在这几个结构伪类选择器里面很容易把人弄混淆，记得使用之前分清楚其用途；</p>
+<ul>
+<li>结构伪类选择器 (挑选了几个作为示例，其他的类似)<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">	<span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(1)</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">color</span>: green;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">li</span><span class="selector-pseudo">:nth-child(2)</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">color</span>: red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">li</span><span class="selector-pseudo">:nth-last-child(1)</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">		<span class="attribute">color</span>: blue;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="noopener">需查看结构伪类选择器示例的可点击此处图片地址</a></p>
+<h3 id="UI元素状态伪类选择器"><a href="#UI元素状态伪类选择器" class="headerlink" title="UI元素状态伪类选择器"></a>UI元素状态伪类选择器</h3><ul>
+<li>UI元素状态伪类选择器整理如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:enabled/E:disabled</td>
+<td>选择所有可用、不可用的E元素</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E:cheched</td>
+<td>选择所有选中的E元素(主要用于checkbox和radio)</td>
+<td>UI元素状态伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>通过其选择器定义很明显的看出改选择器是什么功能，能够做什么用处，当然，这里也有示例进行验证；</p>
+<ul>
+<li>UI元素状态伪类选择器<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">	<span class="selector-class">.attr-abled-radio</span> &#123;</span><br><span class="line">		<span class="attribute">width</span>: <span class="number">330px</span>;</span><br><span class="line">		<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.attr-abled-radio</span><span class="selector-pseudo">:enabled</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">		<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.attr-abled-radio</span><span class="selector-pseudo">:disabled</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">border</span>: <span class="number">1px</span> solid blue;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.attr-checked</span><span class="selector-pseudo">:checked</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line">		<span class="attribute">border</span>: <span class="number">1px</span> solid green;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/UI%E5%85%83%E7%B4%A0.jpg" target="_blank" rel="noopener">需查看UI元素状态伪类选择器示例的可点击此处图片地址</a></p>
+<h3 id="目标伪类选择器"><a href="#目标伪类选择器" class="headerlink" title="目标伪类选择器"></a>目标伪类选择器</h3><ul>
+<li>这个新增的选择器感觉不是很好理解，通俗的讲，就是页面上有一个id=thisID的div元素，而此时在URL中接了一个#thisID的话，就会给id为thisID的div加上定义的样式。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:target</td>
+<td>匹配URI中锚点指定的元素</td>
+<td>目标伪类选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>这个选择器不是很好做示例，但是通过前面的含义理解也能够成功记住。</p>
+<h3 id="否定伪类选择器"><a href="#否定伪类选择器" class="headerlink" title="否定伪类选择器"></a>否定伪类选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:not(s)</td>
+<td>匹配类型为E，不匹配选择符为s的元素</td>
+<td>否定选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>选择器名字通俗易懂，它的作用是在匹配的一些列元素剔除选择符为s的元素，相当于做了个筛选。</p>
+<ul>
+<li>否定伪类选择器<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">	<span class="selector-class">.attr-abled-radio</span> &#123;</span><br><span class="line">		<span class="attribute">width</span>: <span class="number">330px</span>;</span><br><span class="line">		<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.attr-abled-radio</span><span class="selector-pseudo">:not(input)</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">		<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">		<span class="attribute">color</span>: red;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E5%90%A6%E5%AE%9A%E9%80%89%E6%8B%A9%E5%99%A8.jpg" target="_blank" rel="noopener">需查看否定伪类选择器示例的可以点击此处图片地址</a></p>
+<h3 id="通用兄弟元素选择器"><a href="#通用兄弟元素选择器" class="headerlink" title="通用兄弟元素选择器"></a>通用兄弟元素选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器含义</th>
+<th>选择器类型</th>
+<th>CSS Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E ~ F</td>
+<td>匹配位于E元素后面所有的F元素</td>
+<td>通用兄弟元素选择器</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>新增通用元素选择器是匹配位于E元素后面所有的F元素，很好理解；而 E + F 选择器是匹配E后面第一个F元素，两个有类似功能，但是又有很大区别，注意理解。</p>
+<ul>
+<li>通用兄弟元素选择器<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">	<span class="selector-tag">h3</span> &#123;</span><br><span class="line">		<span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">color</span>: red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">h3</span> ~ <span class="selector-tag">p</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">22px</span>;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">color</span>: blue;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">h4</span> &#123;</span><br><span class="line">		<span class="attribute">border-top</span>: <span class="number">2px</span> dashed <span class="number">#ccc</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">h4</span> + <span class="selector-tag">h5</span> &#123;</span><br><span class="line">		<span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">		<span class="attribute">color</span>: green;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://opoze7s40.bkt.clouddn.com/%E9%80%9A%E7%94%A8%E5%85%84%E5%BC%9F%E5%85%83%E7%B4%A0.jpg" target="_blank" rel="noopener">需查看通用兄弟元素选择器示例的可以点击此处图片地址</a></p>
+<p>上面所有的选择器属性都经过亲自验证，虽然有些用的场景不多，但是通过选择器含义还是可以明确知道其作用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/vue-webpack/" rel="next" title="vue + webpack 的单页面应用">
+                <i class="fa fa-chevron-left"></i> vue + webpack 的单页面应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一张图展示css-level1-3的选择器"><span class="nav-number">1.</span> <span class="nav-text">一张图展示css level1-3的选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#W3C描述的新增特性"><span class="nav-number">2.</span> <span class="nav-text">W3C描述的新增特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性选择器"><span class="nav-number">2.1.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构伪类选择器"><span class="nav-number">2.2.</span> <span class="nav-text">结构伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI元素状态伪类选择器"><span class="nav-number">2.3.</span> <span class="nav-text">UI元素状态伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标伪类选择器"><span class="nav-number">2.4.</span> <span class="nav-text">目标伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#否定伪类选择器"><span class="nav-number">2.5.</span> <span class="nav-text">否定伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用兄弟元素选择器"><span class="nav-number">2.6.</span> <span class="nav-text">通用兄弟元素选择器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta name="keywords" content="JavaScript,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs学习笔记(一)">
+<meta property="og:url" content="http://www.chenfx.com.cn/2016/07/10/vuejs-1/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-1.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-2.png">
+<meta property="og:updated_time" content="2017-11-30T09:00:36.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs学习笔记(一)">
+<meta name="twitter:description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2016/07/10/vuejs-1/"/>
+
+
+
+
+
+  <title>Vuejs学习笔记(一) | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2016/07/10/vuejs-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs学习笔记(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T20:30:06+08:00">
+                2016-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一.安装</p>
+<p>通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装</p>
+<p>使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。</p>
+<a id="more"></a>
+<p>script方法大家肯定都会，不做介绍；</p>
+<p>npm安装方法: $ npm install vue</p>
+<h1 id="获取CSP兼容版本"><a href="#获取CSP兼容版本" class="headerlink" title="获取CSP兼容版本"></a>获取CSP兼容版本</h1><p>$ npm install vue@csp</p>
+<h1 id="获取最新开发版本（源自github）"><a href="#获取最新开发版本（源自github）" class="headerlink" title="获取最新开发版本（源自github）"></a>获取最新开发版本（源自github）</h1><p>$ npm install yyx990803/vue#dev</p>
+<p>二.开始介绍</p>
+<p>从技术角度：vuejs专注于MVVM模型的ViewModel层。通过双向数据绑定把View层和Model层连接了起来。</p>
+<p>从哲学角度：vuejs希望通过一个尽量简单的API来提供反应式的数据绑定和可组合、复用的视图组件。它不是一个大而全的框架——它只是一个简单灵活的视图层。</p>
+<p>1.ViewModel</p>
+<p>它是一个同步Model和View的对象，在vuejs中，每个vue实例都是一个ViewModel。它们是通过构造函数vue或其子类被创建出来的。</p>
+<p>var vm = new Vue({ /<em> options </em>/ });</p>
+<p>2.视图（View）</p>
+<p>视图是被Vue实例管理的DOM节点，每个Vue实例都关联着一个相应的DOM元素，当一个vue实例被创建时，它会递归遍历根元素的所有子节点，同时完成必要的数据绑定。</p>
+<p>在使用vuejs时，除自定义指令外几乎不用直接接触DOM；当数据发生变化时，视图会自动触发更新。</p>
+<p>3.模型（Model）</p>
+<p>vuejs中的模型就是普通的JavaScript对象——也称为数据对象。可以操作他们的属性，同时正在观察它的vue实例也会收到提示。Vue实例代理了他们观察的数据对象的所有属性，所以一旦一个对象{a:1}被观察，那么vm.$data.a和vm.a将会返回相同的值，而设置 vm.a = 2 也会修改 vm.$data 。</p>
+<p>4.指令（Directives）</p>
+<p>指令是一个带特殊前缀的HTML特性，可以让vuejs对一个DOM元素做各种处理。</p>
+<p>例如：<div v-text="message"></div></p>
+<p>此处div的指令为v-text，其值为message，Vuejs会让该div的文本内容与vue实例中的 message 属性值保持一致。 Directives可以封装任何DOM操作。</p>
+<p>5.过滤器（Filters）</p>
+<p>例如：<div></div></p>
+<p>这样在div的文本内容被更新之前，message 的值会先传给 capitalize 函数处理。</p>
+<p>6.组件（Components）</p>
+<p>每个组件都是一个简单的vue实例，它通过vue.extend返回的自定义构造函数可以把这些组件实例化；不过用声明式的用法是通过Vue.component(id,constructor)注册这些组件，一旦组件被注册，它们就可以在Vue实例的模板中以自定义的元素形式使用。</p>
+<my-component>
+
+<p>`<!-- mycomponent --></p>
+<p></p></my-component><p></p>
+<p>7.响应的数据绑定</p>
+<p>通过指令 v-if 的值真假与否来进行文案展示，通过对指令 v-if 的值进行真假改变达到效果——vuejs不仅可以绑定文本到数据，也可以绑定DOM结构到数据。如下图：</p>
+<img src="/2016/07/10/vuejs-1/vue1-1.png" title="vue学习图片1">
+<hr>
+<img src="/2016/07/10/vuejs-1/vue1-2.png" title="vue学习图片2">
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/wx-develop-2/" rel="next" title="2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)">
+                <i class="fa fa-chevron-left"></i> 2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/vuejs-2/" rel="prev" title="Vuejs学习笔记(二)">
+                Vuejs学习笔记(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#获取CSP兼容版本"><span class="nav-number">1.</span> <span class="nav-text">获取CSP兼容版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取最新开发版本（源自github）"><span class="nav-number">2.</span> <span class="nav-text">获取最新开发版本（源自github）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

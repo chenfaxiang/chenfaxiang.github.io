@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,微信公众号," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
+<meta name="keywords" content="JavaScript,微信公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众平台编辑模式简介">
+<meta property="og:url" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-main.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-kfz.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-gz.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-cd.png">
+<meta property="og:updated_time" content="2017-11-30T09:28:38.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信公众平台编辑模式简介">
+<meta name="twitter:description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-main.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/"/>
+
+
+
+
+
+  <title>微信公众平台编辑模式简介 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2016/05/01/wx-public-platform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信公众平台编辑模式简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-01T16:30:06+08:00">
+                2016-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。</p>
+<a id="more"></a>
+<h2 id="申请开发者账号（微信公众订阅号）"><a href="#申请开发者账号（微信公众订阅号）" class="headerlink" title="申请开发者账号（微信公众订阅号）"></a>申请开发者账号（微信公众订阅号）</h2><p>开发者账号可以申请公众号和企业号，两者区别通过字面意思就能够很清楚的知道，作为小编肯定只能申请公众号了，它是个人开发者捣鼓的选择，没有企业号那样多的要求。</p>
+<ul>
+<li><p>申请公众号<br>进入<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">微信公众号官网</a>首先注册账号，输入邮箱、密码等操作并进行邮箱验证后即注册成功。注册成功后进行公众号类型选择，个人捣鼓选择订阅号即可，点击确定，下一步勾选个人，输入身份证姓名、身份证号及上传手持身份证照片，再输入手机号码进行验证，最后输入自己的公众号名称、公众号描述及地点点击完成即可；提交申请后，一般会在7天内搞定的，我的貌似两天就好了。</p>
+</li>
+<li><p>编辑模式操作<br>在一切准备妥当之后即可进行练手了，进入<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">微信公众号官网</a>进行登录，登录成功之后会看见如下界面：</p>
+<img src="/2016/05/01/wx-public-platform/wx-platform-main.png" title="登陆成功所见图片">
+<p>在微信开发中编辑模式和开发者模式两者不能同时进行，但是开发者模式开始并没有默认开启，在你没有想好作为开发者是用代码进行控制得时候就不必关心这个问题了；上图左侧可以看见不同的栏，其中功能栏的群发功能、自动回复、自定义菜单；管理栏的素材管理这几个功能就能够完成入门者在编辑模式的小需求了；如果需要你已经完全可以进行代码开发，那么你在上图左侧最下边可以看见开发者模式，在基本配置中启用即可，如下图：</p>
+<img src="/2016/05/01/wx-public-platform/wx-platform-kfz.png" title="开发者模式开启">
+<p>作为入门者首先可以通过编辑模式感受一下之后再进行此操作。</p>
+</li>
+<li>言归正传，这里说的是编辑模式，那么继续；首先看自动回复功能，点击之后可以看见有三个模块，分别为：被添加自动回复、消息自动回复、关键词自动回复，通过词语意思就大概能够明白，这里分别可以进行文字、图片、语音、视频的添加操作；这里重点说明一下被添加自动回复和关键词自动回复的规则；</li>
+</ul>
+<ol>
+<li>被添加自动回复<br>当公众号被关注时进行消息提醒，关注过公众号的人都知道，如果没见过那就随便去关注一个公众号瞧一瞧吧。。。。。。</li>
+<li>关键词自动回复的规则<br>这里的规则可以和被添加自动回复相关联，在自动回复中可以加入引导提示，让用户进行关键词输入，这样就可以通过关键词自动回复的规则进行其他的操作了，这里的规则可以添加多达200个，完全可以满足娱乐者的要求了吧。。。下面来看一下图片就好：<img src="/2016/05/01/wx-public-platform/wx-platform-gz.png" title="被关注自动回复和关键词自动回复规则"></li>
+<li>菜单管理<br>菜单管理中能够对公众号下方一排菜单进行管理，根据自己的想法进行添加即可，如下图：<img src="/2016/05/01/wx-public-platform/wx-platform-cd.png" title="菜单编辑">
+素材管理功能是将你自己添加的图文素材等进行集中管理，看自己的需求操作咯。。。在以上的操作中基本能满足出入这的捣鼓了，赶紧去测试测试吧。。。</li>
+</ol>
+<ul>
+<li><p>开发者模式需要在有一定编程知识基础上进行操作，看每个人的不同情况吧，有兴趣的自己去瞎掰呗，反正就是动手干。。</p>
+</li>
+<li><p>有说得不对的地方请指正，大家共同学习。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/微信公众号/" rel="tag"># 微信公众号</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/02/wx-develop-1/" rel="prev" title="1.微信公众平台开发模式(微信上输入后进行默认回复)">
+                1.微信公众平台开发模式(微信上输入后进行默认回复) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#申请开发者账号（微信公众订阅号）"><span class="nav-number">1.</span> <span class="nav-text">申请开发者账号（微信公众订阅号）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,微信公众号," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在第一节完成微信demo部署到SAE服务器的基础上，本次学习了怎样进行关注公众号进行默认回复、回复关键词时进行反馈及反馈信息分为文本和图文信息展示。">
+<meta name="keywords" content="JavaScript,微信公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.微信公众平台开发模式(关注自动&#x2F;关键词回复、图文信息展示)">
+<meta property="og:url" content="http://www.chenfx.com.cn/2016/05/10/wx-develop-2/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在第一节完成微信demo部署到SAE服务器的基础上，本次学习了怎样进行关注公众号进行默认回复、回复关键词时进行反馈及反馈信息分为文本和图文信息展示。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2016/05/10/wx-develop-2/wx-develop2-1.png">
+<meta property="og:updated_time" content="2017-11-30T09:20:39.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2.微信公众平台开发模式(关注自动&#x2F;关键词回复、图文信息展示)">
+<meta name="twitter:description" content="在第一节完成微信demo部署到SAE服务器的基础上，本次学习了怎样进行关注公众号进行默认回复、回复关键词时进行反馈及反馈信息分为文本和图文信息展示。">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2016/05/10/wx-develop-2/wx-develop2-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2016/05/10/wx-develop-2/"/>
+
+
+
+
+
+  <title>2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示) | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2016/05/10/wx-develop-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2.微信公众平台开发模式(关注自动/关键词回复、图文信息展示)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-10T22:30:06+08:00">
+                2016-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在第一节完成微信demo部署到SAE服务器的基础上，本次学习了怎样进行关注公众号进行默认回复、回复关键词时进行反馈及反馈信息分为文本和图文信息展示。</p>
+<a id="more"></a>
+<h2 id="关注公众号自动回复"><a href="#关注公众号自动回复" class="headerlink" title="关注公众号自动回复"></a>关注公众号自动回复</h2><p>在使用微信时时常会关注别人的微信号，在关注成功之后系统会默认回复一条信息进行提示，因此这里进行了学习；通过查看开发者文档发现微信目前提供五种消息类型，分别为：</p>
+<ol>
+<li>文本消息(text);</li>
+<li>图片消息(image);</li>
+<li>地理位置消息(location);</li>
+<li>链接消息(link);</li>
+<li>事件推送(event);</li>
+</ol>
+<ul>
+<li>接收到消息后首先会对消息类型进行判断，然后再针对不同的消息类型做出处理，通过文档发现关注微信号属于订阅事件即在被关注时会产生一个订阅事件(subscribe事件)；那么，判断此事件后就能够做出相应的提示和操作；在函数responseMsg()中添加如下代码即可：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ev = $postObj-&gt;Event;  </span><br><span class="line"><span class="keyword">if</span> ($ev == <span class="string">"subscribe"</span>) &#123;</span><br><span class="line">    $msgType = <span class="string">"text"</span>;</span><br><span class="line">    $contentStr = <span class="string">"欢迎关注chen發xiang的个人微信公众号!\n回复'1'：查看个人简历\n回复'2'：查看工作经历\n回复'3'：查看爱好特长"</span>;</span><br><span class="line"></span><br><span class="line">    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);</span><br><span class="line">                echo $resultStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="回复关键词时进行反馈-反馈分为文本和图文展示"><a href="#回复关键词时进行反馈-反馈分为文本和图文展示" class="headerlink" title="回复关键词时进行反馈(反馈分为文本和图文展示)"></a>回复关键词时进行反馈(反馈分为文本和图文展示)</h2><ul>
+<li>在完成上面的内容之后，进行消息回复，回复1、2、3和其他分别展示不同的内容，这里可以通过switch对回复的关键字判断在之后再进行回复显示；仍然在responseMsg()函数中添加代码，如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!empty( $keyword )) &#123;</span><br><span class="line">    <span class="comment">//$msgType = "text";</span></span><br><span class="line">    <span class="keyword">switch</span> ($keyword) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">            <span class="comment">//$contentStr = "查看个人简历!";</span></span><br><span class="line">            $textTpl = <span class="string">"&lt;xml&gt;</span></span><br><span class="line"><span class="string">                            &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">                            &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">                            &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">                            &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">                            &lt;ArticleCount&gt;1&lt;/ArticleCount&gt;</span></span><br><span class="line"><span class="string">                            &lt;Articles&gt;</span></span><br><span class="line"><span class="string">                                &lt;item&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Title&gt;&lt;![CDATA[欢迎关注chenfaxiang]]&gt;&lt;/Title&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Description&gt;&lt;![CDATA[description1]]&gt;&lt;/Description&gt;</span></span><br><span class="line"><span class="string">                                    &lt;PicUrl&gt;&lt;![CDATA[http://1.wxchenfx.applinzi.com/images/1.jpg]]&gt;&lt;/PicUrl&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Url&gt;&lt;![CDATA[http:www.chenfx.com.cn]]&gt;&lt;/Url&gt;</span></span><br><span class="line"><span class="string">                                &lt;/item&gt;</span></span><br><span class="line"><span class="string">                                &lt;item&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Title&gt;&lt;![CDATA[个人简历]]&gt;&lt;/Title&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Description&gt;&lt;![CDATA[description]]&gt;&lt;/Description&gt;</span></span><br><span class="line"><span class="string">                                    &lt;PicUrl&gt;&lt;![CDATA[http://1.wxchenfx.applinzi.com/images/1.jpg]]&gt;&lt;/PicUrl&gt;</span></span><br><span class="line"><span class="string">                                    &lt;Url&gt;&lt;![CDATA[http:www.chenfx.com.cn]]&gt;&lt;/Url&gt;</span></span><br><span class="line"><span class="string">                                &lt;/item&gt;</span></span><br><span class="line"><span class="string">                            &lt;/Articles&gt;</span></span><br><span class="line"><span class="string">                        &lt;/xml&gt;"</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'2'</span>:</span><br><span class="line">            <span class="comment">//$contentStr = "查看工作经历!";</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'3'</span>:</span><br><span class="line">            <span class="comment">//$contentStr = "查看爱好特长!";</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="comment">//$contentStr = "其他功能正在开发中……";</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);</span></span><br><span class="line">    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time);</span><br><span class="line">	echo $resultStr;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	echo <span class="string">"Input something..."</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>代码中用双斜线(//)注释掉了一些内容和未注释的内容，在查看开发者文档就可以发现这里是文本模式和图文模式，在回复关键字1时文本模式有文本介绍，图文模式当然就是以图文素材的模式进行显示，图文模式中有两个<code>&lt;item&gt;</code>标签，这里即为双图展示，如果去掉一个即为单图模式，单图模式中<code>&lt;description&gt;</code>才会有所功能体现，多图模式下其没有任何作用；除此之外，有<code>&lt;title&gt;</code>进行题目提醒及图片地址<code>&lt;PicUrl&gt;</code>和图文信息访问地址<code>&lt;Url&gt;</code>；最后通过函数<code>sprintf()</code>将信息进行处理及返回就能够成功在微信上得到自己所编辑的信息。如下图：<br><img src="/2016/05/10/wx-develop-2/wx-develop2-1.png" title="订阅回复/图文信息"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/微信公众号/" rel="tag"># 微信公众号</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/02/wx-develop-1/" rel="next" title="1.微信公众平台开发模式(微信上输入后进行默认回复)">
+                <i class="fa fa-chevron-left"></i> 1.微信公众平台开发模式(微信上输入后进行默认回复)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/10/vuejs-1/" rel="prev" title="Vuejs学习笔记(一)">
+                Vuejs学习笔记(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关注公众号自动回复"><span class="nav-number">1.</span> <span class="nav-text">关注公众号自动回复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回复关键词时进行反馈-反馈分为文本和图文展示"><span class="nav-number">2.</span> <span class="nav-text">回复关键词时进行反馈(反馈分为文本和图文展示)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
