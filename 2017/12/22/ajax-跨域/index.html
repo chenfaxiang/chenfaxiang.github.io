@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,跨域," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动">
+<meta name="keywords" content="JavaScript,跨域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax 跨域处理记录">
+<meta property="og:url" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/跨域.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/request-headers.jpg">
+<meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/cookie.jpg">
+<meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/option.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/success.png">
+<meta property="og:updated_time" content="2017-12-22T09:41:29.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax 跨域处理记录">
+<meta name="twitter:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/跨域.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/"/>
+
+
+
+
+
+  <title>ajax 跨域处理记录 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ajax 跨域处理记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T22:21:11+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。</p>
+<h3 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h3><p>需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大的问题，那就开干吧。</p>
+<h3 id="页面依赖的插件"><a href="#页面依赖的插件" class="headerlink" title="页面依赖的插件"></a>页面依赖的插件</h3><ul>
+<li>zepto.js</li>
+<li>plupload.js</li>
+</ul>
+<h3 id="实际场景的代码片段"><a href="#实际场景的代码片段" class="headerlink" title="实际场景的代码片段"></a>实际场景的代码片段</h3><ul>
+<li>html 提供评论框中的 dom 结构</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"post-reply-modal-uploadimg j-post-reply-modal-uploadimg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"plupload-content j-plupload-content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"plupload-content-btn j-plupload-content-btn"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span><span class="comment">&lt;!-- 上传的按钮dom --&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"plupload-content-success j-plupload-content-success"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"success-img j-success-img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"delete-img j-delete-img"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>JavaScript 初始化 plupload 上传图片插件事件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadImg</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> uploader = <span class="keyword">new</span> plupload.Uploader(&#123;</span><br><span class="line">    runtimes: <span class="string">'html5,html4,flash,silverlight'</span>,</span><br><span class="line">    browse_button: $(<span class="string">'.j-plupload-content-btn'</span>),</span><br><span class="line">    url: uploadImgAPI,  <span class="comment">// 在本地选择文件后通过请求上传图片信息到服务器的url</span></span><br><span class="line">    flash_swf_url: <span class="string">'../assets/scripts/upload/moxie.swf'</span>,</span><br><span class="line">    silverlight_xap_url: <span class="string">'../assets/scripts/upload/moxie.xap'</span>,</span><br><span class="line">    headers: &#123;&#125;,</span><br><span class="line">    chunk_size: <span class="number">0</span>,</span><br><span class="line">    max_retries: <span class="number">1</span>,</span><br><span class="line">    file_data_name: <span class="string">'file'</span>,</span><br><span class="line">    multi_selection: <span class="literal">false</span>,</span><br><span class="line">    multipart: <span class="literal">true</span>,</span><br><span class="line">    required_features: &#123;</span><br><span class="line">      send_browser_cookies: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    filters: &#123;</span><br><span class="line">      mime_types: [</span><br><span class="line">        &#123; <span class="attr">title</span>: <span class="string">'Image files'</span>, <span class="attr">extensions</span>: <span class="string">'jpg,jpeg,png,gif'</span> &#125;,</span><br><span class="line">      ],</span><br><span class="line">      prevent_duplicates: <span class="literal">false</span>,</span><br><span class="line">      max_file_size: <span class="string">'10240kb'</span>,</span><br><span class="line">      max_file_count: <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    init: &#123;</span><br><span class="line">      Init: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化执行的操作</span></span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      FilesAdded: <span class="function">(<span class="params">up, files</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 上传队列数据加载完后执行start对数据进行上传</span></span><br><span class="line">        uploader.start();</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      FileUploaded: <span class="function">(<span class="params">up, files, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 在数据通过接口上传完后处理当前数据在页面上的显示</span></span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="built_in">Error</span>: <span class="function">(<span class="params">up, err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 上传图片过程中出现错误可以在这里操作</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'---'</span>, up, err);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  uploader.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的初始化及配置有疑问可以查看 <a href="https://github.com/moxiecode/plupload" target="_blank" rel="noopener">plupload主页</a>，上面的过程很简单，没多久就搞定了，那就实际测一测呗；…………我擦，为什么上传图片到服务器不成功？</p>
+<a id="more"></a>
+<h3 id="API-跨域问题"><a href="#API-跨域问题" class="headerlink" title="API 跨域问题"></a>API 跨域问题</h3><p>一个域名地址的组成：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">http://</th>
+<th style="text-align:center">www.</th>
+<th style="text-align:center">xxx.com</th>
+<th style="text-align:center">:8080</th>
+<th style="text-align:center">files/filsname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">协议</td>
+<td style="text-align:center">子域名</td>
+<td style="text-align:center">主域名</td>
+<td style="text-align:center">端口号</td>
+<td style="text-align:center">请求资源地址</td>
+</tr>
+</tbody>
+</table>
+<p>  当协议、子域名、主域名、端口号中任一不相同时都不能算做同域，在不同域之间互相请求资源时就算作‘跨域’。<br>  ok，最终的重点记录还是这后面的，那就记录记录为什么上传图片到服务器不成功咯。<br>  <img src="/2017/12/22/ajax-跨域/跨域.png"><br>  很明显，这就是跨域嘛，跨域处理的情况那不是挺多的，那就解决一下吧。</p>
+<ol>
+<li><p>常见的 jsonp 跨域<br>虽然在页面上调用不同域的接口不被允许，但是调用不同域的资源(如js脚本)是被允许的，jsonp 则正是利用这个特性来进行跨域数据请求处理。比如在 a.html 页面上，它里面的代码需要利用 ajax 获取不同域上的 json 数据，假设数据地址是 <a href="http://b.com/data.php，那么" target="_blank" rel="noopener">http://b.com/data.php，那么</a> a.html 中的代码可以这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">jsonData</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 处理获取的 json 数据</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script src='http:/</span><span class="regexp">/b.com/</span>data.php?jsonpcallback=doSomething<span class="string">'&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因为后端代码是当做一个js文件来引入的，则它必须返回的是一个能执行的js文件，即后端代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;php?</span><br><span class="line">  $jsonpcallback = $_GET[<span class="string">'jsonpcallback'</span>];</span><br><span class="line">  $data = <span class="keyword">array</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>);</span><br><span class="line">  <span class="keyword">echo</span> $jsonpcallback.<span class="string">'('</span>.json_encode($data).<span class="string">')'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最终页面上会输出doSomething([‘a’,’b’,’c’])，即这样我们就可以通过jsonp获取跨域的请求数据了。</p>
+</li>
+<li><p>XHR2(html5)处理跨域方式<br>html5提供的XMLHttpRequest Level2已经实现了跨域访问以及其他的一些新功能，这个功能就很方便，在所有的现代浏览器中基本上已经全部支持，如果是开发 h5 页面的话基本上不用考虑支持的问题；在使用的时候客户端不用做任何事情，只需要服务端修改支持跨域的几个请求头即可:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Access-Control-Allow-Origin'</span>:<span class="string">'*'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Credentials'</span>:<span class="string">'true'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers'</span>:<span class="string">'x-requested-with'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods'</span>:<span class="string">'POST, GET, OPTIONS, PUT, DELETE, HEAD'</span></span><br></pre></td></tr></table></figure>
+<p>这些请求头设置可以根据自己的需要按需设置。</p>
+<p>还有更多的跨域方式这里不在主要的记录范围，有时间再记录跨域的东西吧。。下面继续记录本次的 api 跨域遇到的坑。</p>
+</li>
+<li><p>本次上传图片跨域问题处理</p>
+</li>
+</ol>
+<ul>
+<li><p>通过前面的步骤其实已经大致记录了本次处理跨域的一个方法方向，因为主要是在移动端的页面，则直接采用了最新的XHR2跨域的处理方式，后端修改支持即可；难道这就完美了，答案肯定不是，不然怎么会有坑，由于奇葩的测试环境和线上环境，这里的跨域在当前梳理的时候一直不能成功，检查：<br>后端添加允许跨域已完成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Access-Control-Allow-Origin'</span>:<span class="string">'特定的网站地址'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Credentials'</span>:<span class="string">'true'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers'</span>:<span class="string">'x-requested-with'</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods'</span>:<span class="string">'POST, GET, OPTIONS, PUT, DELETE, HEAD'</span></span><br></pre></td></tr></table></figure>
+<p>讲道理，前端此时不需要做其他设置是能够成功发送请求的，但是这里就是不讲道理；和后端沟通后得知，请求已经成功，但是他们的验证用户是否登录是直接校验的请求带回的 cookie 中是否有用户标识，oh my god，看一下呗。</p>
+<img src="/2017/12/22/ajax-跨域/request-headers.jpg" title="Request Headers PIC">
+<p>好吧，这里根本没有 cookie 带回去，但是通过浏览器的检查工具查看 cookie 确实是存在的，信息敏感，删除所有信息留一个只做记录用；</p>
+<img src="/2017/12/22/ajax-跨域/cookie.jpg" title="Cookie PIC">
+<p>那么这有关乎到 cookie 的问题了，很容易想到，cookie 本来在请求是是会自动将值带上的，但是在域不同的时候肯定是不会自动将值加入，那么这里就是这个原因造成的呗，在js代码中处理了一波 cookie 的 domain 是允许跨域的地址后再次发起请求，结果显而易见，肯定是失败了，不然我就不做这次尴尬的记录了。。图片如下：</p>
+<img src="/2017/12/22/ajax-跨域/option.png" title="request method option PIC"></li>
+<li>额，这里又出现了一个 option 请求，什么情况；<br>option 请求简单理解：例如在接口发起post请求处于跨域情况下，首先会自动发送一个option请求到服务器进行确认，问服务器兄弟，我本次请求你允许我操作吗？如果服务器告诉它，兄弟，可以的，那么就再发起一次本来是post请求到服务器且服务器返回成功信息，若服务器不允许，那么这里就拜拜咯，下面的操作仍然不能继续；这里有一个需要注意的点，这个时候前端是无能为力的，需要后端将option请求的操作进行一个处理，让此操作也能成功跨域(后端哥哥操作，不了解，不跟任何步骤，只记录需要他们处理)，并且上图中的 origin 一定注意，也要设置成允许跨域的地址(允许所有就是*，特定某个地址就设置成具体的某个地址)。这一步踩坑一下午……… ^–^</li>
+<li>最终结果<br>在前面的坑走过一遍后，终于能够将本次跨域所设计的问题基本解决。<img src="/2017/12/22/ajax-跨域/success.png" title="successed PIC">
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>  跨域的方法很多，但是每个公司及当前处理环境可能各不相同，最重要的还是一套成熟的规则吧；上述在理解上肯定不全面，欢迎各位大佬批评指正……</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/跨域/" rel="tag"># 跨域</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/12/input-type-file/" rel="next" title="input的file要点击两次才弹出选择文件窗口">
+                <i class="fa fa-chevron-left"></i> input的file要点击两次才弹出选择文件窗口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际场景"><span class="nav-number">1.</span> <span class="nav-text">实际场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面依赖的插件"><span class="nav-number">2.</span> <span class="nav-text">页面依赖的插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际场景的代码片段"><span class="nav-number">3.</span> <span class="nav-text">实际场景的代码片段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-跨域问题"><span class="nav-number">4.</span> <span class="nav-text">API 跨域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:300px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:20px;line-height:20px;">
+            <img src="http://opoze7s40.bkt.clouddn.com/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;font-size: 14px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
