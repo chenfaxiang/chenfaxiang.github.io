@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动">
+<meta name="description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。">
 <meta name="keywords" content="JavaScript,跨域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax 跨域处理记录">
 <meta property="og:url" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/index.html">
 <meta property="og:site_name" content="record | chenfx">
-<meta property="og:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大">
+<meta property="og:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/跨域.png">
 <meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/request-headers.jpg">
 <meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/cookie.jpg">
 <meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/option.png">
 <meta property="og:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/success.png">
-<meta property="og:updated_time" content="2017-12-22T09:50:48.344Z">
+<meta property="og:updated_time" content="2019-04-12T11:35:39.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax 跨域处理记录">
-<meta name="twitter:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。 实际场景需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大">
+<meta name="twitter:description" content="前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。">
 <meta name="twitter:image" content="http://www.chenfx.com.cn/2017/12/22/ajax-跨域/跨域.png">
 
 
@@ -307,8 +307,8 @@
 
       
         <p>前端每时每刻都是在和页面打交道，管你是 h5 还是在 PC 端的页面；然而，在页面上的数据处理多种多样，但现在为了页面的交互性，大多数时候都会使用 ajax 在需要的时候对我们的数据进行处理 (获取数据、提交表单数据、上传图片信息等)。本文主要记录自己在实际项目中上传图片遇到的跨域问题。</p>
-<h3 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h3><p>需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大的问题，那就开干吧。</p>
 <a id="more"></a>
+<h3 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h3><p>需求主要是一个话题互动页面，在评论框中需满足能够上传图片的要求，需求看似平平常常，处理起来也没什么太大的问题，那就开干吧。</p>
 <h3 id="页面依赖的插件"><a href="#页面依赖的插件" class="headerlink" title="页面依赖的插件"></a>页面依赖的插件</h3><ul>
 <li>zepto.js</li>
 <li>plupload.js</li>
@@ -566,7 +566,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
