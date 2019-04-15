@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在刚进入 JavaScript 世界并通过公司实习的时候就发现，在使用 JavaScript 编写代码的过程中随处可见的 function 配合 new 关键字来操作，这就是以前常见的 JavaScript “模拟面向对象”。   在上一篇文章中已经知道 JavaScript 本身就是面向对象的，它并不需要模拟，只是它">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript对象,真的需要模拟类吗">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/03/02/javascript对象-真的需要模拟类吗/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在刚进入 JavaScript 世界并通过公司实习的时候就发现，在使用 JavaScript 编写代码的过程中随处可见的 function 配合 new 关键字来操作，这就是以前常见的 JavaScript “模拟面向对象”。   在上一篇文章中已经知道 JavaScript 本身就是面向对象的，它并不需要模拟，只是它实现面向对象的方式和主流的流派不太一样，所以才让很多人产生误会。   那么，随着">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T11:19:09.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript对象,真的需要模拟类吗">
+<meta name="twitter:description" content="在刚进入 JavaScript 世界并通过公司实习的时候就发现，在使用 JavaScript 编写代码的过程中随处可见的 function 配合 new 关键字来操作，这就是以前常见的 JavaScript “模拟面向对象”。   在上一篇文章中已经知道 JavaScript 本身就是面向对象的，它并不需要模拟，只是它实现面向对象的方式和主流的流派不太一样，所以才让很多人产生误会。   那么，随着">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/03/02/javascript对象-真的需要模拟类吗/"/>
+
+
+
+
+
+  <title>javascript对象,真的需要模拟类吗 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/02/javascript对象-真的需要模拟类吗/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript对象,真的需要模拟类吗</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T02:10:00+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在刚进入 JavaScript 世界并通过公司实习的时候就发现，在使用 JavaScript 编写代码的过程中随处可见的 function 配合 new 关键字来操作，这就是以前常见的 JavaScript “模拟面向对象”。  </p>
+<p>在上一篇文章中已经知道 JavaScript 本身就是面向对象的，它并不需要模拟，只是它实现面向对象的方式和主流的流派不太一样，所以才让很多人产生误会。  </p>
+<p>那么，随着理解的思路继续深入，这些“模拟面向对象”实际上做的事情就是“模拟基于类的面向对象”。  </p>
+<p>尽管我认为“类”并非面向对象的全部，但是我们不应该责备社区出现这样的方案；但是 JavaScript 在“原型运行时”的基础上引入了 new、this等语言特性，使之看起来更像基于类的面向对象语言 Java，这种半吊子模拟，缺少了继承等关键特性，才导致大家视图对它进行修补，进而产生了种种解决方案。  </p>
+<p>庆幸的是，从 ES6 开始， JavaScript 提供了 class 关键字来定义类，尽管，这样的方案仍然是基于原型运行时系统的模拟，但是它修正了之前的一些常见的“坑”，统一了社区方案。实际上，我认为“基于类”并非面向对象的唯一形态，如果我们把视线从“类”移开，Brenan 当年选择的原型系统，就是一个非常优秀的抽象对象的形式。</p>
+<a id="more"></a>
+<h2 id="什么是原型？"><a href="#什么是原型？" class="headerlink" title="什么是原型？"></a>什么是原型？</h2><p>什么是原型，原型就是顺应人类自然思维的产物，中文有个成语叫“照猫画虎”，这里的猫看起来就是老虎的原型；  </p>
+<p>在上一节学习面向对象的时候知道，在不同的编程语言中，设计者也利用各种不同的语言特性来描述对象；最为成功的流派是使用“类”的方式来描述对象，诸如 c++、Java 等流行的基于类的编程语言。  </p>
+<p>还有一种就是基于原型的编程语言，它们利用原型来描述对象，JavaScript 就是之中的代表。  </p>
+<p>“基于类”的编程提倡使用一个关注分类和类之间关系开发模型；在这类语言中，总是先有类，再从类去实例化一个对象，类与类之间又可能会形成继承、组合等关系，类又往往与语言的类型系统整合，形成一定编译时的能力。<br>与此相对，“基于原型”的编程看起来更为提倡程序员去关注一系列对象实例的行为，而后才去关心如何将这些对象，划分到最近的使用方式相似的原型对象，而不是将它们分成类。  </p>
+<p>基于原型和基于类都能够满足基本的复用和抽象需求，但是使用的场景不太相同。  </p>
+<p>在 JavaScript 之前，原型系统就更多与高动态性语言配合，并且多数基于原型的语言提倡运行时的原型修改，我想，这应该是 Brendan 选择原型系统很重要的理由。  </p>
+<p>原型系统的“复制操作”有两种实现思路：</p>
+<ul>
+<li>一个是并不真的去复制原型对象，而是使得新对象持有一个原型的引用</li>
+<li>另一个是切实的复制对象，从此两个对象再无关联</li>
+</ul>
+<p>历史上的基于原型语言因此产生了两个流派，显然，JavaScript 显然选择了前一种方式。  </p>
+<h2 id="JavaScript-的原型"><a href="#JavaScript-的原型" class="headerlink" title="JavaScript 的原型"></a>JavaScript 的原型</h2><p>抛开 JavaScript 用于模拟 Java 类的复杂语法设施（如 new、Funtion Object 等），原型系统可以说相当简单，概括成两条：</p>
+<ul>
+<li>所有对象都有私有字段[[prototype]]，就是对象的原型</li>
+<li>读一个属性，如果对象本身没有，则会继续访问对象的原型，知道原型为空或者找到为止</li>
+</ul>
+<p>这个模型在 ES 的各个历史版本中没有很大变化，但是从 ES6 以来，JavaScript 提供了一系列内置函数，以便更直接的访问操纵原型；三个方法分别为：</p>
+<ul>
+<li>Object.create 根据指定的原型创建对象，原型可以是 null</li>
+<li>Object.getPrototypeOf 获得一个对象的原型</li>
+<li>Object.setPrototypeOf 设置一个对象的原型</li>
+</ul>
+<p>利用这三个方法，完全可以抛开类的思维，利用原型来实现抽象和复用。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cat = &#123;</span><br><span class="line">  say() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'miao ~~'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  jump() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'jump'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tiger = <span class="built_in">Object</span>.create(cat, &#123;</span><br><span class="line">  say: &#123;</span><br><span class="line">    writable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'roar ~~'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anotherCat = <span class="built_in">Object</span>.create(cat);</span><br><span class="line">anotherCat.say(); <span class="comment">// miao ~~</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anotherTiger = <span class="built_in">Object</span>.create(tiger);</span><br><span class="line">anotherTiger.say(); <span class="comment">// roar ~~</span></span><br></pre></td></tr></table></figure>
+<p>这里创建了一个 cat 对象，又根据猫做了一些修改创建了 tiger 对象，之后就直接用 Object.create() 来创建另外两个 cat 和 tiger 对象，我们可以用过“原始cat对象”和“原始tiger对象”来控制cat和tiger的行为。<br>但是，在更早的版本中我们只能通过 Java 风格的类接口来操纵原型运行时，由于 new 和 prototype 属性等基础设施今天仍然很多人使用，下面去追溯一下早年的 JavaScript 中的原型和类。</p>
+<h2 id="早期版本中的类与原型"><a href="#早期版本中的类与原型" class="headerlink" title="早期版本中的类与原型"></a>早期版本中的类与原型</h2><p>在早期版本的 JavaScript 中，“类”的定义是一个私有属性[[class]]，语言标准为内置类型诸如 Number、String、Date 等制定了[[class]]属性，以表示它们的类。语言使用者唯一可以访问[[class]]属性的方式时 Object.prototype.toString。<br>下面展示了所有具有内置class属性的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>;</span><br><span class="line"><span class="keyword">var</span> n = <span class="keyword">new</span> <span class="built_in">Number</span>;</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">String</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>;</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>;</span><br><span class="line"><span class="keyword">var</span> arg = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="built_in">arguments</span>&#125;();</span><br><span class="line"><span class="keyword">var</span> r = <span class="keyword">new</span> <span class="built_in">RegExp</span>;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Function</span>;</span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>;</span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>;</span><br><span class="line"><span class="built_in">console</span>.log([o,n,s,b,d,arg,r,f,arr,e].map(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">Object</span>.prototype.toString.call(v)));</span><br></pre></td></tr></table></figure>
+<p>因此，在 ES3 和之前的版本， JavaScript 中类的概念相当弱，它仅仅是运行时的一个字符串属性。  </p>
+<p>而我们把 new 理解成 JavaScript 面向对象的一部分，它究竟做了哪些具体的操作呢？</p>
+<ul>
+<li>以构造器的 prototype 属性（注意与私有字段[[prototype]]的区分）为原型，创建新对象</li>
+<li>将 this 和调用参数传给构造器执行</li>
+<li>如果构造器返回的是对象，则返回，否则返回第一步创建的对象</li>
+</ul>
+<p>new 这样的行为，试图让函数对象在语法上跟类变得相似；但是，它在客观上提供了两种方式：</p>
+<ol>
+<li>在构造器中添加属性</li>
+<li>在构造器的 prototype 属性上添加属性</li>
+</ol>
+<p>如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.p1 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">this</span>.p2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.p1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> c1();</span><br><span class="line">o1.p2();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c2</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">c2.prototype.p1 = <span class="number">1</span>;</span><br><span class="line">c2.prototype.p2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.p1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> c2();</span><br><span class="line">o2.p2();</span><br></pre></td></tr></table></figure>
+<p>方法一是直接在构造器中修改 this，给 this 添加属性<br>方法二是在构造器的 prototype 属性指向的对象上做修改，它是从这个构造器构造出来的所有对象的原型</p>
+<h2 id="ES6-中的类"><a href="#ES6-中的类" class="headerlink" title="ES6 中的类"></a>ES6 中的类</h2><p>前面是通过 new 和构造器进行搭配创建新实例，而在 ES6 中加入了新特性 class 关键字，从此，基于类的编程方式成为了 JavaScript 的官方编程范式，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(height, width) &#123;</span><br><span class="line">    <span class="keyword">this</span>.height = height;</span><br><span class="line">    <span class="keyword">this</span>.width = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getter</span></span><br><span class="line">  get area() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.calcArea();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// method</span></span><br><span class="line">  calcArea() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在现有的类语法中，getter/setter 和 method 是兼容性最好的，这里类的写法实际上也是有原型运行时来承载的，逻辑上 JavaScript 认为每个类是有共同原型的一组对象，类中定义的方法和属性则会被卸载原型对象之上。此外，最终的是类提供了继承的能力，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  speak() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'make a noise.'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name);</span><br><span class="line">    <span class="comment">// call the super class constructor and pass in the name parameter</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  speak() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'barks.'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> d = <span class="keyword">new</span> Dog(<span class="string">'mitt'</span>);</span><br><span class="line">d.speak();</span><br><span class="line"><span class="comment">// mitt barks</span></span><br></pre></td></tr></table></figure>
+<p>这里通过 extends 关键字让 Dog 继承了 Animal 类，比用 new 和 prototype 原型链来实现继承更加方便。<br>所以，在你的工作中，是不是将 ES6 语法已经提上日程或者正在使用呢？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/26/javascript对象-面向对象还是基于对象/" rel="next" title="javascript对象,面向对象还是基于对象">
+                <i class="fa fa-chevron-left"></i> javascript对象,面向对象还是基于对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/javascript对象-你知道全部的对象分类吗/" rel="prev" title="javascript对象,你知道全部的对象分类吗">
+                javascript对象,你知道全部的对象分类吗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是原型？"><span class="nav-number">1.</span> <span class="nav-text">什么是原型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-的原型"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 的原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#早期版本中的类与原型"><span class="nav-number">3.</span> <span class="nav-text">早期版本中的类与原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-中的类"><span class="nav-number">4.</span> <span class="nav-text">ES6 中的类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

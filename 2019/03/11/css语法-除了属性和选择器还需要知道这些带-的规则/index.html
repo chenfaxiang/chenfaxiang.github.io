@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS 是前端工程师每天必不可少的必修课，那么它的资料又是怎样的呢，说起来真的很糟糕，这是因为 CSS 并没有像 HTML 和 JavaScript 那样的一份标准文档。   在这里 我们一共能看到98份 CSS 相关的标准，它们各自从不同的角度规定了 CSS 的特性。将 working draft 状态的去掉后仍可以">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css语法,除了属性和选择器还需要知道这些带@的规则">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="CSS 是前端工程师每天必不可少的必修课，那么它的资料又是怎样的呢，说起来真的很糟糕，这是因为 CSS 并没有像 HTML 和 JavaScript 那样的一份标准文档。   在这里 我们一共能看到98份 CSS 相关的标准，它们各自从不同的角度规定了 CSS 的特性。将 working draft 状态的去掉后仍可以得到 22 份候选标准和 6 份推荐标准。对于这些知识，怎么才能把这些离散的标准">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/29-1.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/29-2.png">
+<meta property="og:updated_time" content="2019-04-15T11:23:11.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css语法,除了属性和选择器还需要知道这些带@的规则">
+<meta name="twitter:description" content="CSS 是前端工程师每天必不可少的必修课，那么它的资料又是怎样的呢，说起来真的很糟糕，这是因为 CSS 并没有像 HTML 和 JavaScript 那样的一份标准文档。   在这里 我们一共能看到98份 CSS 相关的标准，它们各自从不同的角度规定了 CSS 的特性。将 working draft 状态的去掉后仍可以得到 22 份候选标准和 6 份推荐标准。对于这些知识，怎么才能把这些离散的标准">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/29-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/"/>
+
+
+
+
+
+  <title>css语法,除了属性和选择器还需要知道这些带@的规则 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css语法,除了属性和选择器还需要知道这些带@的规则</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T02:18:22+08:00">
+                2019-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CSS 是前端工程师每天必不可少的必修课，那么它的资料又是怎样的呢，说起来真的很糟糕，这是因为 CSS 并没有像 HTML 和 JavaScript 那样的一份标准文档。  </p>
+<p><a href="https://www.w3.org/TR/?title=css" target="_blank" rel="noopener">在这里</a> 我们一共能看到98份 CSS 相关的标准，它们各自从不同的角度规定了 CSS 的特性。将 working draft 状态的去掉后仍可以得到 22 份候选标准和 6 份推荐标准。对于这些知识，怎么才能把这些离散的标准组织成易于理解及记忆的形式？  </p>
+<p>这里，根据 winter 老师的经验，他提供的方法是根据 CSS 语法来进行，任何 CSS 的特性都必须通过一定的语法结构表达出来，所以语法可以帮助我们发现大多数的 CSS 特性，因此了解一波<a href="https://www.w3.org/TR/css-syntax-3/" target="_blank" rel="noopener">CSS 语法的最新标准，看这里</a>;这篇文档阅读体验比较差，幸好，winter 老师给我们做了总结抽取(跟着大佬走准没错)，接下来一起看看。  </p>
+<p>在标准中可以看到，去除空格、HTML 注释等无效信息，<strong>CSS 的顶层样式表由两种规则组成的规则列表构成，一种被称为 at-rule，也就是 at 规则，另一种是 qualified rule，也就是普通规则。</strong>  </p>
+<p>at-rule 由一个 @ 关键字和后续的一个区块组成，如果没有区块则以分号结束；这些 at-rule 在开发中使用机会远远小于普通的规则，因此大部分内容可能比较陌生。  </p>
+<p>这些 at 规则正式掌握 CSS 的高级特性所必须的内容；而 qualified rule 则是普通的 CSS 规则，也就是我们熟悉的，由选择器和属性指定构成的规则。  </p>
+<h2 id="at-规则"><a href="#at-规则" class="headerlink" title="at 规则"></a>at 规则</h2><p>既然已经知道了 CSS 语法的整体结构，那么就可以将所有的规则进行整理；(winter 老师的课程中提供了所有内容，感谢)</p>
+<ul>
+<li>@charset: <a href="https://www.w3.org/TR/css-syntax-3/" target="_blank" rel="noopener">https://www.w3.org/TR/css-syntax-3/</a></li>
+<li>@import: <a href="https://www.w3.org/TR/css-cascade-4/" target="_blank" rel="noopener">https://www.w3.org/TR/css-cascade-4/</a></li>
+<li>@media: <a href="https://www.w3.org/TR/css3-conditional/" target="_blank" rel="noopener">https://www.w3.org/TR/css3-conditional/</a></li>
+<li>@page: <a href="https://www.w3.org/TR/css-page-3/" target="_blank" rel="noopener">https://www.w3.org/TR/css-page-3/</a></li>
+<li>@counter-style: <a href="https://www.w3.org/TR/css-counter-styles-3/" target="_blank" rel="noopener">https://www.w3.org/TR/css-counter-styles-3/</a></li>
+<li>@keyframes: <a href="https://www.w3.org/TR/css-animations-1/" target="_blank" rel="noopener">https://www.w3.org/TR/css-animations-1/</a></li>
+<li>@fontface: <a href="https://www.w3.org/TR/css-fonts-3/" target="_blank" rel="noopener">https://www.w3.org/TR/css-fonts-3/</a></li>
+<li>@supports: <a href="https://www.w3.org/TR/css3-conditional/" target="_blank" rel="noopener">https://www.w3.org/TR/css3-conditional/</a></li>
+<li>@namespace: <a href="https://www.w3.org/TR/css-namespaces-3/" target="_blank" rel="noopener">https://www.w3.org/TR/css-namespaces-3/</a></li>
+</ul>
+<p>这里的每一种 @ 规则背后都是一组 CSS 的知识，这里为了简历一个整体的认识，会给所有的 @ 规则提供一些简单的例子。(有些会比较重点的介绍)</p>
+<h2 id="charset"><a href="#charset" class="headerlink" title="@charset"></a>@charset</h2><p>@charset 用于提示 CSS 文件使用的字符编码方式，它如果被使用，必须出现在文件最前面；此规则只在给出语法解析阶段前使用，并不影响页面上的展示效果。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">"utf-8"</span></span><br></pre></td></tr></table></figure>
+<h2 id="import"><a href="#import" class="headerlink" title="@import"></a>@import</h2><p>@import 用于引入一个 CSS 文件，除了 @charset 规则不会被引入，@import 可以引入另一个文件的全部内容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"mystyle.css"</span></span><br><span class="line">@<span class="keyword">import</span> url(<span class="string">"mystyle.css"</span>)</span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> [ &lt;url&gt; | &lt;string&gt; ]</span><br><span class="line">        [ supports( [ &lt;supports-condition&gt; | &lt;declaration&gt; ] )]?</span><br><span class="line">        &lt;media-query-list&gt;? ;</span><br></pre></td></tr></table></figure>
+<p>通过代码可以看出，import 还支持 supports 和 media query 形式。</p>
+<h2 id="media"><a href="#media" class="headerlink" title="@media"></a>@media</h2><p>media 就是常用的 media query 使用的规则了，它能够对设备的类型进行一系列判断，在 media 的区块内，是普通的规则列表。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@media print &#123;</span><br><span class="line">  body &#123;</span><br><span class="line">    font-size: <span class="number">12</span>px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="page"><a href="#page" class="headerlink" title="@page"></a>@page</h2><p>@page 用于分页媒体访问网页时的表现设置，页面是一种特殊的盒模型结构，除了页面本身，还可以设置它周围的盒。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@page &#123;</span><br><span class="line">  size: <span class="number">8.5</span><span class="keyword">in</span> <span class="number">11</span><span class="keyword">in</span>;</span><br><span class="line">  margin: <span class="number">10</span>%;</span><br><span class="line"></span><br><span class="line">  @top-left &#123;</span><br><span class="line">    content: <span class="string">"Hamlet"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  @top-right &#123;</span><br><span class="line">    content: <span class="string">"Page "</span> counter(page);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="counter-style"><a href="#counter-style" class="headerlink" title="@counter-style"></a>@counter-style</h2><p>@counter-style 产生一种数据，用于定义列表项表现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@counter-style triangle &#123;</span><br><span class="line">  system: cyclic;</span><br><span class="line">  symbols: ‣;</span><br><span class="line">  suffix: <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h2><p>@keyframes 产生一种数据，用于定义动画关键帧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@keyframes diagonal-slide &#123;</span><br><span class="line">  <span class="keyword">from</span> &#123;</span><br><span class="line">    left: <span class="number">0</span>;</span><br><span class="line">    top: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  to &#123;</span><br><span class="line">    left: <span class="number">100</span>px;</span><br><span class="line">    top: <span class="number">100</span>px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="fontface"><a href="#fontface" class="headerlink" title="@fontface"></a>@fontface</h2><p>@fontface 用于定义一种字体， icon font 技术就是利用这个特性来实现的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: Gentium;</span><br><span class="line">  src: url(http:<span class="comment">//example.com/fonts/Gentium.woff);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p &#123;</span><br><span class="line">  font-family: Gentium, serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="supports"><a href="#supports" class="headerlink" title="@supports"></a>@supports</h2><p>@supports 检查环境的特性，它与 media 比较类似。</p>
+<h2 id="namespace"><a href="#namespace" class="headerlink" title="@namespace"></a>@namespace</h2><p>@namespace 用于跟 XML 命名空间配合的一个规则，表示内部的 CSS 选择器全都带上特定命名空间。</p>
+<h2 id="viewport"><a href="#viewport" class="headerlink" title="@viewport"></a>@viewport</h2><p>@viewport 用于设置视口的一些特性，不过兼容性不是很全，多数时候被 html 的 meta 代替。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>除了上面这些，还有一些不太推荐的 at 规则：</p>
+<ul>
+<li>@color-profile 是 SVG1.0 引入的 CSS 特性，但是实现状况不好</li>
+<li>@document 还在讨论，推迟到了 CSS4 中</li>
+<li>@font-feature-values等</li>
+</ul>
+<h2 id="普通规则"><a href="#普通规则" class="headerlink" title="普通规则"></a>普通规则</h2><p>接下来进入的是 qualified rule，也就是普通规则部分，qualified rule 主要是由选择器和声明区块构成，声明区块又由属性和值构成；下面介绍了这部分的语法的组成要点：</p>
+<ul>
+<li>普通规则<ul>
+<li>选择器</li>
+<li>声明列表<ul>
+<li>属性</li>
+<li>值<ul>
+<li>值的类型</li>
+<li>函数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>先看看选择器，它有一份独立的标准，可以参考这里<a href="https://www.w3.org/TR/selectors-4/" target="_blank" rel="noopener">https://www.w3.org/TR/selectors-4/</a>；这份标准属于 CSS 和 HTML 的共用标准。  </p>
+<p>关于选择器，这里从语法的角度对其进行记忆，并附上一张选择器的语法表，通过语法表清楚的进行记忆。  </p>
+<p>从语法结构可以看出，任何选择器都是有几个符号结构连接的，如：空格、大于号、加号、波浪线、双竖线，这里需要注意的是空格即为后代选择器的优先级较低。  </p>
+<p>对每一个选择器来说，如果它不是伪元素的话，由几个可选的部分组成，标签类型选择器、id、class、属性和伪类，它们中只要出现一个，就构成了选择器；如果是伪元素，则在这个结构之后追加伪元素，只有伪类可以出现在伪元素之后，通过 winter 老师的讲解，这里有一个选择器的语法结构：<br><img src="/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/29-1.png" title="语法结构"><br>再通过一个示例图：<br><img src="/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/29-2.png" title="语法结构分析示例">  </p>
+<p>选择器的语法看完，看一下声明部分的语法。  </p>
+<h2 id="声明：属性和值"><a href="#声明：属性和值" class="headerlink" title="声明：属性和值"></a>声明：属性和值</h2><p>声明部分是一个由“属性：值”组成的序列。  </p>
+<p><strong>属性</strong>是由中划线、下划线、字母等组成的标识符，CSS 还支持使用反斜杠转义；需要注意的是：属性不允许使用连续的两个中划线开头，这样的属性会被认为是 CSS 变量。  </p>
+<p>在 <a href="https://www.w3.org/TR/css-variables/" target="_blank" rel="noopener">CSS Variables 标准</a>中，以双中划线开头的属性被当做变量，与之配合的则是 var 函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">:root &#123;</span><br><span class="line">  --main-color: #06c;</span><br><span class="line">  --accent-color: #006;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* the rest of the css file */</span></span><br><span class="line">#foo h1 &#123;</span><br><span class="line">  color: <span class="keyword">var</span>(--main-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>值</strong>的部分，主要在<a href="https://www.w3.org/TR/css-values-4/" target="_blank" rel="noopener">标准CSS Values and Unit</a>，根据每个 CSS 属性可以取到不同的值，这里的值可能是字符串、标识符；其属性值可能是以下类型：</p>
+<ul>
+<li>CSS 范围的关键字： initial,unset，inherit，任何属性都可以的关键字</li>
+<li>字符串：比如 content 属性</li>
+<li>URL：使用 url() 函数的 URL 值</li>
+<li>整数/实数：比如 flex 属性</li>
+<li>维度：单位的整数/实数，比如 width 属性</li>
+<li>百分比：大部分维度都支持</li>
+<li>颜色：比如 background-color 属性</li>
+<li>图片：比如 background-image 属性</li>
+<li>2D 位置：比如 background-position 属性</li>
+<li>函数：来自函数的值，比如 transform 属性</li>
+</ul>
+<p>这里重点介绍一下函数，一些属性会要求产生的函数类型值，比如 easing-funciton 会要求 cubic-bezier() 函数的值；CSS 支持一批特定的计算型函数：</p>
+<ul>
+<li>calc()</li>
+<li>max()</li>
+<li>min()</li>
+<li>clamp()</li>
+<li>toggle()</li>
+<li>attr()</li>
+</ul>
+<p><strong>calc()</strong> 函数是基本的表达式计算，它支持加减乘除四则运算，在针对维度进行计算时，calc() 函数允许不同单位混合运算，比较 nice。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">section &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  margin: <span class="number">1</span>em;</span><br><span class="line">  border: 1px solid #333;</span><br><span class="line">  width: calc(<span class="number">100</span>% <span class="regexp">/ 3 - 2 * 1em - 2 * 1px);</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>max()</strong>、<strong>min()</strong>、<strong>clamp()</strong> 则是一些比较大小的函数，max() 表示取两个中中较大的一个，min() 表示取两个数中较小的一个，clamp() 则是给一个值限定一个范围，超出范围外则使用范围的最大或者最小值。  </p>
+<p><strong>toggle()</strong> 函数在规则选中多于一个元素时生效，它会在几个值之间来回切换，比如我们要让一个列表项的样式圆点和方点间隔出现，可以使用如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  list-style-type: toggle(circle, square);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>attr()</strong> 函数允许 CSS 接受属性值的控制。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里对 CSS 语法的整体结构进行了学习，其中 CSS 语法总体结构是由两种规则列表构成，分别是： at规则和普通规则。上面的资料需要再次学习巩固。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/06/javascript对象-你知道全部的对象分类吗/" rel="next" title="javascript对象,你知道全部的对象分类吗">
+                <i class="fa fa-chevron-left"></i> javascript对象,你知道全部的对象分类吗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#at-规则"><span class="nav-number">1.</span> <span class="nav-text">at 规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#charset"><span class="nav-number">2.</span> <span class="nav-text">@charset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">3.</span> <span class="nav-text">@import</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#media"><span class="nav-number">4.</span> <span class="nav-text">@media</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page"><span class="nav-number">5.</span> <span class="nav-text">@page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#counter-style"><span class="nav-number">6.</span> <span class="nav-text">@counter-style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keyframes"><span class="nav-number">7.</span> <span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fontface"><span class="nav-number">8.</span> <span class="nav-text">@fontface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#supports"><span class="nav-number">9.</span> <span class="nav-text">@supports</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#namespace"><span class="nav-number">10.</span> <span class="nav-text">@namespace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport"><span class="nav-number">11.</span> <span class="nav-text">@viewport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">12.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通规则"><span class="nav-number">13.</span> <span class="nav-text">普通规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器"><span class="nav-number">14.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明：属性和值"><span class="nav-number">15.</span> <span class="nav-text">声明：属性和值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">16.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
