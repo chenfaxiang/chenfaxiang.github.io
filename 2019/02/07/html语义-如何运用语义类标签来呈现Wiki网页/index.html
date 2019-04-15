@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在上一篇文章主要学习了怎么使用语义类标签和正确使用的一些场景，那么具体在哪些场景适合用到，又该怎么运用呢？这里通过一个例子来做一个语义类标签的学习，找一篇 wiki 文章，通过文章的结构用语义类标签来进行学习，例如：">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html语义,如何运用语义类标签来呈现Wiki网页">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在上一篇文章主要学习了怎么使用语义类标签和正确使用的一些场景，那么具体在哪些场景适合用到，又该怎么运用呢？这里通过一个例子来做一个语义类标签的学习，找一篇 wiki 文章，通过文章的结构用语义类标签来进行学习，例如：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-1.jpg">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-3.jpg">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-4.jpg">
+<meta property="og:updated_time" content="2019-04-15T06:14:28.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html语义,如何运用语义类标签来呈现Wiki网页">
+<meta name="twitter:description" content="在上一篇文章主要学习了怎么使用语义类标签和正确使用的一些场景，那么具体在哪些场景适合用到，又该怎么运用呢？这里通过一个例子来做一个语义类标签的学习，找一篇 wiki 文章，通过文章的结构用语义类标签来进行学习，例如：">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/"/>
+
+
+
+
+
+  <title>html语义,如何运用语义类标签来呈现Wiki网页 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">html语义,如何运用语义类标签来呈现Wiki网页</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-07T21:10:13+08:00">
+                2019-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上一篇文章主要学习了怎么使用语义类标签和正确使用的一些场景，那么具体在哪些场景适合用到，又该怎么运用呢？<br>这里通过一个例子来做一个语义类标签的学习，找一篇 wiki 文章，通过文章的结构用语义类标签来进行学习，例如：</p>
+<a id="more"></a>
+<img src="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-1.jpg" title="24-1-文章的大致结构">  
+<p>在上图中，分别用不同的颜色做了标注，可以看出在左侧有一个类目侧边栏，在语义类标签中它就属于 aside 内容，属于导航性质内容；而页面右边最大的一个区域，它是文章的主体，因为主体部分有明确的独立性，所以这里可以用 article 来进行包裹；在主体内容的第一行，分别是一个大标题和一个小标题，那么在语义类的文章结构中，这里是不是可以用 h1-h6 标签来进行处理，并且它们是一个标题组，so，hgroup 完全符合语义；其代码结构可以如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;hgroup&gt;</span><br><span class="line">  &lt;h1&gt;万维网&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">  &lt;h2&gt;维基百科，自由的百科全书&lt;/</span>h2&gt;</span><br><span class="line">&lt;<span class="regexp">/hgroup&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再继续往下看，在页面中间出现了 WWW(World Wide Web) 的缩写内容，在语义类标签中缩写用标签 abbr 来进行表示，因此出现 WWW 的地方都应该用 abbr 标签包裹；除了缩写以外， WWW 又被加粗了，那在符合语义的情况下用 strong 标签完全没问题。<br>再继续走，下面出现了一个方括号的[1]，这个内容如果把鼠标移入时会出现一个悬浮内容，这就是论文中常见的“引述”内容，而 HTML 中，有三个跟引述相关的标签 blockquote 表示段落引述内容，q 表示行内的引述内容， cite 表示引述的作品名，搞清楚这三个标签在引述时的作用基本上就能正确使用；通常在文章的结尾会有很多的参考文献内容，这里的所有作品名称也应该加入 cite 标签作为引述内容，例如：<br>d</p>
+<p>通过前面的图和解释，基本上把图片上的内容作了一个简单的处理，除此之外，在页面中还有段落内容，那这种段落内容直接用 p 标签就 OK 了；下面接着看：<br><img src="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-3.jpg" title="24-3"><br>在引用标签上，除了文章引用的内容外，还出现了日期，为了让机器阅读更有利，这里可以加上 time 标签；而右侧，出现了几张图片，这种出现在文中的图片，不仅仅是一个 img 标签，它和下面的文字组成了一个 figure 的语法现象，figure 也是我们的一种标签(用于表示与主文章相关的图像、照片等内容)；结构可以为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;figure&gt;</span><br><span class="line">  &lt;img src=<span class="string">"****"</span> /&gt;</span><br><span class="line">  &lt;figcaption&gt;slslslfls****<span class="xml"><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/figure&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这种插入文章中的内容，不仅限图片、代码、表格等，只要是具有一定自包含性的内容都可以用 figure，用 figcaption 表示内容的标题，当然也可以没有标题。<br>接下来，在几个段落之后，看到了文章的目录，这里的目录链接到文章的各个章节，语义的场景可以使用 nav 标签，因为这里的目录结构顺序不可以随意变化，所以这里使用多级的 ol 结构；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">  &lt;h2&gt;目录&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">  &lt;ol&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="***"&gt;***&lt;/</span>a&gt;<span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"***"</span>&gt;</span>***<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"***"</span>&gt;</span>***<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">  &lt;<span class="regexp">/ol&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>nav&gt;</span><br></pre></td></tr></table></figure>
+<p>虽然这里使用的是 ol，但是我们应该知道还有一个表示无序列表的标签 ul，虽然它们两的作用大致差不多，但是要注意一个是有序一个是无序的，在具体的使用场景确定当时的语义。  </p>
+<p>最后，还有一些其它的标签，通过图片的形式展示出来：<br><img src="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/24-4.jpg" title="24-4-一些其它语义标签">  </p>
+<p>实际上， html 语言，不像严谨的编程语言一样有一条非此即彼的线，其中一些语义的使用会带来一些争议，所以我们在日常使用的时候尽量使用熟悉的标签，并且在能够正确把握语义场景的情况下引入语义标签，做到正确使用语义标签，避免带来更多的问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/02/html语义-div和span不是够用了吗/" rel="next" title="html语义,div和span不是够用了吗">
+                <i class="fa fa-chevron-left"></i> html语义,div和span不是够用了吗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/12/javascript类型-有哪些不知道的细节/" rel="prev" title="javascript类型,有哪些不知道的细节">
+                javascript类型,有哪些不知道的细节 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="http://opoze7s40.bkt.clouddn.com/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 14px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

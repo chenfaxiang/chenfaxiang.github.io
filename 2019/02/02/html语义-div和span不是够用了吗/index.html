@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在前面的学习过程中，总体了解了语义是什么意思，那这里的学习主要是说说在 div 和 span 标签明显可以满足使用条件的情况下为什么还非要使用具有明确语义的标签来处理。 语义类标签是什么，使用它的好处语义类标签是前端工程师在工作中经常用到的一类标签，它们的特点是视觉表现上互相差不多，主要的区别在于它们表达了不同的语义，">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html语义,div和span不是够用了吗">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/02/02/html语义-div和span不是够用了吗/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在前面的学习过程中，总体了解了语义是什么意思，那这里的学习主要是说说在 div 和 span 标签明显可以满足使用条件的情况下为什么还非要使用具有明确语义的标签来处理。 语义类标签是什么，使用它的好处语义类标签是前端工程师在工作中经常用到的一类标签，它们的特点是视觉表现上互相差不多，主要的区别在于它们表达了不同的语义，比如常见的 section、nav、p 标签等，这些都是语义标签。语义是我们说话">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/02/html语义-div和span不是够用了吗/23-1.jpg">
+<meta property="og:updated_time" content="2019-04-15T06:03:46.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html语义,div和span不是够用了吗">
+<meta name="twitter:description" content="在前面的学习过程中，总体了解了语义是什么意思，那这里的学习主要是说说在 div 和 span 标签明显可以满足使用条件的情况下为什么还非要使用具有明确语义的标签来处理。 语义类标签是什么，使用它的好处语义类标签是前端工程师在工作中经常用到的一类标签，它们的特点是视觉表现上互相差不多，主要的区别在于它们表达了不同的语义，比如常见的 section、nav、p 标签等，这些都是语义标签。语义是我们说话">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/02/02/html语义-div和span不是够用了吗/23-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/02/02/html语义-div和span不是够用了吗/"/>
+
+
+
+
+
+  <title>html语义,div和span不是够用了吗 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/02/02/html语义-div和span不是够用了吗/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">html语义,div和span不是够用了吗</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-02T21:00:24+08:00">
+                2019-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在前面的学习过程中，总体了解了语义是什么意思，那这里的学习主要是说说在 div 和 span 标签明显可以满足使用条件的情况下为什么还非要使用具有明确语义的标签来处理。</p>
+<p><strong>语义类标签是什么，使用它的好处</strong><br>语义类标签是前端工程师在工作中经常用到的一类标签，它们的特点是视觉表现上互相差不多，主要的区别在于它们表达了不同的语义，比如常见的 section、nav、p 标签等，这些都是语义标签。<br>语义是我们说话表达的意思，多数的语义都是由文字来承载；而语义类标签则是纯文字的补充，比如标题，自然段，章节，列表等，这些内容仅仅纯文字是无法表达的，所以就需要用语义标签来代为表达。<br>而我们在开发的工作中，经常都很少用到语义化的标签，而是直接用 div 和 span 全部搞定；那这样做到底行不行呢？毫无疑问，这样肯定是可以的。那这样做到底好不好呢？呵呵，套路说法就是不好，但是在很多情况下，答案其实是好。  </p>
+<a id="more"></a>
+<p>因为在互联网的产品里， HTML 用于描述 “软件界面” 的时间多过于 “富文本”，而软件界面里的东西基本上是没有语义化的，所以在这种软件界面的场景里面，直接用 div 和 span 这类标签时没有任何问题的。<br><strong>不过，在很多场景里面语义化的标签又是无法替代的，正确的使用语义化的标签可以带来很多的好处</strong>  </p>
+<ul>
+<li>语义化的标签对开发者友好，使用语义化的标签增强了可读性，即使没有 CSS 的时候，开发者也能看清晰的看出页面的结构，便于团队开发维护。</li>
+<li>除了对团队开发者友好之外，语义化标签也十分利于机器阅读，它的文字表现力丰富，更适合搜索引擎检索(SEO)，也能让搜索引擎爬虫更好的获取到信息，提升网页搜索量，并且语义类还可以支持读屏类软件，根据文章可以自动生成目录结构等。  </li>
+</ul>
+<p>不过，不恰当的使用语义化标签反而会造成负面效果，比如无序列表 ul/li，经常就是很多开发者在看见像列表的位置就直接用了 ul/li，而它的正确使用是多数出现在行文中间，它的上文多数在提示，下面要出现列举的某些项，这种情况出现无序列表才比较好；如果没有正确的使用，其实会出现大量的冗余。  </p>
+<p>所以，在使用语义化标签的时候，尽量做到<strong>用对</strong>，以免给浏览器这些机器带来不必要的处理。  </p>
+<p>与 JavaScript 这样严格的编程语言相比，HTML 语义标签的使用更接近我们日常说话用的自然语。说话是没有唯一的标准措辞的，语义其实也一样，比如，下面有几种我认为比较重要的语义标签使用场景：</p>
+<p><strong>作为自然语言延伸的语义类标签</strong><br>这个意思就是，在这种情况下它作为自然语言和纯文本的补充，用来表达一定的结构和消除歧义；<br>例如：<strong>表达一定结构</strong>的场景，在日语中，有一个语法现象叫做：ルビ，它的读音是 ruby（著名的 ruby 语言就是据此命名的），它中文的意思大约类似于注音或者意思的注解，在小学课本一年级在家里这一课的内容如下图：<br><img src="/2019/02/02/html语义-div和span不是够用了吗/23-1.jpg" title="23-1-表达一定结构"><br>图片中，在家里三个字都用拼音在上面进行了标注，这就是日文中 ruby 的用法，就形成了一个使用 ruby 的场景。<br>在 HTML5 中，就引入了这个表示 ruby 的标签，它由 ruby、rt、rp 三个标签来实现；所以说，这些情况里存在的语义，其实原本就存在，直接用纯文字处理这种带标注的没办法表达，而 HTML 作为一种超文本标记语言，支持这些文字表达就是有必要的了。<br><strong>还有一种情况，HTML 的部分标签实际上就是有必要的，其重要程度可以达到如果没有这个标签，文字就会产生歧义的程度</strong>。下面用 <code>em</code> 标签做一个示例：<br>例句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">今天我吃了一个苹果</span><br></pre></td></tr></table></figure>
+<p>这句话现在没有做任何处理，也很简单，但是我们中文就是这么的博大精深，只要一句话在读的过程中重音位置不同，断句位置不同，那么它的意思就会产生变化；比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">昨天我吃了两个苹果</span><br><span class="line">今天我吃了一个苹果</span><br></pre></td></tr></table></figure>
+<p>当我们把前面的两句吃苹果语句中的数量词 <code>一个</code> 和 <code>两个</code> 用重音读的时候，就会发现这句话的意思好像变了，这时候，就到了 <code>html</code> 出来的时候了，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">昨天我吃了两个&lt;em&gt;苹果&lt;<span class="regexp">/em&gt;</span></span><br><span class="line"><span class="regexp">今天我吃了&lt;em&gt;一个&lt;/</span>em&gt;苹果</span><br></pre></td></tr></table></figure>
+<p>这里，用表强调的标签 <code>em</code> 对两句中的不同词进行了强调处理，那么这里的语义其实就已经变了，因此，只要理解了 <code>em</code> 的真正意思，这种语义标签在会产生歧义的部分就好处理了。</p>
+<p><strong>作为标题摘要的语义类标签(文章的结构)</strong><br>前面部分是关于自然语言的语义标签处理场景，这里要接触到的是另一个重要的场景 —— 文章的结构；当然，在 HTML 中也有这样的需求，语义化的 HTML 标签能够支持自动生成目录，而一篇文档会有一个树形的目录结构，它由各个级别的标签组成；例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;文章标题&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;标题介绍内容啦啦啦啦啦&lt;/</span>p&gt;</span><br><span class="line">&lt;h2&gt;小标题&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;小标题内容阿拉啦啦啦&lt;/</span>p&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这里就出现了目录结构，其中 h1-h6 表达了文章中不同层级的标题，还有部分介绍内容；而有些时候我们的标题是需要一个副标题进行更进一步的介绍说明的，这种情况怎么办呢？为了避免副标题产生一个额外的层级，在 html 中有一个 hgroup 标签，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;hgroup&gt;</span><br><span class="line">  &lt;h1&gt;文章标题&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">  &lt;h2&gt;副标题&lt;/</span>h2&gt;</span><br><span class="line">&lt;<span class="regexp">/hgroup&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;小标题内容阿拉啦啦啦&lt;/</span>p&gt;</span><br></pre></td></tr></table></figure>
+<p>在 hgroup 标签中， h1-h6 只是被视为同一标题的不同组成部分；除了这种方法我们还有其他方法处理这个标题层级的问题吗？<br>答案当然是有，从 <code>html5</code> 开始，出现了 <code>section</code> 标签，这个标签不仅仅是一个“有语义的 div”，它还会改变 h1-h6 的语义，section 嵌套会使得其内部的 h1-h6 下降一个层级，因此，在 html5 中我们只需要 section 和 h1 就能形成文档的树形结构，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">  &lt;h1&gt;文章标题&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">  &lt;p&gt;文章啦啦啦&lt;/</span>p&gt;</span><br><span class="line">  &lt;section&gt;</span><br><span class="line">    &lt;h1&gt;小一级标题&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;小一级标题啦啦啦&lt;/</span>p&gt;</span><br><span class="line">  &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">  &lt;section&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1&gt;小一级标题&lt;/</span>h1&gt;</span><br><span class="line">    &lt;p&gt;小一级标题啦啦啦&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>section&gt;</span><br><span class="line">&lt;<span class="regexp">/section&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样，就形成了一篇文章该有的目录结构。最后，我想说的是，在编写代码的过程中，语义化对开发者维护代码及机器的识别能够带来更好的效果；但是，语义化要写就要写对，如果写不对，还不如直接用 div 和 span 处理。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>开发过程中除了使用 div 和 span 标签以外还可以在适当的场景下使用 html5 提供的最新语义标签，但是要正确使用。  </p>
+<h3 id="学习-HTML5-中新增的所有标签"><a href="#学习-HTML5-中新增的所有标签" class="headerlink" title="学习 HTML5 中新增的所有标签"></a><strong>学习 HTML5 中新增的所有标签</strong></h3><ul>
+<li><strong>html5语法</strong>，html5 语法大部分延续了 html 语法，不同之处在于开头的:  </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-CN"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>字符编码变得简洁、不区分大小写、添加了布尔值(类似checked、selected)、引号可以省略(不建议)、有可以省略结束符的标签(不建议)</p>
+<ul>
+<li><p><strong>增加标签</strong></p>
+<ul>
+<li>结构标签<ol>
+<li>section</li>
+<li>article</li>
+<li>aside</li>
+<li>header</li>
+<li>hgroup</li>
+<li>footer</li>
+<li>nav</li>
+<li>figure</li>
+</ol>
+</li>
+<li>表单标签<ol>
+<li>email</li>
+<li>url</li>
+<li>number</li>
+<li>range</li>
+<li>Date Pickers</li>
+<li>search</li>
+<li>color</li>
+</ol>
+</li>
+<li>媒体标签<ol>
+<li>video</li>
+<li>audio</li>
+<li>embed</li>
+</ol>
+</li>
+<li>其它功能标签<ol>
+<li>mark</li>
+<li>progress</li>
+<li>time</li>
+<li>ruby、rt、rp</li>
+<li>wbr</li>
+<li>canvas</li>
+<li>command</li>
+<li>details</li>
+<li>datelist</li>
+<li>keygen</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>新增的属性</strong></p>
+<ul>
+<li>对于 js 进行添加的属性<ol>
+<li>defer (<code>&lt;script defer src=&quot;...js&quot;&gt;&lt;/script&gt;</code>)</li>
+<li>async (<code>&lt;script async src=&quot;...js&quot;&gt;&lt;/script&gt;</code>)</li>
+</ol>
+</li>
+<li>网页中标签加入小图标样式<ol>
+<li>icon (<code>&lt;link ref=&quot;icon&quot; href=&quot;....url&quot; type=&quot;pic name&quot; size=&quot;16*16&gt;&quot;</code>)</li>
+</ol>
+</li>
+<li>manifest属性: 定义页面需要用到的离线应用文件</li>
+<li>charset属性: meta属性之一，定义页面字符集</li>
+<li>base属性: <code>&lt;base href=&quot;http://localost/&quot; target=&quot;_blank&quot;&gt;</code>表示在新窗口打开一个页面时，将href中的内容作为前缀添加到地址前</li>
+<li>media属性: <code>&lt;a&gt;</code>标签的属性，表示对何种设备进行优化</li>
+<li>hreflang属性: <code>&lt;a&gt;</code>标签的属性，表示超链接指向的网址使用的语言</li>
+<li>reversed属性: <code>&lt;ol&gt;</code>标签的属性，定义序号是否倒叙</li>
+<li>start属性: <code>&lt;ol&gt;</code>标签的属性，定义序号的起始值</li>
+<li>scoped属性: 内嵌css样式的属性，定义该样式只局限于拥有改内嵌样式的元素</li>
+</ul>
+</li>
+</ul>
+<p>html5中新增内容远不止于此。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/27/整理知识架构/" rel="next" title="整理知识架构">
+                <i class="fa fa-chevron-left"></i> 整理知识架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/" rel="prev" title="html语义,如何运用语义类标签来呈现Wiki网页">
+                html语义,如何运用语义类标签来呈现Wiki网页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习-HTML5-中新增的所有标签"><span class="nav-number">1.1.</span> <span class="nav-text">学习 HTML5 中新增的所有标签</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="http://opoze7s40.bkt.clouddn.com/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 14px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="整理一份属于自己的知识架构不仅仅是将 MDN 这样的参考手册和一些其他的语言标准进行总结，而是知识架构有属于自己的特点，它的目标一个是把无法通过查阅解决的原理和背景讲清楚，另一个是把不方便查阅和记忆的内容进行整理。主要就是通过整理一份前端知识架构，再把知识做一个遍历，如果让我做一个划分，前端的知识在总体上分为基础部分和">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整理知识架构">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="整理一份属于自己的知识架构不仅仅是将 MDN 这样的参考手册和一些其他的语言标准进行总结，而是知识架构有属于自己的特点，它的目标一个是把无法通过查阅解决的原理和背景讲清楚，另一个是把不方便查阅和记忆的内容进行整理。主要就是通过整理一份前端知识架构，再把知识做一个遍历，如果让我做一个划分，前端的知识在总体上分为基础部分和实践部分，基础部分包含了 JavaScript 部分(模块一)、CSS 和 HT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-1-javascript.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-2-html:css.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-3-浏览器.png">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-4-前端工程实践.jpg">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-5-整体图谱.jpg">
+<meta property="og:updated_time" content="2019-04-15T06:00:36.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="整理知识架构">
+<meta name="twitter:description" content="整理一份属于自己的知识架构不仅仅是将 MDN 这样的参考手册和一些其他的语言标准进行总结，而是知识架构有属于自己的特点，它的目标一个是把无法通过查阅解决的原理和背景讲清楚，另一个是把不方便查阅和记忆的内容进行整理。主要就是通过整理一份前端知识架构，再把知识做一个遍历，如果让我做一个划分，前端的知识在总体上分为基础部分和实践部分，基础部分包含了 JavaScript 部分(模块一)、CSS 和 HT">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/01/27/整理知识架构/22-1-javascript.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/01/27/整理知识架构/"/>
+
+
+
+
+
+  <title>整理知识架构 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/01/27/整理知识架构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">整理知识架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T20:54:38+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>整理一份属于自己的知识架构不仅仅是将 MDN 这样的参考手册和一些其他的语言标准进行总结，而是知识架构有属于自己的特点，它的目标一个是把无法通过查阅解决的原理和背景讲清楚，另一个是把不方便查阅和记忆的内容进行整理。主要就是通过整理一份前端知识架构，再把知识做一个遍历，如果让我做一个划分，前端的知识在总体上分为基础部分和实践部分，基础部分包含了 JavaScript 部分(模块一)、CSS 和 HTML(模块二) 以及浏览器的实现原理和 API(模块三)，这几个模块基本上包含了前端需要掌握的所有知识；实践部分(模块四)的重点主要就是在工作中遇到的问题和解决方案。</p>
+<a id="more"></a>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><img src="/2019/01/27/整理知识架构/22-1-javascript.png" title="22-1-JavaScript">  
+<p>在 JavaScript 模块中，通过上面的图谱可以看出，我们可以把语言按照运行时、文法和语义来拆分，这符合语言的一般规律：<strong>用一定词法和语法，表达一定语义，从而操作运行时。</strong><br>接下来，又把运行时分为数据结构和算法部分：数据结构包含类型(7中基本类型)和实例；所谓算法，就是 JavaScript 的执行过程。<br>类型部分中，对象比其他所有类型加起来都要复杂，所以后面这个部分是学习的重点，包括历史和思路都要掌握。<br>实例部分，对 JavaScript 来说类似基础库，JavaScipt 的内置对象多达 150 以上，所以会从应用和机制的角度来进行，挑选部分进行学习。<br>执行过程则需要按照从大结构到小结构的思路进行学习，从最顶层的程序与模块、事件循环和微任务，到函数，再到语句的执行。  </p>
+<p>文法中的语法和语义基本是一一对应的关系，在 JavaScript 标准中有一份语法定义表，会从 JavaScript 语法中特别的地方来进行学习。而语义的大部分会跟随运行时的内容一起出现。  </p>
+<h2 id="HTML-和-CSS"><a href="#HTML-和-CSS" class="headerlink" title="HTML 和 CSS"></a>HTML 和 CSS</h2><img src="/2019/01/27/整理知识架构/22-2-html:css.png" title="22-2-HTML/CSS">  
+<p>在上图中直接分成两个部分：HTML 部分和 CSS 部分<br><strong>HTML 部分</strong>，按照功能和语言来划分它的知识，HTML 的功能主要由标签来承担，所以会对标签元素进行分类学习，而基于分类，又会把标签分成下面几种：</p>
+<ul>
+<li>文档元信心：通常是出现在 head 标签中的元素，包含了描述文档自身的一些信息</li>
+<li>语义相关：扩展了纯文本，表达文章结构、不同语言要素的标签</li>
+<li>链接：提供了文档内和文档外的链接</li>
+<li>替换性标签：引入了声音、图片、视频等外部元素替换自身的一类标签</li>
+<li>表单：用于填写和提交信息</li>
+<li>表格：表头、表格、表尾等表格内容</li>
+</ul>
+<p><strong>CSS 部分</strong>，会从语言和功能两个角度进行学习，语言部分，会从大到小学习 CSS 的各种语法；而功能部分，大致分为布局、绘制和交互类。</p>
+<h2 id="浏览器的实现原理和-API"><a href="#浏览器的实现原理和-API" class="headerlink" title="浏览器的实现原理和 API"></a>浏览器的实现原理和 API</h2><img src="/2019/01/27/整理知识架构/22-3-浏览器.png" title="22-3-浏览器">  
+<p>浏览器部分会学习浏览器的原理，它是理解 API 的基础，除此之外，会从浏览器设计出发，按照解析、构建DOM树、计算CSS、渲染、合成和绘制的流程来讲解浏览器的工作原理。<br>在 API 部分，主要有：事件、DOM、CSSOM 几个部分，它们分别覆盖了交互、语义和可见效果。</p>
+<h2 id="前端工程实践"><a href="#前端工程实践" class="headerlink" title="前端工程实践"></a>前端工程实践</h2><img src="/2019/01/27/整理知识架构/22-4-前端工程实践.jpg" title="22-4-前端工程实践">  
+<p>几个模块的最后一个是工程实践，此模块，通过性能、工具链、持续集成、搭建系统、架构与基础库这几个方向来进行。<br>最后，有一个整体的框架图，梳理全部知识：<br><img src="/2019/01/27/整理知识架构/22-5-整体图谱.jpg" title="22-5-整体图谱"><br>那么，就把这些知识转化成自己的真正内涵是需要时日的。。。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/明确前端学习路线与方法/" rel="next" title="明确前端学习路线与方法">
+                <i class="fa fa-chevron-left"></i> 明确前端学习路线与方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/02/html语义-div和span不是够用了吗/" rel="prev" title="html语义,div和span不是够用了吗">
+                html语义,div和span不是够用了吗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-和-CSS"><span class="nav-number">2.</span> <span class="nav-text">HTML 和 CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的实现原理和-API"><span class="nav-number">3.</span> <span class="nav-text">浏览器的实现原理和 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端工程实践"><span class="nav-number">4.</span> <span class="nav-text">前端工程实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="http://opoze7s40.bkt.clouddn.com/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 14px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
