@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://opoze7s40.bkt.clouddn.com/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目罗马数字包含以下七种数字：I(1), V(5), X(10), L(50), C(100), D(500), M(1000);那么除了这七种数值可以直接表示外，其他的数值是怎么表示的呢？例如：数值2：  II (两个 I 并列)；同理，数字3也一样是三个并列数字7：  VII(一个 V 和两个 I 并列)数值20：">
+<meta name="keywords" content="JavaScript,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整数转罗马数字">
+<meta property="og:url" content="http://www.chenfx.com.cn/2018/07/20/整数转罗马数字/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="题目罗马数字包含以下七种数字：I(1), V(5), X(10), L(50), C(100), D(500), M(1000);那么除了这七种数值可以直接表示外，其他的数值是怎么表示的呢？例如：数值2：  II (两个 I 并列)；同理，数字3也一样是三个并列数字7：  VII(一个 V 和两个 I 并列)数值20： XX (两个 X 并列)；同理，数字30也一样是三个并列数值200：CCC(三">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T03:35:00.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="整数转罗马数字">
+<meta name="twitter:description" content="题目罗马数字包含以下七种数字：I(1), V(5), X(10), L(50), C(100), D(500), M(1000);那么除了这七种数值可以直接表示外，其他的数值是怎么表示的呢？例如：数值2：  II (两个 I 并列)；同理，数字3也一样是三个并列数字7：  VII(一个 V 和两个 I 并列)数值20： XX (两个 X 并列)；同理，数字30也一样是三个并列数值200：CCC(三">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2018/07/20/整数转罗马数字/"/>
+
+
+
+
+
+  <title>整数转罗马数字 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2018/07/20/整数转罗马数字/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">整数转罗马数字</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T17:33:28+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>题目</em></strong><br>罗马数字包含以下七种数字：I(1), V(5), X(10), L(50), C(100), D(500), M(1000);<br>那么除了这七种数值可以直接表示外，其他的数值是怎么表示的呢？例如：<br>数值2：  II (两个 I 并列)；同理，数字3也一样是三个并列<br>数字7：  VII(一个 V 和两个 I 并列)<br>数值20： XX (两个 X 并列)；同理，数字30也一样是三个并列<br>数值200：CCC(三个 C 并列)；同理，数字3000也一样是三个并列  </p>
+<p>通常情况下，罗马数字中小的数字放在大的数字右边，即组成一个相加的整数值；但是也有特例，如 4、9、40、90、400、900；并且特殊的规则只有这 6 种情况：  </p>
+<ul>
+<li><code>I</code> 可以放在 <code>V(5)</code>  和 <code>X(10)</code>  的左边，即表示 <code>IV(4)</code>  和 <code>IX(9)</code></li>
+<li><code>X</code> 可以放在 <code>L(50)</code> 和 <code>C(100)</code> 的左边，即表示 <code>XL(40)</code> 和 <code>XC(90)</code></li>
+<li><code>C</code> 可以放在 <code>D(500)</code>和 <code>M(1000)</code>的左边，即表示 <code>CD(400)</code>和 <code>CM(900)</code></li>
+</ul>
+<p>那么，在满足以上条件的情况下，给定一个整数，将其抓换成罗马数字；并保证数字在 [1 - 3999] 内。</p>
+<p><strong><em>示例1</em></strong>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">3</span></span><br><span class="line">输出：<span class="string">'III'</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>示例2</em></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">59</span></span><br><span class="line">输出：<span class="string">'LVIIII'</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>示例3</em></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">1993</span></span><br><span class="line">输出：<span class="string">'MCMXCIII'</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong><em>CODE</em></strong><br>通过前面的示例及对罗马数字的理解，在进行转换的途中，可以将数字分为个、十、百、千四个位数来进行处理，分别将其对应成各自组别的数字；即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initNumToRoman</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> mArr = [<span class="string">''</span>, <span class="string">'M'</span>, <span class="string">'MM'</span>, <span class="string">'MMM'</span>],</span><br><span class="line">        cArr = [<span class="string">''</span>, <span class="string">'C'</span>, <span class="string">'CC'</span>, <span class="string">'CCC'</span>, <span class="string">'CD'</span>, <span class="string">'D'</span>, <span class="string">'DC'</span>, <span class="string">'DCC'</span>, <span class="string">'DCCC'</span>, <span class="string">'CM'</span>],</span><br><span class="line">        xArr = [<span class="string">''</span>, <span class="string">'X'</span>, <span class="string">'XX'</span>, <span class="string">'XXX'</span>, <span class="string">'XL'</span>, <span class="string">'L'</span>, <span class="string">'LX'</span>, <span class="string">'LXX'</span>, <span class="string">'LXXX'</span>, <span class="string">'XC'</span>],</span><br><span class="line">        iArr = [<span class="string">''</span>, <span class="string">'I'</span>, <span class="string">'II'</span>, <span class="string">'III'</span>, <span class="string">'IV'</span>, <span class="string">'V'</span>, <span class="string">'VI'</span>, <span class="string">'VII'</span>, <span class="string">'VIII'</span>, <span class="string">'IX'</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (num &lt; <span class="number">1</span> || num &gt; <span class="number">3999</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> mArr[<span class="built_in">parseInt</span>(num / <span class="number">1000</span>)] + cArr[<span class="built_in">parseInt</span>(num / <span class="number">100</span>) % <span class="number">10</span>] + xArr[<span class="built_in">parseInt</span>(num / <span class="number">10</span>) % <span class="number">10</span>] + iArr(num % <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>总结</em></strong><br>从整数数字转罗马数字的过程中看出，需要对罗马数字有一个具体的了解，并且罗马数字除了正常的由7种字符表示外，还有6种特殊的规则表示6个对应的特殊数字，其他的都按照规则依次处理即可；最后将数字从千、百、十、个位进行数字计算处理得到最终的结果。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/08/盛最多水的容器/" rel="next" title="盛最多水的容器">
+                <i class="fa fa-chevron-left"></i> 盛最多水的容器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="http://opoze7s40.bkt.clouddn.com/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 14px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
