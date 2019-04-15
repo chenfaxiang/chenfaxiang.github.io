@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在 HTML 语义部分章节中学习了语义标签，这些标签涵盖了日常开发中用到的多数标签，但是元信息类标签的重要性并不弱于语义类标签；所谓元信息，是指描述自身的信息，元信息类标签就是 HTML 用于描述文档自身的一类标签，它们通常出现在 head 标签中，一般不会在页面被显示出来；它多数情况下是给浏览器、搜索引擎等机器阅读的">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML元信息标签,在head标签中可以写哪几种标签">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/03/27/HTML元信息标签-在head标签中可以写哪几种标签/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在 HTML 语义部分章节中学习了语义标签，这些标签涵盖了日常开发中用到的多数标签，但是元信息类标签的重要性并不弱于语义类标签；所谓元信息，是指描述自身的信息，元信息类标签就是 HTML 用于描述文档自身的一类标签，它们通常出现在 head 标签中，一般不会在页面被显示出来；它多数情况下是给浏览器、搜索引擎等机器阅读的，有时候这些信息会在页面之外显示给用户，有时候则不会；下面一起看看元信息标签。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T11:46:03.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML元信息标签,在head标签中可以写哪几种标签">
+<meta name="twitter:description" content="在 HTML 语义部分章节中学习了语义标签，这些标签涵盖了日常开发中用到的多数标签，但是元信息类标签的重要性并不弱于语义类标签；所谓元信息，是指描述自身的信息，元信息类标签就是 HTML 用于描述文档自身的一类标签，它们通常出现在 head 标签中，一般不会在页面被显示出来；它多数情况下是给浏览器、搜索引擎等机器阅读的，有时候这些信息会在页面之外显示给用户，有时候则不会；下面一起看看元信息标签。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/03/27/HTML元信息标签-在head标签中可以写哪几种标签/"/>
+
+
+
+
+
+  <title>HTML元信息标签,在head标签中可以写哪几种标签 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/27/HTML元信息标签-在head标签中可以写哪几种标签/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML元信息标签,在head标签中可以写哪几种标签</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T02:41:57+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 HTML 语义部分章节中学习了语义标签，这些标签涵盖了日常开发中用到的多数标签，但是元信息类标签的重要性并不弱于语义类标签；所谓元信息，是指描述自身的信息，元信息类标签就是 HTML 用于描述文档自身的一类标签，它们通常出现在 head 标签中，一般不会在页面被显示出来；它多数情况下是给浏览器、搜索引擎等机器阅读的，有时候这些信息会在页面之外显示给用户，有时候则不会；下面一起看看元信息标签。</p>
+<a id="more"></a>
+<h2 id="head-标签"><a href="#head-标签" class="headerlink" title="head 标签"></a>head 标签</h2><p>head 标签本身并不携带任何信息，它主要是作为盛放其它语义类标签的容器使用。<br>head 标签规定了自身必须是 html 标签中的第一个标签，它的内容必须包含一个 title，并且最多只能包含一个 base；如果文档作为 iframe，或者有其它方式指定了文档标题时，可以允许不包含 title 标签。</p>
+<h2 id="title-标签"><a href="#title-标签" class="headerlink" title="title 标签"></a>title 标签</h2><p>title 标签标示文档的标题，而在我们的语义类标签中也有一组表示标题的标签：h1 - h6；而 head 和 title 两个单词的意义区分也十分微妙，在中文中更是找不到对应的词汇来区分，但是在实际使用中，两者确实是有一定区别的。  </p>
+<p>在 HTML 标准中，特意讨论了这个问题，假如有一个介绍蜜蜂跳舞求偶仪式的科普页面，我们试着将一下两个文字分别对应到 title 和 h1 上：</p>
+<ul>
+<li>蜜蜂求偶仪式舞蹈</li>
+<li>舞蹈</li>
+</ul>
+<p>这两个词组要怎么放在一个页面的 title 和 h1，正确答案是“蜜蜂求偶仪式舞蹈”放入 title 标签，“舞蹈”放入 h1 标签；<br>那么这里为什么这么放呢？主要是考虑到 title 作为元信息，可能会被用在浏览器文件夹、微信推送卡片和爬虫抓取等地方，这时候往往是上下文确实的，所以 title 应该是完整的概括整个网页内容；而 h1 仅仅是用于页面展示，它可以默认具有上下文，并且具有链接辅助，所以即便简写的话对概括全文也不会有太大影响。</p>
+<h2 id="base-标签"><a href="#base-标签" class="headerlink" title="base 标签"></a>base 标签</h2><p>base 标签实际上是个历史遗留标签，它的作用是给页面上所有的 URL 相对地址提供一个基础。<br>base 标签最多只有一个，它改变全局的链接地址，它是一个非常危险的标签，容易造成跟 JavaScript 的配合问题，所以在实际开发中，一般都是比较建议使用 JavaScript 来代替 base 标签。</p>
+<h2 id="meta-标签"><a href="#meta-标签" class="headerlink" title="meta 标签"></a>meta 标签</h2><p>meta 标签是一组键值对，它是一种通用的元信息表示标签。<br>在 head 中可以出现任意多个 meta 标签，一般的 meta 标签由 name 和 content 两个属性来定义。name 表示元信息的名，content 则用于表示元信息的值；基本用法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=application-name content=<span class="string">"lsForums"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这个标签表示页面所在的 web-application，名为 IsForums。<br>这里的 name 是一种比较自由的约定，http 标准规定了一些 name 作为大家使用的共识，也鼓励大家发明自己的 name 来使用。<br>除了基本用法，meta 标签还有一些变体，主要用于简化书写方式或者声明自动化行为；如下：</p>
+<h3 id="具有-charset-属性的-meta"><a href="#具有-charset-属性的-meta" class="headerlink" title="具有 charset 属性的 meta"></a>具有 charset 属性的 meta</h3><p>从 HTML5 开始，为了简化写法，meta 标签新增了 charset 属性，添加了 charset 属性的 meta 标签无需再有 name 和 content。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>charset 型 meta 标签非常关键，它描述了 HTML 文档自身的编码形式；因此，我建议这个标签放在 head 的第一个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">  ...</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<p>这样，浏览器读到这个标签之前，处理的所有字符都是 ASCII 字符，众所周知，ASCII字符是 utf-8 和绝大多数字符编码的子集，所以，在读到 meta 之前，浏览器把文档理解多数编码格式都不会出错，最大限度地保证不出现乱码。<br>一般情况下，http 服务端会通过 http 头来指定正确的编码方式，但是有些特殊的情况如何用 file 协议打开一个 HTML 文件，则没有 http 头，这种时候，charset meta 就非常重要了。</p>
+<h3 id="具有-http-equiv-属性的-meta"><a href="#具有-http-equiv-属性的-meta" class="headerlink" title="具有 http-equiv 属性的 meta"></a>具有 http-equiv 属性的 meta</h3><p>具有 http-equiv 属性的 meta 标签，表示执行一个命令，这样的 meta 标签可以不需要 name 属性了。<br>例如下面一段代码，相当于添加了 content-type 这个 http 头，并且制定了 http 编码方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=utf-8"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>除了 content-type，还有以下几种命令：</p>
+<ul>
+<li>content-language 指定内容的语言</li>
+<li>default-style 指定默认样式表</li>
+<li>refresh 刷新</li>
+<li>set-cookie 模式 http 头 set-cookie，设置 cookie</li>
+<li>x-ua-compatible 模拟 http 头 x-ua-compatible，声明 ua 兼容性</li>
+<li>content-security-policy 模拟 http 头 content-security-policy，声明内容安全策略</li>
+</ul>
+<h3 id="name-为-viewport-的-meta"><a href="#name-为-viewport-的-meta" class="headerlink" title="name 为 viewport 的 meta"></a>name 为 viewport 的 meta</h3><p>实际上，meta 标签可以被自由定义，只要写入和读取的双方预定号 name 和 content 的格式就可以。<br>下面介绍的这个 meta 类型，它没有在 HTML 标准中定义，确实移动端开发的事实标准，他就是 name 为 viewport 的 meta。<br>这类 meta 的 name 属性为 viewport，它的 content 是一个复杂结构，是用逗号分隔的键值对，键值对的格式是 key=value；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=500; initial-scale=1"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这里只指定了两个属性，宽度和缩放，实际上 viewport 能控制的更多，它能表示的所有属性如下：</p>
+<ul>
+<li>width: 页面宽度，可以是具体值，也可以是 device-width</li>
+<li>height: 页面高度，可以是具体值，也可以是 device-height</li>
+<li>initial-scale: 初始缩放比例</li>
+<li>minimum-scale: 最小缩放比例</li>
+<li>maximum-scale: 最大缩放比例</li>
+<li>user-scalable: 是否允许用户缩放</li>
+</ul>
+<p>对于已经做好了移动端适配的网页，应该把用户缩放功能禁用掉，宽度设为设备宽度，一个标准如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,use-scalable=no"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="其它预定义的-meta"><a href="#其它预定义的-meta" class="headerlink" title="其它预定义的 meta"></a>其它预定义的 meta</h3><p>在 HTML 标准中，还定义了一批  meta 标签的 name，可以视为一种约定的 meta，如下：</p>
+<ul>
+<li>application-name: 如果页面是 web application，用这个标签表示应用名称</li>
+<li>author: 页面作者</li>
+<li>description: 页面描述，用于搜索引擎或者其它场合</li>
+<li>generator: 生成页面所使用的工具，主要用于可视化编辑器，如果是手写 HTML 的网页，不需要加这个 meta</li>
+<li>keywords: 页面关键字，对于 SEO 场景比较关键</li>
+<li>referrer: 跳转策略，一种安全考量</li>
+<li>theme-color: 页面风格颜色，实际并不会影响页面，但是浏览器可能会据此调整页面之外的 UI</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里对元信息标签做了学习，理解里面的内容对浏览器、搜索引擎等结合的更好。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/21/浏览器是如何工作的-阶段二/" rel="next" title="浏览器是如何工作的-阶段二">
+                <i class="fa fa-chevron-left"></i> 浏览器是如何工作的-阶段二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/JavaScript执行环境一-Promise里的代码为什么比setTimeout先执行/" rel="prev" title="JavaScript执行环境一,Promise里的代码为什么比setTimeout先执行">
+                JavaScript执行环境一,Promise里的代码为什么比setTimeout先执行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#head-标签"><span class="nav-number">1.</span> <span class="nav-text">head 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#title-标签"><span class="nav-number">2.</span> <span class="nav-text">title 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base-标签"><span class="nav-number">3.</span> <span class="nav-text">base 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta-标签"><span class="nav-number">4.</span> <span class="nav-text">meta 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#具有-charset-属性的-meta"><span class="nav-number">4.1.</span> <span class="nav-text">具有 charset 属性的 meta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具有-http-equiv-属性的-meta"><span class="nav-number">4.2.</span> <span class="nav-text">具有 http-equiv 属性的 meta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name-为-viewport-的-meta"><span class="nav-number">4.3.</span> <span class="nav-text">name 为 viewport 的 meta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它预定义的-meta"><span class="nav-number">4.4.</span> <span class="nav-text">其它预定义的 meta</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
