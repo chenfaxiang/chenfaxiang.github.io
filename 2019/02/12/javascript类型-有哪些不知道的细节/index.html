@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="record | chenfx">
 <meta property="og:description" content="任何语言，其基本类型都是每个程序员必须掌握的概念，但是，这些概念你是真正的全部了解吗？其中包含哪些细节内容？那么看看下面的几个问题：  为什么有的编程规范要求用 void 0 代替 undefined？ 字符串有最大长度吗？ 0.1 + 0.2 不是等于 0.3 么？为什么 JavaScript 里得到的答案不是这样的？ ES6 新加入的 Symbol 对象是什么？ 为什么给对象添加的方法能用在基">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/12/javascript类型-有哪些不知道的细节/images/25-1.jpg">
-<meta property="og:updated_time" content="2019-04-15T07:54:33.746Z">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/02/12/javascript类型-有哪些不知道的细节/25-1.jpg">
+<meta property="og:updated_time" content="2019-04-15T07:59:50.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript类型,有哪些不知道的细节">
 <meta name="twitter:description" content="任何语言，其基本类型都是每个程序员必须掌握的概念，但是，这些概念你是真正的全部了解吗？其中包含哪些细节内容？那么看看下面的几个问题：  为什么有的编程规范要求用 void 0 代替 undefined？ 字符串有最大长度吗？ 0.1 + 0.2 不是等于 0.3 么？为什么 JavaScript 里得到的答案不是这样的？ ES6 新加入的 Symbol 对象是什么？ 为什么给对象添加的方法能用在基">
-<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/02/12/javascript类型-有哪些不知道的细节/images/25-1.jpg">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/02/12/javascript类型-有哪些不知道的细节/25-1.jpg">
 
 
 
@@ -392,7 +392,7 @@
 <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>前面说完了基本类型，这里再说一下类型转换。  </p>
 <p>因为 JavaScript 是弱类型语言，所以类型转换发生非常频繁，大部分我们熟悉的运算都会先进行类型转换。大部分类型转换符合人类的直觉，但是如果我们不去理解类型转换的严格定义就会很容易造成一些代码中的判断失误。  </p>
 <p>其中最为严重的就是 “==” 运算，因为试图实现跨类型的比较，它的规则复杂到几乎没有人能记住，在很多书中都介绍的是设计失误并推荐不使用 “==”，而是使用 “===” 号进行比较。  </p>
-<p>其它运算如加减乘除大于小于也都会涉及类型转换，幸好的是大部分的类型转换都比较简单，如下：<br><img src="./images/25-1.jpg" alt="25-1-类型转换"><br>在这里，较为复杂的部分就是 Number 和 String 的转换，以及对象跟基本类型之间的转换；下面学习一下这几种转换的规则。</p>
+<p>其它运算如加减乘除大于小于也都会涉及类型转换，幸好的是大部分的类型转换都比较简单，如下：<br><img src="/2019/02/12/javascript类型-有哪些不知道的细节/25-1.jpg" title="25-1-类型转换"><br>在这里，较为复杂的部分就是 Number 和 String 的转换，以及对象跟基本类型之间的转换；下面学习一下这几种转换的规则。</p>
 <h2 id="StringToNumber"><a href="#StringToNumber" class="headerlink" title="StringToNumber"></a>StringToNumber</h2><p>字符串到数字的类型转换，它存在一个语法结构，类型转换支持十进制、二进制、八进制和十六进制，比如：</p>
 <ul>
 <li>30</li>
