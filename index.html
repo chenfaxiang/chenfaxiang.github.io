@@ -302,64 +302,19 @@
 
       
         
-          
-            <p>在处理字符串的时候，经常会有查找某些符合规则的字符串的需要，<strong>正则表达式</strong>就是用于描述这些规则的工具。<br>在 windows/Dos 下有用于文件查找的 <strong>通配符，* 和 ? </strong>。例如：  </p>
+          <p>在处理字符串的时候，经常会有查找某些符合规则的字符串的需要，<strong>正则表达式</strong>就是用于描述这些规则的工具。<br>在 windows/Dos 下有用于文件查找的 <strong>通配符，* 和 ? </strong>。例如：  </p>
 <ul>
 <li>*.doc 表示查找目录下所有的 word 文档</li>
 </ul>
 <p>和通配符类似，正则表达式也是用来进行文本匹配的工具，只不过比起通配符它能更精确地描述你的需求。</p>
 <h2 id="通过实例入门"><a href="#通过实例入门" class="headerlink" title="通过实例入门"></a>通过实例入门</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bhi\b/ig</span>;</span><br><span class="line"><span class="keyword">var</span> regStr = <span class="string">'lf him---history---ihslsaaahI lsssaaa HI xxxxx Hi'</span>;</span><br><span class="line">regStr.match(reg);</span><br><span class="line"><span class="comment">// ['HI', 'Hi']</span></span><br></pre></td></tr></table></figure>
-<p>通过该实例最终的打印结果可以看见，这里仅仅将最后两个值 HI 和 Hi 输出了，那么这里的正则表达式究竟做了一些什么呢？<br>首先，看一下正则表达式 <code>/\bhi\b/</code> 中的 <code>\b</code>，<code>\b</code> 是正则表达式规定的一个特殊代码，也叫<strong>元字符(metacharacter)</strong>，代表着单词的开头或结尾，也就是单词的分界处，虽然英文单词是由空格、标点符号、换行来进行分隔，但 <code>\b</code> 并不匹配这些单词分隔字符中的任何一个，它<strong>只匹配一个位置</strong>。<br>那么上面这个例子中就是将 hi 这个单词匹配出来，并且不区分大小写，虽然有 history 和 ihslsaaahI 这两个任意单词，但是它们并不满足正则表达式中查找出一个单独的单词 hi(即当前单词 hi 的前后都有分隔符进行分隔的单个单词) 的条件；这里 <code>\b</code> 学了个明白。<br>再看一个实例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bhi\b.*\bLucy\b/ig</span>;</span><br><span class="line"><span class="keyword">var</span> regStr = <span class="string">'aaa hi slslflslfsl啊啊bb Lucy lucylll'</span>;</span><br><span class="line">regStr.match(reg);</span><br><span class="line"><span class="comment">// ['hi slslflslfsl啊啊bb Lucy']</span></span><br></pre></td></tr></table></figure>
-<p>最终得到的结果如上实例打印值，这里为什么会是出现的这么长一串字符串值呢？<br>通过第一个实例可以知道 <code>\b</code> 的作用，那么这里出现这种结果的条件肯定是正则表达式中间的 <code>.*</code> 这个操作，这里究竟是在干什么？<br>首先，这里的 <code>.</code> 也是一个元字符，它的含义是<strong>匹配除了换行符以外的任意字符</strong>。 <code>*</code> 同样是元字符，不过它代表的不是字符，也不是位置，而是<strong>数量</strong>，它的作用是指定 <code>*</code> 前面的内容可以连续重复使用任意次以使整个表达式得到匹配。<br>因此，这就明白了，<code>.*</code> 连在一起就意味着任意数量的不包含换行符的字符；所以得到了示例中的一串字符。</p>
-<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>在上面的实例中了解到了 <code>\b</code>、<code>.</code>、<code>*</code> 这几个元字符，而正则表达式中的元字符并不仅仅只有这几个，比如还有 <code>\s</code>、<code>\w</code>、<code>\d</code> 等。  </p>
-<p>最后，<strong>常用的元字符</strong>如下：  </p>
-<ul>
-<li>.  匹配除换行符以外的任意字符</li>
-<li>\s 匹配任意的空白符，包括空格、制表符(Tab)、换行符、中文全角空格等</li>
-<li>\w 匹配字母、数字、下划线、汉字</li>
-<li>\d 匹配数字</li>
-<li>\b 匹配单词的开始或结束位置</li>
-<li>^  匹配字符串的开始</li>
-<li>$  匹配字符串的结束</li>
-</ul>
-<p>这里总结了常用的元字符，如果要查找的内容是元字符本身的话该怎么办呢？<br>例如要查找的是 <code>.</code> 号或者 <code>*</code> 号，这如果直接在正则表达式中的话肯定回出问题，它们会被解释成元字符该有的意思。这个时候就得使用 <code>\</code> 来取消这些字符的特殊意义。因此，这里使用 <code>\.</code> 或 <code>\*</code> 来查找元字符本身，当然，如果要查找 <code>\</code> 本身的话也得用 <code>\\</code> 来表示。  </p>
-<p>这里对常用的元字符进行了统计，那么，有时候需要查找的字符不属于某个能简单定义的字符类，比如想查找出了数字以外，其它任意字符都行的情况，这是是不是需要一个<strong>反义</strong>？那么常用的<strong>反义</strong>代码有哪些：  </p>
-<p><strong>常用的反义代码</strong>：  </p>
-<ul>
-<li>\S 匹配任意不是空白符的字符</li>
-<li>\W 匹配任意不是字母、数字、下划线、汉字的字符</li>
-<li>\D 匹配任意非数字的字符</li>
-<li>\B 匹配不是单词开头或结束的位置</li>
-<li>[^x] 匹配除了x以外的任意字符</li>
-<li>[^aeiou] 匹配除了 aeiou 这几个字母以外的任意字符</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regStr = <span class="string">'/\S+/'</span>;</span><br><span class="line"><span class="comment">// 匹配不包含空白字符的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> regStr1 = <span class="string">'/&lt;a[^&gt;]+&gt;/'</span>;</span><br><span class="line"><span class="comment">// 匹配用尖括号括起来的以 a 开头的字符串</span></span><br></pre></td></tr></table></figure>
-<h2 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h2><p>在查找一个符号或者字符并不总是只会有一个，那么匹配重复的方式改怎么做？<br><strong>常用的限定符</strong>如下：</p>
-<ul>
-<li><ul>
-<li>重复零次或更多次</li>
-</ul>
-</li>
-<li><ul>
-<li>重复一次或更多次</li>
-</ul>
-</li>
-<li>? 重复零次或一次</li>
-<li>{n} 重复 n 次</li>
-<li>{n,} 重复 n 次或更多次</li>
-<li>{n,m} 重复 n 次到 m 次</li>
-</ul>
-<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>如果想要查找数字、字母、数字或者空白很简单，前面的元字符就可以对它们进行操作，但是如果想匹配没有预定义元字符的字符集合(如:a、e、i、o、u等)该怎么办？<br>很简单，直接把它们放在方括号里面就行，如 <code>[aeiou]</code> 就匹配任何一个英文元音字母，<code>[.?!]</code> 匹配标点符号 <code>.</code>、<code>?</code>或<code>!</code>号。<br>我们还可以指定一个字符范围，像 <code>[0-9]</code> 代表的是与 <code>\d</code> 一致的意思，只是 <code>\d</code> 只匹配一位数字。<br>看一个复杂的表达式：<code>/\(?0\d{2}[) -]?\d{8}/</code><br>这个表达式可以匹配几种格式的电话号码，如：(023)88889999、023-88889999、02388889999。</p>
-<h2 id="分枝条件"><a href="#分枝条件" class="headerlink" title="分枝条件"></a>分枝条件</h2><p>在字符类学习内容里面有一个复杂的正则表达式：<code>/\(?0\d{2}[) -]?\d{8}/</code>；如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numStr = <span class="string">'023)88889999'</span>;</span><br><span class="line"><span class="keyword">var</span> numStr1 = <span class="string">'(02388889999'</span>;</span><br><span class="line"><span class="keyword">var</span> numRegStr = <span class="regexp">/\(?0\d&#123;2&#125;[) -]?\d&#123;8&#125;/ig</span>;</span><br><span class="line"></span><br><span class="line">numStr.match(numRegStr);</span><br><span class="line"><span class="comment">// ['023)88889999']</span></span><br><span class="line">numStr1.match(numRegStr);</span><br><span class="line"><span class="comment">// ['(02388889999']</span></span><br></pre></td></tr></table></figure>
-<p>这里将这种不规范的号码格式也能匹配成功，那么要解决这个问题，我们需要用到<strong>分枝条件</strong>。<br>正则表达式里的<strong>分枝条件</strong>指的是有几种规则，如果满足其中任意一种规则都应该当成匹配成功，具体的方法就是用 <code>|</code> 把不同的规则分开；如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regStr = <span class="string">'/0\d&#123;2&#125;-\d&#123;8&#125;|0\d&#123;3&#125;-\d&#123;7&#125;/'</span>;</span><br><span class="line"><span class="comment">// 此匹配能够将三位区号和四位区号的电话号码匹配出来</span></span><br><span class="line"><span class="comment">// 023888899999      0234-8888999</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> regStr1 = <span class="string">'/\d&#123;5&#125;-\d&#123;4&#125;|\d&#123;5&#125;/'</span>;</span><br><span class="line"><span class="comment">// 此表达式用于匹配美国的邮政编码，它们的邮编规则是5位数字，或者是用连字号间隔的9位数字</span></span><br><span class="line"><span class="comment">// 02002-8888   99988</span></span><br></pre></td></tr></table></figure>
-<p>注意：<strong>使用分枝条件时，其各个条件的顺序</strong>很重要，顺序不同，匹配的条件结果也不同，因为在匹配分枝条件时，将会从左到右的测试每个条件，如果满足了条件就不会去管其他条件了。</p>
-<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><p>前面学习过程中已经知道了怎么对单个重复的字符进行匹配(直接在字符后面加上限定符就行)，但是如果想要重复多个字符怎么办呢？答案就是使用小括号来指定<strong>子表达式(分组)</strong>；然后就可以指定子表达式的重复次数了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regStr = <span class="string">'/(\d&#123;1,3&#125;\.)&#123;3&#125;\d&#123;1,3&#125;/'</span>;</span><br><span class="line"><span class="comment">// 这个正则表达式的目的是想做一个匹配 ip 地址的功能表达式</span></span><br><span class="line"><span class="comment">// 但是这里请注意 (\d&#123;1,3&#125;\.)&#123;3&#125; 它带一个英文句号连续重复三次将 ip 的前三位匹配出来了，最后 \d&#123;1,3&#125; 将 ip 的最后一位做了匹配，能得到部分正确结果</span></span><br><span class="line"><span class="comment">// 虽然上面的例子能够在真正的 ip 地址上匹配成功，但是，它也能将这种 888.999.299.566 不是正确 ip 地址的字符也成功匹配。。再想想办法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> regStr = <span class="string">'/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/'</span>;</span><br><span class="line"><span class="comment">// 这里的关键就是理解正则表达式中的 (2[0-4]\d|25[0-5]|[01]?\d\d?)；它将 ip 地址的规律进行了解释，只有满足 0 -255 的 ip 地址值才能被成功匹配。</span></span><br><span class="line"><span class="comment">// tips: IP 地址中每个值都是小于等于 255 的，比如 01.02.09.08 这种带 0 的数字在 IP 地址里也是正确的，因为 IP 地址里的数字可以包含有前导0.</span></span><br></pre></td></tr></table></figure>
-<h2 id="后向引用"><a href="#后向引用" class="headerlink" title="后向引用"></a>后向引用</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/16/正则表达式再学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
