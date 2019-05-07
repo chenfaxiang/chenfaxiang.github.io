@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前面学习了一些简单选择器，这里继续对选择器的几个机制进行学习：选择器的组合、选择器的优先级和伪元素。   选择器的组合在 CSS 规则中，选择器部分是一个选择器列表。选择器列表是用逗号分隔的复杂选择器序列，复杂选择器则是用空格、大于号、波浪线等符号连接的复合选择器，复合选择器则是连写的简单选择器组合。根据选择器列表的语">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css选择器，伪元素是怎么回事">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/05/04/css选择器-伪元素是怎么回事/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="前面学习了一些简单选择器，这里继续对选择器的几个机制进行学习：选择器的组合、选择器的优先级和伪元素。   选择器的组合在 CSS 规则中，选择器部分是一个选择器列表。选择器列表是用逗号分隔的复杂选择器序列，复杂选择器则是用空格、大于号、波浪线等符号连接的复合选择器，复合选择器则是连写的简单选择器组合。根据选择器列表的语法，选择器的连接方式可以理解为像四则远算一样有优先级。    第一优先级 无连接">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/05/04/css选择器-伪元素是怎么回事/41-1.png">
+<meta property="og:updated_time" content="2019-05-07T11:01:43.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css选择器，伪元素是怎么回事">
+<meta name="twitter:description" content="前面学习了一些简单选择器，这里继续对选择器的几个机制进行学习：选择器的组合、选择器的优先级和伪元素。   选择器的组合在 CSS 规则中，选择器部分是一个选择器列表。选择器列表是用逗号分隔的复杂选择器序列，复杂选择器则是用空格、大于号、波浪线等符号连接的复合选择器，复合选择器则是连写的简单选择器组合。根据选择器列表的语法，选择器的连接方式可以理解为像四则远算一样有优先级。    第一优先级 无连接">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/05/04/css选择器-伪元素是怎么回事/41-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/05/04/css选择器-伪元素是怎么回事/"/>
+
+
+
+
+
+  <title>css选择器，伪元素是怎么回事 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/05/04/css选择器-伪元素是怎么回事/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css选择器，伪元素是怎么回事</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-03T18:57:36+02:00">
+                2019-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面学习了一些简单选择器，这里继续对选择器的几个机制进行学习：选择器的组合、选择器的优先级和伪元素。  </p>
+<h2 id="选择器的组合"><a href="#选择器的组合" class="headerlink" title="选择器的组合"></a>选择器的组合</h2><p>在 CSS 规则中，选择器部分是一个选择器列表。<br>选择器列表是用逗号分隔的复杂选择器序列，复杂选择器则是用空格、大于号、波浪线等符号连接的复合选择器，复合选择器则是连写的简单选择器组合。<br>根据选择器列表的语法，选择器的连接方式可以理解为像四则远算一样有优先级。  </p>
+<ul>
+<li>第一优先级<ul>
+<li>无连接符号</li>
+</ul>
+</li>
+<li>第二优先级<ul>
+<li>“空格”</li>
+<li>“~”</li>
+<li>“+”</li>
+<li>“&gt;”</li>
+<li>“||”</li>
+</ul>
+</li>
+<li>第三优先级<ul>
+<li>“，”</li>
+</ul>
+</li>
+</ul>
+<p>如下选择器：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.c, .a &gt; .b.d &#123;</span><br><span class="line">  <span class="comment">// code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>其结构可以理解为：</p>
+<ul>
+<li>.c, .a &gt; .b.d<ul>
+<li>.c</li>
+<li>.a &gt; .b.d<ul>
+<li>.a</li>
+<li>.b.d<ul>
+<li>.b</li>
+<li>.d</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>复合选择器表示简单选择器中“且”的关系，例如例子中的“.b.d”，表示选中的元素必须同时具有 b 和 d 两个 class。<br>复杂选择器是针对节点关系的选择，它规定了五种连接符号。  </p>
+<ul>
+<li>“空格”：后代，表示选中所有符合条件的后代节点，例如“.a .b”表示选中所有具有 class 为 a 的后代节点中 class 为 b 的节点</li>
+<li>“&gt;”：子代，表示选中符合条件的子节点，例如“.a &gt; .b”表示选中所有具有 class 为 a 的子节点中 class 为 b 的节点</li>
+<li>“~”：后继，表示选中所有符合条件的后继节点，后继结点即跟当前节点具有同一个父元素，并出现在它之后的节点，例如“.a ~ .b”表示选中所有具有 class 为 a 的后继中，class 为 b 的节点</li>
+<li>“+”：直接后继：表示选中符合条件的直接后继结点，直接后继结点即 nextSibling。例如“.a + .b”表示选中所有具有 class 为 a 的下一个 class 为 b 的节点</li>
+<li>“||”：列选择器：表示选中对应列中符合条件的单元格</li>
+</ul>
+<p>在实际使用中，比较常用的连接方式是 “空格” 和 “&gt;”。  </p>
+<p>而逗号表示 “或” 的关系，实际上，可以把它理解为“两条内容一样的 CSS 规则”的一种简写，如起那么的例子可以理解成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.c &#123;</span><br><span class="line">  <span class="comment">// code</span></span><br><span class="line">&#125;</span><br><span class="line">.a &gt; .b.d &#123;</span><br><span class="line">  <span class="comment">// code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CSS 选择器是基于规则生效的，同一个元素命中多条规则是非常常见的事情，不同规则制定同一个属性为不同值时，就需要一个机制来解决冲突。这个既是接下来的内容：选择器优先级。  </p>
+<h2 id="选择器的优先级"><a href="#选择器的优先级" class="headerlink" title="选择器的优先级"></a>选择器的优先级</h2><p>CSS 标准用一个三元组(a,b,c)来构成一个负责选择器的优先级。  </p>
+<ul>
+<li>id 选择器的数据记为 a</li>
+<li>伪类选择器和 class 选择器的数目记为 b</li>
+<li>伪元素选择器和标签选择器数目记为 c</li>
+<li>“*” 不影响优先级</li>
+</ul>
+<p>CSS 标准建议用一个足够大的进制，获取 “a-b-c” 来表示选择器优先级；即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">specificity = base * base * a + base * b + c</span><br></pre></td></tr></table></figure>
+<p>其中，base 是一个“足够大”的正整数，关于 base，历史中有些趣闻，早年 IE6 采用 256 进制，于是就产生了“256个 class 优先级等于一个 id”这样的奇葩问题，后来扩大到 65536，才基本避免了类似问题。<br>而现代浏览器多采用了更大的数量，我们正常编写的 css 规则数量不太可能达到数万，因此我们就可以认为这样的 base 就不够大了。  </p>
+<p>行内属性的优先级永远高于 CSS 规则，浏览器提供了一个“口子”，就是在选择器前加上“!import”；而这个用法是比较危险的，它相当于一个新的优先级，而且此优先级会高于行内属性。<br>同一优先级的选择器遵循“后面的覆盖前面的”规则，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"my"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"x y"</span>&gt;text&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.x &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #f00;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.y &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #000;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>调换“.x” 和 “.y” 我们可以得到不同测显示效果，选择器的优先级是针对单条规则的，多条规则的选择器同时命中元素，优先级不会叠加。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"my"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"x y z"</span>&gt;text&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.x &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #f00;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.y &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #f00;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.z &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #000;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，“.x” 和 “.y” 都制定了背景色为浅蓝色，但是因为 “.y” 规则在最后，所以最终显示结果为黑色；另一个需要注意的是，选择器的优先级是针对负责选择器的优先级，选择器列表不会合并计算优先级；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"my"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"x y z"</span>&gt;text&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.x, .z &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #f00;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.y &#123;</span></span><br><span class="line"><span class="regexp">  background-color: #000;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里选择器列表 “.x, .z” 选中了 div，但它的两项分表计算优先级，所以最终优先级扔跟 “.y” 规则相同。<br>所以实践中，建议“根据id选中单个元素” “class 和 class 的组合选成组元素” “tag选择器确定页面风格” 这样的简单原则来使用选择器，不要搞过于复杂的选择器。  </p>
+<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><p>简单选择器：伪元素；伪元素本身不单单是一种选择规则，它还是一种机制。伪元素的语法跟伪类相似，但是实际产生的效果却是把不存在的元素硬选出来。<br>目前兼容性基本可用的伪元素有：</p>
+<ul>
+<li>::first-line</li>
+<li>::first-letter</li>
+<li>::before</li>
+<li>::after</li>
+</ul>
+<p><strong>::first-line 和 ::first-letter 是比较类似的伪元素</strong>，其中一个表示元素的第一行，一个表示元素的第一个字母。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;This is a somewhat long HTML</span><br><span class="line">paragraph that will be broken into several</span><br><span class="line">lines. The first line will be identified</span><br><span class="line">by a fictional tag sequence. The other lines</span><br><span class="line">will be treated <span class="keyword">as</span> ordinary lines <span class="keyword">in</span> the</span><br><span class="line">paragraph.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">p::first-line &#123;</span></span><br><span class="line"><span class="regexp">  text-transform: uppercase;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里的 style 把段落的第一行字母变成大写(这里的第一行指的是排版后显示的第一行，跟html代码中的换行无关)。  </p>
+<p>::first-letter 则指第一个字母，首字母变大并向左浮动是一个非常常见的排版方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;This is a somewhat long HTML</span><br><span class="line">paragraph that will be broken into several</span><br><span class="line">lines. The first line will be identified</span><br><span class="line">by a fictional tag sequence. The other lines</span><br><span class="line">will be treated <span class="keyword">as</span> ordinary lines <span class="keyword">in</span> the</span><br><span class="line">paragraph.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">p::first-letter &#123;</span></span><br><span class="line"><span class="regexp">  text-transform: uppercase;</span></span><br><span class="line"><span class="regexp">  font-size:2em;</span></span><br><span class="line"><span class="regexp">  float:left;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>从这里看上去比较简单，但是实际上，我们遇到的 html 结构要更为复杂，一旦元素中不是纯文本，规则就变得复杂了。  </p>
+<p>css 标准规定了 first-line 必须出现在最内层的块级元素之内，因此，下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;p id=a&gt;First paragraph&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;p&gt;Second paragraph&lt;/</span>p&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div&gt;p#a &#123;</span></span><br><span class="line"><span class="regexp">  color:green;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div::first-line &#123;</span></span><br><span class="line"><span class="regexp">  color:blue;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码的最终结果第一行是蓝色，因为 p 是块级元素，所以伪元素出现在块级元素之内，所以内层的 color 覆盖了外层的 color 属性。<br>如果我们把 p 换成 span，结果就会相反；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;span id=a&gt;First paragraph&lt;<span class="regexp">/span&gt;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;Second paragraph&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div&gt;p#a &#123;</span></span><br><span class="line"><span class="regexp">  color:green;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div::first-line &#123;</span></span><br><span class="line"><span class="regexp">  color:blue;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里把 div 中的 p 标签换成 span 标签后，最终结果显示的是绿色，这说明伪元素在 span 之外。  </p>
+<p><strong>::first-letter 的行为又有所不同，它的位置在所有标签之内</strong>，我们前面的代码换成 ::first-letter。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;span id=a&gt;First paragraph&lt;<span class="regexp">/span&gt;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;Second paragraph&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div&gt;p#a &#123;</span></span><br><span class="line"><span class="regexp">  color:green;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">div::first-letter &#123;</span></span><br><span class="line"><span class="regexp">  color:blue;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里的 <strong>::first-letter</strong> 伪元素，首字母变成了蓝色，说明伪元素出现在 span 之内。  </p>
+<p>css 标准只要求 ::first-line 和 ::first-letter 实现有限的几个 css 属性，都是文本相关，这些属性如下(winter老师)：<br><img src="/2019/05/04/css选择器-伪元素是怎么回事/41-1.png" title="::first-line/::first-letter">  </p>
+<p><strong>接下来还有两个伪元素 ::before 和 ::after</strong>。<br>这两个伪元素跟前面两个不同的是，它不是把已有的内容套上一个元素，而是真正的无中生有，造出一个元素。<br>::before 表示在元素内容之前插入一个虚拟的元素，::after 则表示在元素内容之后插入。<br>这两个伪元素所在的 css 必须制定 content 属性才会生效，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"aa"</span>&gt;dom text content&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">p.aa::before &#123;</span></span><br><span class="line"><span class="regexp">  display: block;</span></span><br><span class="line"><span class="regexp">  content: '';</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>要注意的是，::before 和 ::after 还支持 content 为 counter，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p.special::before &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  content: counter(chapno, upper-roman) <span class="string">". "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里学习了css选择器的三种机制：选择器的组合、选择器优先级、伪元素。最终的实现效果即需要灵活应用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/30/css选择器-如何选中svg里的a元素/" rel="next" title="css选择器，如何选中svg里的a元素">
+                <i class="fa fa-chevron-left"></i> css选择器，如何选中svg里的a元素
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器的组合"><span class="nav-number">1.</span> <span class="nav-text">选择器的组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器的优先级"><span class="nav-number">2.</span> <span class="nav-text">选择器的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素"><span class="nav-number">3.</span> <span class="nav-text">伪元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
