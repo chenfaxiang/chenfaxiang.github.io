@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="record | chenfx">
 <meta property="og:description" content="在处理字符串的时候，经常会有查找某些符合规则的字符串的需要，正则表达式就是用于描述这些规则的工具。在 windows/Dos 下有用于文件查找的 通配符，* 和 ? 。例如：    *.doc 表示查找目录下所有的 word 文档  和通配符类似，正则表达式也是用来进行文本匹配的工具，只不过比起通配符它能更精确地描述你的需求。 通过实例入门1234var reg = /\bhi\b/ig;var">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T01:17:40.027Z">
+<meta property="og:updated_time" content="2019-05-20T12:53:05.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式再学习">
 <meta name="twitter:description" content="在处理字符串的时候，经常会有查找某些符合规则的字符串的需要，正则表达式就是用于描述这些规则的工具。在 windows/Dos 下有用于文件查找的 通配符，* 和 ? 。例如：    *.doc 表示查找目录下所有的 word 文档  和通配符类似，正则表达式也是用来进行文本匹配的工具，只不过比起通配符它能更精确地描述你的需求。 通过实例入门1234var reg = /\bhi\b/ig;var">
@@ -335,14 +335,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regStr = <span class="string">'/\S+/'</span>;</span><br><span class="line"><span class="comment">// 匹配不包含空白字符的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> regStr1 = <span class="string">'/&lt;a[^&gt;]+&gt;/'</span>;</span><br><span class="line"><span class="comment">// 匹配用尖括号括起来的以 a 开头的字符串</span></span><br></pre></td></tr></table></figure>
 <h2 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h2><p>在查找一个符号或者字符并不总是只会有一个，那么匹配重复的方式改怎么做？<br><strong>常用的限定符</strong>如下：</p>
 <ul>
-<li><ul>
-<li>重复零次或更多次</li>
-</ul>
-</li>
-<li><ul>
-<li>重复一次或更多次</li>
-</ul>
-</li>
+<li>* 重复零次或更多次(星号)</li>
+<li>+ 重复一次或更多次(加号)</li>
 <li>? 重复零次或一次</li>
 <li>{n} 重复 n 次</li>
 <li>{n,} 重复 n 次或更多次</li>
