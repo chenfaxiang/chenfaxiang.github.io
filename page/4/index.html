@@ -232,6 +232,275 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/16/浏览器是如何工作的-阶段一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/16/浏览器是如何工作的-阶段一/" itemprop="url">浏览器是如何工作的-阶段一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-15T19:24:29+01:00">
+                2019-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前端开发者平时与浏览器打交道的时间最多，可浏览器对前端开发者来说更多的是像一个神秘的黑盒子，我们仅仅知道它能做什么，而不知道它是如何做到的。事实上，了解了浏览器工作原理的大致过程，不仅对前端面试中的考点有一点帮助，它还会在实际的工作中进行辅助增强，学习了浏览器的内部工作原理和个中缘由，对于我们做性能优化、排查错误都有很大好处。  </p>
+<p>实际上，对浏览器的实现者来说，他们做的事情就是把一个 URL 变成屏幕上显示的网页，这个过程是这样的：  </p>
+<ol>
+<li>浏览器首先使用 HTTP 协议或者 HTTPS 协议，向服务端请求页面</li>
+<li>把请求回来的 HTML 代码经过解析，构建成 DOM 树</li>
+<li>计算 DOM 树上的 CSS 属性</li>
+<li>最后根据 CSS 属性对元素逐个进行渲染，得到内存中的位图</li>
+<li>一个可选的步骤是对位图进行合成，这会极大地增加后续绘制的速度</li>
+<li>合成之后再绘制到界面上</li>
+</ol>
+<p>这里在从 HTTP 请求回来开始，这个过程并非一般想象中的一步做完再做下一步，它其实是一条流水线；从 HTTP 请求回来，就产生了流式的数据，后续的 DOM 树构建、CSS 计算、渲染、合成、绘制，都是尽可能地流式处理前一步的产出：即不需要等到上一步骤完全结束，就开始处理上一步的输出，这样我们在浏览网页的时候才会看到逐步出现的页面。  </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/16/浏览器是如何工作的-阶段一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/" itemprop="url">css语法,除了属性和选择器还需要知道这些带@的规则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-10T19:18:22+01:00">
+                2019-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>CSS 是前端工程师每天必不可少的必修课，那么它的资料又是怎样的呢，说起来真的很糟糕，这是因为 CSS 并没有像 HTML 和 JavaScript 那样的一份标准文档。  </p>
+<p><a href="https://www.w3.org/TR/?title=css" target="_blank" rel="noopener">在这里</a> 我们一共能看到98份 CSS 相关的标准，它们各自从不同的角度规定了 CSS 的特性。将 working draft 状态的去掉后仍可以得到 22 份候选标准和 6 份推荐标准。对于这些知识，怎么才能把这些离散的标准组织成易于理解及记忆的形式？  </p>
+<p>这里，根据 winter 老师的经验，他提供的方法是根据 CSS 语法来进行，任何 CSS 的特性都必须通过一定的语法结构表达出来，所以语法可以帮助我们发现大多数的 CSS 特性，因此了解一波<a href="https://www.w3.org/TR/css-syntax-3/" target="_blank" rel="noopener">CSS 语法的最新标准，看这里</a>;这篇文档阅读体验比较差，幸好，winter 老师给我们做了总结抽取(跟着大佬走准没错)，接下来一起看看。  </p>
+<p>在标准中可以看到，去除空格、HTML 注释等无效信息，<strong>CSS 的顶层样式表由两种规则组成的规则列表构成，一种被称为 at-rule，也就是 at 规则，另一种是 qualified rule，也就是普通规则。</strong>  </p>
+<p>at-rule 由一个 @ 关键字和后续的一个区块组成，如果没有区块则以分号结束；这些 at-rule 在开发中使用机会远远小于普通的规则，因此大部分内容可能比较陌生。  </p>
+<p>这些 at 规则正式掌握 CSS 的高级特性所必须的内容；而 qualified rule 则是普通的 CSS 规则，也就是我们熟悉的，由选择器和属性指定构成的规则。 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/11/css语法-除了属性和选择器还需要知道这些带-的规则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/06/javascript对象-你知道全部的对象分类吗/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -612,271 +881,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/02/12/javascript类型-有哪些不知道的细节/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/12/javascript类型-有哪些不知道的细节/" itemprop="url">javascript类型,有哪些不知道的细节</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-12T14:15:04+01:00">
-                2019-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>任何语言，其基本类型都是每个程序员必须掌握的概念，但是，这些概念你是真正的全部了解吗？其中包含哪些细节内容？那么看看下面的几个问题：</p>
-<ul>
-<li>为什么有的编程规范要求用 void 0 代替 undefined？</li>
-<li>字符串有最大长度吗？</li>
-<li>0.1 + 0.2 不是等于 0.3 么？为什么 JavaScript 里得到的答案不是这样的？</li>
-<li>ES6 新加入的 Symbol 对象是什么？</li>
-<li>为什么给对象添加的方法能用在基本类型上？</li>
-</ul>
-<p>前面的学习过程中，从 JavaScript 模块从运行时、文法和执行过程三个角度去进行并剖析了其知识体系，这里的学习内容就是从运行时的角度去看 JavaScript 的类型系统的。  </p>
-<blockquote>
-<p>运行时类型是代码实际执行过程中我们用到的类型，所有的类型数据都会属于7个类型之一。从变量、参数、返回值到表达式中间结果，任何 JavaScript 代码运行过程中产生的数据，都具有运行时类型。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/12/javascript类型-有哪些不知道的细节/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/" itemprop="url">html语义,如何运用语义类标签来呈现Wiki网页</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-07T14:10:13+01:00">
-                2019-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在上一篇文章主要学习了怎么使用语义类标签和正确使用的一些场景，那么具体在哪些场景适合用到，又该怎么运用呢？<br>这里通过一个例子来做一个语义类标签的学习，找一篇 wiki 文章，通过文章的结构用语义类标签来进行学习，例如：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/07/html语义-如何运用语义类标签来呈现Wiki网页/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -927,7 +931,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
