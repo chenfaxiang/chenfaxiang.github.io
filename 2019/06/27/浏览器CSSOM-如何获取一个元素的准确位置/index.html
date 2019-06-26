@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,DOM," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首先，来个问题，通过对浏览器 API 的学习，是不是也有这样的 API，“element.width,element.height” 直接获取元素的宽高啊？ 在学习 DOM 相关 API 的时候对 DOM API 包含 DOM 树形结构相关的内容有了一定的了解，那么今天这里接触到的是一类新的 API: CSSOM。刚接">
+<meta name="keywords" content="JavaScript,DOM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器CSSOM,如何获取一个元素的准确位置">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="首先，来个问题，通过对浏览器 API 的学习，是不是也有这样的 API，“element.width,element.height” 直接获取元素的宽高啊？ 在学习 DOM 相关 API 的时候对 DOM API 包含 DOM 树形结构相关的内容有了一定的了解，那么今天这里接触到的是一类新的 API: CSSOM。刚接触到浏览器 API 的时候，获取元素的宽高总是要费很大功夫，并没有像 “elem">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chenfx.com.cn/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/47-1.png">
+<meta property="og:updated_time" content="2019-06-26T11:49:06.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器CSSOM,如何获取一个元素的准确位置">
+<meta name="twitter:description" content="首先，来个问题，通过对浏览器 API 的学习，是不是也有这样的 API，“element.width,element.height” 直接获取元素的宽高啊？ 在学习 DOM 相关 API 的时候对 DOM API 包含 DOM 树形结构相关的内容有了一定的了解，那么今天这里接触到的是一类新的 API: CSSOM。刚接触到浏览器 API 的时候，获取元素的宽高总是要费很大功夫，并没有像 “elem">
+<meta name="twitter:image" content="http://www.chenfx.com.cn/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/47-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/"/>
+
+
+
+
+
+  <title>浏览器CSSOM,如何获取一个元素的准确位置 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器CSSOM,如何获取一个元素的准确位置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T19:46:55+02:00">
+                2019-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先，来个问题，通过对浏览器 API 的学习，是不是也有这样的 API，“element.width,element.height” 直接获取元素的宽高啊？</p>
+<p>在学习 DOM 相关 API 的时候对 DOM API 包含 DOM 树形结构相关的内容有了一定的了解，那么今天这里接触到的是一类新的 API: CSSOM。<br>刚接触到浏览器 API 的时候，获取元素的宽高总是要费很大功夫，并没有像 “elemen.width 和 element.height” 这样复合直觉设计的 API；但随着深入的学习，发现它们没有这样设计也有其背后的逻辑，正如 HTML 和 CSS 分别承担了语义和表现的分工，DOM 和 CSSOM 也有语义和表现的分工。<br>DOM 中的所有属性都是用来表现语义的属性，CSSOM 的则都是表现的属性，width 和 height 这类显示相关的属性，都属于今天要学习的 CSSOM。<br>顾名思义，CSSOM 是 CSS 的对象模型，在 W3C 标准中，它包含两个部分：描述样式表和规则等 CSS 的模型部分(CSSOM)，和跟元素视图相关的 view 部分(CSSOM View)。<br>但是在实际使用中，CSSOM View 比 CSSOM 更常用一些，因为在工作中很少需要用代码动态的管理样式表。  </p>
+<a id="more"></a>
+<h2 id="CSSOM"><a href="#CSSOM" class="headerlink" title="CSSOM"></a>CSSOM</h2><p>首先学习一下 CSS 中的样式表的模型，也就是 CSSOM 的本体。<br>通常创建样式表也都是使用 HTML 标签来做到的，我们用 style 标签和 link 标签创建样式表，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">h1 &#123;</span><br><span class="line">  color: #f00;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;link rel="stylesheet" href="http:/</span><span class="comment">/*****" &gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们创建好样式表后，还有可能要对它进行一些操作，如果我们以 DOM 的角度去理解的话，这些标签在 DOM 中是一个节点，它们有节点的内容、属性，这两个标签中，CSS 代码有的在属性、有的在子节点；而这两个标签也遵循 DOM 节点的操作规则，所以可以使用 DOM API 去访问。但是，这样做的后果就是需要去写很多的分支逻辑，要想解析 CSS 代码结构也不是一件容易的事，所以，我们直接使用 CSSOM API 去操作它们生成的样式表是一个更好的选择。<br>首先，CSSOM API 的基本用法，获取文档中所有的样式表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheets</span><br></pre></td></tr></table></figure>
+<p>document 的 styleSheets 属性表示文档中的所有样式表，它是只读的一个列表，这里我们可以用方括号运算符下标访问样式表，也可以使用 item 方法来访问，它有 length 属性表示文档中的样式表数量。样式表只能使用 style 标签或者 link 标签创建，虽然无法用 CSSOM API 来创建样式表，但是我们可以修改样式表中的内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheet[<span class="number">0</span>].insertRule(<span class="string">"p &#123;color:pink;&#125;"</span>, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">document</span>.styleSheet[<span class="number">0</span>].removeRule(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>更进一步，我们可以获取样式表中特定的规则，并且对它进行一定的操作，具体来说，就是使用它的 cssRules 属性来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheets[<span class="number">0</span>].cssRules</span><br></pre></td></tr></table></figure>
+<p>这里获取到的规则列表，同样是支持 item、length 和下标运算；不过，这里的 Rules 可能就不会那么简单，它可能是 CSS 的 at-rule，也可能是普通的样式规则；不同的 rule 类型，具有不同的属性。而在之前的 CSS 语法部分，整理过 at-rule 的完整列表，多数 at-rule 都对应着一个 rule 类型：</p>
+<ul>
+<li>CSSStyleRule</li>
+<li>CSSCharsetRule</li>
+<li>CSSImportRule</li>
+<li>CSSMediaRule</li>
+<li>CSSFontFaceRule</li>
+<li>CSSPageRule</li>
+<li>CSSNamespaceRule</li>
+<li>CSSKeyframesRule</li>
+<li>CSSKeyframeRule</li>
+<li>CSSSupportsRule</li>
+</ul>
+<p>而 CSSStyleRule 有两个属性：selectorText 和 style，分表表示一个规则的选择器部分和样式部分。selector 部分是一个字符串，style 部分是一个样式表，它跟我们元素的 style 属性是一样的类型，所以我们可以像修改内联样式一样，直接改变属性修改规则中的具体 CSS 属性定义，也可以使用 cssText 这样的工具属性。<br>此外，CSSOM 还提供了一个非常重要的方法来获取一个元素最终经过 CSS 计算得到的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.getComputedStyle(element, pseudoElement);</span><br></pre></td></tr></table></figure>
+<p>其中第一个参数是要获取属性的元素，第二个参数可选，用于选择伪元素。  </p>
+<h2 id="CSSOM-View"><a href="#CSSOM-View" class="headerlink" title="CSSOM View"></a>CSSOM View</h2><p>CSSOM View 这一部分的 API，可以视为 DOM API 的扩展，他在原本的 Element 接口上添加了显示相关的功能，这些功能，又可以分成三个部分：窗口部分、滚动部分和布局部分。  </p>
+<ol>
+<li>窗口 API<br>窗口 API 用于操作浏览器窗口的位置、尺寸等。</li>
+</ol>
+<ul>
+<li>moveTo(x, y) 窗口移动到屏幕的特定坐标</li>
+<li>moveBy(x, y) 窗口移动特定距离</li>
+<li>resizeTo(x, y) 改变窗口大小到特定尺寸</li>
+<li>resizeBy(x, y) 改变窗口大小特定尺寸</li>
+</ul>
+<p>此外，窗口 API 还规定了 window.open() 的第三个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.open(<span class="string">"about:blank"</span>, <span class="string">"_blank"</span>, <span class="string">"width=100,height=100,left=100,right=100"</span>);</span><br></pre></td></tr></table></figure>
+<p>而 window.open 在一些浏览器中处于安全性的考虑而没有实现，也不适用于移动端浏览器。</p>
+<ol>
+<li><p>滚动 API<br>要理解滚动，需要知道在 PC 时代，浏览器可视区域的滚动和内部元素的滚动关系是比较模糊的，但是在移动端越来越重要的今天，两者必须分开，它们的性能和行为都有区别。</p>
+</li>
+<li><p>视口滚动 API<br>可视区域(视口)滚动行为由 window 对象上的一组 API 控制，如下：</p>
+</li>
+</ol>
+<ul>
+<li>scrollX 是视口的属性，表示 X 方向上的当前滚动距离，有别名 pageXOffset</li>
+<li>scrollY 是视口的属性，表示 Y 方向上的当前滚动距离，有别名 pageYOffset</li>
+<li>scroll(x, y) 使得页面滚动到特定的位置，有别名 scrollTo，支持传入配置型参数 {top, left}</li>
+<li>scrollBy(x, y) 使得页面滚动特定的距离，支持传入配置型参数 {top, left}</li>
+</ul>
+<p>通过这些属性和方法，我们可以读取视口的滚动位置和操作视口滚动。但是可以通过在 document 对象上绑定事件监听函数，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"scroll"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// todo</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>视口滚动 API 是页面的顶层容器的滚动，大部分移动端浏览器都会采用一些性能优化，它和元素滚动不完全一样。</p>
+<ol>
+<li>元素滚动 API<br>元素滚动 API，在 Element 类中为了支持滚动加入了一下 API：</li>
+</ol>
+<ul>
+<li>scrollTop 属性，表示 Y 方向上的当前滚动距离</li>
+<li>scrollLeft 属性，表示 X 方向上的当前滚动距离</li>
+<li>scrollWidth 属性，表示元素内部的滚动内容的宽度，一般来说大于等于元素宽度</li>
+<li>scrollHeight 属性，表示元素内部的滚动内容的高度，一般来说大于等于元素高度</li>
+<li>scroll(x, y) 使得元素滚动到特定的位置，有别名 scrollTo，支持传入参数 {top, left}</li>
+<li>scrollBy(x, y) 使得元素滚动到特定的位置，支持传入配置型参数 {top, left}</li>
+<li>scrollIntoView(arg) 滚动元素所在的父元素，是的元素滚动到可见区域，可以通过 arg 来指定滚到中间、开始或者就近</li>
+</ul>
+<p>除此之外，可滚动的元素也支持 scroll 事件，可以在元素上监听它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// todo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>布局 API<br>布局 API 是整个 CSSOM 中最常用到的部分，它分成：全局 API 和元素上的 API。  </li>
+</ol>
+<ul>
+<li>全局尺寸信息<br>window 对象上提供了一些全局的尺寸信息，它是通过属性来提供的，如下图：</li>
+</ul>
+<img src="/2019/06/27/浏览器CSSOM-如何获取一个元素的准确位置/47-1.png" title="全局尺寸信息">  
+<ul>
+<li>window.innerHeight,window.innerWidth 这两个属性表示视口的大小</li>
+<li>window.outerWidth,window.outerHeight 这两个属性表示浏览器窗口占据的大小</li>
+<li>window.devicePixelRatio 表示物理像素和 CSS 像素单位的倍率关系</li>
+<li>window.screen<ul>
+<li>window.screen.width,window.screen.height 设备的屏幕尺寸</li>
+<li>window.screen.availWidth,window.screen.availHeight 设备屏幕的可渲染区域尺寸</li>
+<li>window.screen.colorDepth,window.screen.pixelDepth 这两个属性是固定值 2 4</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>元素的布局信息<br>最后，回到前面一开始提到的问题，是否能够取到一个元素的宽(width)和高(height)？<br>实际上，首先应该消除“元素有宽高”的这个概念，在这里的学习过程中已经多次了解到，有些元素可能产生多个和，事实上，只是＆有宽和高，元素是没有的。<br>所以，我们获取的宽高的对象应该是“盒”，于是 CSSOM View 为 Element 类添加了两个方法：</p>
+<ul>
+<li>getClientRects()</li>
+<li>getBoundingClientRect()</li>
+</ul>
+</li>
+</ul>
+<p>getClientRects() 返回一个列表，里面包含元素对应的每一个盒所占据的客户端矩形区域，这里每个矩形区域可以用 x,y,width,height 来获取它的位置和尺寸；<br>getBoundingClientRect() 返回元素对应的所有盒的包裹的矩形区域，这个 API 获取的区域会包括当 overflow 为 visible 时的子元素区域。<br>这两个 API 获取的矩形区域都是相对于视口的坐标，这意味着，这些区域都是受滚动影响的，如下一个获取相对坐标的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> offsetX = <span class="built_in">document</span>.getBoundingClientRect().x - element.getBoundingClientRect().x</span><br></pre></td></tr></table></figure>
+<p>这里就是讲文档根节点的位置减去当前元素的位置就得到了一个相对坐标。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后这里通过学习 CSSOM 这一类 API，就像 HTML 和 CSS 分表承担了语义和表现的分工，DOM 和 CSSOM 也有语义和表现的分工。<br>CSSOM 是 CSS 的对象模型，在 W3C 标准中，它包含两个部分：描述样式表和规则等 CSS 的模型部分 (CSSOM)，和根元素视图相关的 View 部分 (CSSOM View)。  </p>
+<p>好多东西。。。需要加深理解。额</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/DOM/" rel="tag"># DOM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/25/CSS排版-CSS的正常流/" rel="next" title="CSS排版:CSS的正常流">
+                <i class="fa fa-chevron-left"></i> CSS排版:CSS的正常流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSSOM"><span class="nav-number">1.</span> <span class="nav-text">CSSOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSSOM-View"><span class="nav-number">2.</span> <span class="nav-text">CSSOM View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
