@@ -232,6 +232,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/31/JavaScript执行环境一-Promise里的代码为什么比setTimeout先执行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/31/JavaScript执行环境一-Promise里的代码为什么比setTimeout先执行/" itemprop="url">JavaScript执行环境一,Promise里的代码为什么比setTimeout先执行</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T19:45:57+01:00">
+                2019-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先，如果我们是浏览器或者 Node 的开发者，我们该如何使用 JavaScript 引擎。<br>当拿到一段 JavaScript 代码的时候，浏览器或者 Node 环境首先要做的就是；传递给 JavaScript 引擎，并且要求它去执行；然而，执行 JavaScript 并非一锤子买卖，宿主环境当遇到一些事件时，会继续将一段代码传递给 JavaScript 引擎去执行，此外，我们可能还会提供 API 给 JavaScript 引擎；比如 setTimeout 这样的 API，它会允许 JavaScript 在特定的时机执行。<br>所以，我们应该形成一个感性的认知：一个 JavaScript 引擎会常驻于内存中，它等待着我们(宿主)把 JavaScript 代码或者函数传递给它执行。<br>在 ES3 和更早的版本中，JavaScript 本身没有执行异步的能力，这也就意味着宿主传递给 JavaScript 引擎一段代码，引擎就直接顺序的把它执行了，这个任务也就是宿主发起的任务。<br>但是在 ES5 之后，JavaScript 引入了 Promise；这样，不需要宿主环境的那排，JavaScript 引擎本身也可以发起任务了；通过 JSC 引擎的术语，我们把宿主发起的任务称为宏观任务，把 JavaScript 发起的任务称为微观任务。  </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/31/JavaScript执行环境一-Promise里的代码为什么比setTimeout先执行/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/27/HTML元信息标签-在head标签中可以写哪几种标签/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -744,136 +871,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/03/06/javascript对象-你知道全部的对象分类吗/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/06/javascript对象-你知道全部的对象分类吗/" itemprop="url">javascript对象,你知道全部的对象分类吗</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T19:12:51+01:00">
-                2019-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面的学习过程中学习了 JavaScript 对象的部分基础知识，它只是特定的一部分，并没有覆盖全部的 JavaScript 对象。  </p>
-<p>比如说，在不管怎样编写代码的过程中，都没法绕开 Array ，实现一个跟原生的数组行为一模一样的对象，这是由于原生数组的底层实现了一个自动随着下表变化的 length 属性。  </p>
-<p>并且，在浏览器环境中，我们也无法单纯依靠 JavaScript 代码实现 div 对象，只能依靠 document.createElement 来创建；这也说明了 JavaScript 的对象机制并非简单的属性组合 + 原型。  </p>
-<p>在日常工作中接触到的主要 API，几乎都是下面这些对象提供的，理解这些对象的性质，我们才能真正理解所使用的 API 的一些特性。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/06/javascript对象-你知道全部的对象分类吗/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -924,7 +921,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

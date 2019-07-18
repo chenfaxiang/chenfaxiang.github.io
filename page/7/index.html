@@ -232,6 +232,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2018/09/26/Thunk函数的含义和用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/26/Thunk函数的含义和用法/" itemprop="url">Thunk函数的含义和用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T11:45:25+02:00">
+                2018-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>弄清楚 Thunk 函数的前提下先看两个定义，什么是求值策略？</p>
+<h3 id="求值策略"><a href="#求值策略" class="headerlink" title="求值策略"></a>求值策略</h3><p>求值策略即编程语言的函数在进行参数传递时，函数的参数到底应该什么时候进行计算求值比较好；这里也是一个争论点，观点一是“传值调用(call by value)”，观点二是“传名调用(call by name)”；那么这两种观点有什么区别呢？</p>
+<ol>
+<li>传值调用</li>
+</ol>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">funciton f(m) &#123;</span><br><span class="line">  <span class="keyword">return</span> m * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(x + <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>在这个函数上如果用传值调用(call by value)的话，即在进入函数体之前就计算 x + 5 的值(等于 6)，再将已经求出的这个值传入函数 f；c 语言就是这种策略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(x + <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 传值调用，等同于</span></span><br><span class="line">f(<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>传名调用</li>
+</ol>
+<p>还是前面的例子，如果用传名调用(call by name)的话，即直接将表达式 x + 5 传入函数体，只在函数体内部用到它的时候进行求值； Hskell 语言就是采用的这种策略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(x + <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 传名调用，等同于</span></span><br><span class="line">(x + <span class="number">5</span>) * <span class="number">2</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/Thunk函数的含义和用法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2018/09/11/最接近的三数之和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -742,146 +882,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2018/07/20/整数转罗马数字/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/20/整数转罗马数字/" itemprop="url">整数转罗马数字</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T11:33:28+02:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong><em>题目</em></strong><br>罗马数字包含以下七种数字：I(1), V(5), X(10), L(50), C(100), D(500), M(1000);<br>那么除了这七种数值可以直接表示外，其他的数值是怎么表示的呢？例如：<br>数值2：  II (两个 I 并列)；同理，数字3也一样是三个并列<br>数字7：  VII(一个 V 和两个 I 并列)<br>数值20： XX (两个 X 并列)；同理，数字30也一样是三个并列<br>数值200：CCC(三个 C 并列)；同理，数字3000也一样是三个并列  </p>
-<p>通常情况下，罗马数字中小的数字放在大的数字右边，即组成一个相加的整数值；但是也有特例，如 4、9、40、90、400、900；并且特殊的规则只有这 6 种情况：  </p>
-<ul>
-<li><code>I</code> 可以放在 <code>V(5)</code>  和 <code>X(10)</code>  的左边，即表示 <code>IV(4)</code>  和 <code>IX(9)</code></li>
-<li><code>X</code> 可以放在 <code>L(50)</code> 和 <code>C(100)</code> 的左边，即表示 <code>XL(40)</code> 和 <code>XC(90)</code></li>
-<li><code>C</code> 可以放在 <code>D(500)</code>和 <code>M(1000)</code>的左边，即表示 <code>CD(400)</code>和 <code>CM(900)</code></li>
-</ul>
-<p>那么，在满足以上条件的情况下，给定一个整数，将其抓换成罗马数字；并保证数字在 [1 - 3999] 内。</p>
-<p><strong><em>示例1</em></strong>  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">3</span></span><br><span class="line">输出：<span class="string">'III'</span></span><br></pre></td></tr></table></figure>
-<p><strong><em>示例2</em></strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">59</span></span><br><span class="line">输出：<span class="string">'LVIIII'</span></span><br></pre></td></tr></table></figure>
-<p><strong><em>示例3</em></strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">1993</span></span><br><span class="line">输出：<span class="string">'MCMXCIII'</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/20/整数转罗马数字/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -932,7 +932,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -232,6 +232,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/10/call的原生实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/10/call的原生实现/" itemprop="url">call的原生实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T09:59:52+02:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在平时的 coding 过程中，很多时候都用到了 call 方法对当前调用方法的 this 指向做了改变，那么这个 call 究竟是怎么达到这个更改当前执行环境的 this 执行的呢？</p>
+<h2 id="自己实现一个-call-加深对方法的认识"><a href="#自己实现一个-call-加深对方法的认识" class="headerlink" title="自己实现一个 call 加深对方法的认识"></a>自己实现一个 call 加深对方法的认识</h2><p>首先看一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = &#123;</span><br><span class="line">  name: <span class="string">'test name'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'obj name'</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.fn();          <span class="comment">// obj name</span></span><br><span class="line">obj.fn.call(test); <span class="comment">// test name</span></span><br></pre></td></tr></table></figure>
+<p>这里我们调用 <code>obj.fn()</code> 方法将当前 obj 下面的 name 值打印在了控制台，那么通过 call 方法改变 obj 的执行环境后就能打印出 test name 到控制台是怎么处理的呢？实现请看下面。<br><strong>自己实现一个 call 方法改变当前方法调用的执行环境</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/10/call的原生实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/06/JavasScript词法-为什么10.toString()会报错/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -742,141 +872,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/05/28/你知道HTML的节点有哪几类吗/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/28/你知道HTML的节点有哪几类吗/" itemprop="url">你知道HTML的节点有哪几类吗</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T10:22:15+02:00">
-                2019-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>浏览器在前端开发中无时无刻不在接触，但是浏览器里面的DOM对象及其DOM API真正的了解吗？<br>DOM API 是最早被设计出来的一批 API，也是用途最广的一批 API，而这里要学习的 DOM，指的是狭义的文档对象模型。  </p>
-<h2 id="DOM-API-介绍"><a href="#DOM-API-介绍" class="headerlink" title="DOM API 介绍"></a>DOM API 介绍</h2><p>在学习 DOM API 前先了解一下文档对象模型，顾名思义，文档对象模型是用来描述文档，这里的文档特指的是 HTML 文档(也用于 XML 文档)；同时，它又是一个“对象模型”，这意味着它使用的是对象这样的概念来描述 HTML 文档。<br>而 HTML 文档是一个由标签嵌套而成的树形结构，因此，DOM 也是使用树形的对象模型来描述一个 HTML 文档。<br>DOM API 大致包含四个部分：</p>
-<ul>
-<li>节点：DOM 树形结构中的节点相关 API</li>
-<li>事件：触发和监听事件相关 API</li>
-<li>Range：操作文字范围相关 API</li>
-<li>遍历：遍历 DOM 需要的相关 API</li>
-</ul>
-<p>下面对节点进行学习。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/28/你知道HTML的节点有哪几类吗/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -927,7 +922,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
