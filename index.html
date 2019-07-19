@@ -232,6 +232,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/15/apply-bind方法原生实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/15/apply-bind方法原生实现/" itemprop="url">apply,bind方法原生实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T09:53:41+02:00">
+                2019-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前面一节学习内容对 call 方法进行了再次学习研究，从中又感悟出不少东西；但是很常见的就是 apply、bind 三个方法同时出现作比较，那么这里也会接着 call 之后把 apply、bind 的学习理解做一个记录。</p>
+<h2 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h2><p>apply 函数传入的是 this 的指向和参数数组，那么自己实现一个该方法怎么做？其实 apply 的实现和 call 很相似，唯一不同的地方就是方法传入的参数不太一样；既然这样，看如下实现的 apply 实例：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/15/apply-bind方法原生实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/10/call的原生实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -745,133 +873,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/06/11/HTML标签，除了a标签还有哪些标签叫链接/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenfx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="record | chenfx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/11/HTML标签，除了a标签还有哪些标签叫链接/" itemprop="url">HTML标签，除了a标签还有哪些标签叫链接</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T20:41:06+02:00">
-                2019-06-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>链接这种元素可以在整个互联网上无处不在，咩有了超链接的 HTML 文档最多可以称得上是富文本，没法叫超文本了。<br>不过，除了这些肉眼可以看见的跳转超链接之外，在 HTML 里面还规定了一些不可见链接的类型，这里对链接家族进行一个学习，在 HTML 中，链接有两种类型：一种是超链接型标签；另一种是外部资源链接。其中包括 a 标签、area 标签、link 标签，基本结构如下如(来自winter老师的图)：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/11/HTML标签，除了a标签还有哪些标签叫链接/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    <!-- 来必力City版安装代码 -->
-    
-    <!-- City版安装代码已完成 -->
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -922,7 +923,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
