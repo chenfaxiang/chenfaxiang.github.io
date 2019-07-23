@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="先了解一下 JavaScript 语法的一些基本规则，首先，在 ES6 引入了模块机制后，JavaScript 可以分为两种源文件：一种叫做脚本、一种叫做模块；而在 ES5 和之前的版本中，就只有一种脚本源文件类型。然而脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 imp">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在script标签中写export为什么会报错">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/07/23/在script标签中写export为什么会报错/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="先了解一下 JavaScript 语法的一些基本规则，首先，在 ES6 引入了模块机制后，JavaScript 可以分为两种源文件：一种叫做脚本、一种叫做模块；而在 ES5 和之前的版本中，就只有一种脚本源文件类型。然而脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 import 引入执行。从概念上可以认为脚本是具有主动性的 JavaScript 代码">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-23T01:48:03.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在script标签中写export为什么会报错">
+<meta name="twitter:description" content="先了解一下 JavaScript 语法的一些基本规则，首先，在 ES6 引入了模块机制后，JavaScript 可以分为两种源文件：一种叫做脚本、一种叫做模块；而在 ES5 和之前的版本中，就只有一种脚本源文件类型。然而脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 import 引入执行。从概念上可以认为脚本是具有主动性的 JavaScript 代码">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/07/23/在script标签中写export为什么会报错/"/>
+
+
+
+
+
+  <title>在script标签中写export为什么会报错 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/23/在script标签中写export为什么会报错/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在script标签中写export为什么会报错</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T09:47:25+02:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>先了解一下 JavaScript 语法的一些基本规则，首先，在 ES6 引入了模块机制后，JavaScript 可以分为两种源文件：一种叫做脚本、一种叫做模块；而在 ES5 和之前的版本中，就只有一种脚本源文件类型。然而脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 import 引入执行。<br>从概念上可以认为脚本是具有主动性的 JavaScript 代码段，是控制宿主完成一定任务的代码；模块是被动性的 JavaScript 代码段，是等待被调用的库；也不难发现，模块和脚本之间的区别仅仅在于是否包含 import 和 export。但是现代浏览器可以支持直接用 script 标签引入模块或脚本，在引入模块的前提条件就是必须给 script 标签添加 type=”module” 属性，而引入脚本不需要加 type 属性，它的默认值是 text/javascript；如下引入模块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">"****.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>这样，题目中的问题：在 script 标签中写 export 为什么会报错？ 就可以解释了，因为在默认条件下我们加载的文件会被认为是脚本文件而不是模块，所以在脚本文件中写了 export 就会报错。而脚本和模块它们可以包含的内容有什么区别呢？</p>
+<ul>
+<li>脚本<ul>
+<li>语句</li>
+</ul>
+</li>
+<li>模块<ul>
+<li>import 声明</li>
+<li>export 声明</li>
+<li>语句</li>
+</ul>
+</li>
+</ul>
+<p>显然，语句是脚本和模块的共同部分，并且是代码中经常写的，所以不难理解，下面对 import 声明、export 声明进行学习。</p>
+<h2 id="import-声明"><a href="#import-声明" class="headerlink" title="import 声明"></a>import 声明</h2><p>import 在代码中的用法有两种：一、直接 import 一个模块；二、带 from 的 import，它能引入模块里的一些信息。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'one module'</span> <span class="comment">// 直接引入一个模块</span></span><br><span class="line"><span class="keyword">import</span> something <span class="keyword">from</span> <span class="string">'other module'</span> <span class="comment">// 把 other module 默认的导出值放入变量 something</span></span><br></pre></td></tr></table></figure>
+<p>而直接 import 一个模块，只能保证模块代码被执行，引用它的模块无法获得它的任何信息；<br>带 from 的 import 意思是引入模块中的一部分信息，可以把它变成本地变量，于是可以在该模块中使用，它细分的话又有三种用法，如下：</p>
+<ul>
+<li>import x from ‘a.js’ // 引入模块中导出的默认值</li>
+<li>import { a as x, b } from ‘a.js’ // 引入模块中的变量</li>
+<li>import * as x from ‘a.js’ // 把模块中所有的变量以类似对象属性的方式引入</li>
+</ul>
+<p>另外，第一种方式还可以跟后两种方式组合使用，但是其中语法要求不带 as 的默认值永远在最前面，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> c, &#123; a <span class="keyword">as</span> x, b &#125; <span class="keyword">from</span> <span class="string">'a.js'</span></span><br><span class="line"><span class="keyword">import</span> c, * <span class="keyword">as</span> x <span class="keyword">from</span> <span class="string">'a.js'</span></span><br></pre></td></tr></table></figure>
+<h2 id="export-声明"><a href="#export-声明" class="headerlink" title="export 声明"></a>export 声明</h2><p>export 声明和 import 声明相对，export 声明承担的是导出任务。而模块中导出变量的方式有两种：一、独立使用 export 声明；二、直接在声明型语句前添加 export 关键字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种</span></span><br><span class="line"><span class="keyword">export</span> &#123; a, b, c&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'export'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，export 还有一种特殊的用法，它可以跟 default 联合使用；export default 表示导出一个默认变量值，它可以用于 function 和 class。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里导出的变量没有名称，可以直接使用下面的语句来在模块中引入</span></span><br><span class="line"><span class="keyword">import</span> x <span class="keyword">from</span> <span class="string">'a.js'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 另外 export default 还支持后面跟一个表达式</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a;</span><br><span class="line"><span class="comment">// **但是这里的行为跟导出变量不一致，这里导出的是值，导出的就是一个普通的变量 a 的值，以后 a 的变化与导出的值就没有关系了，修改变量 a，不会使得其它模块中引入的 default 的值发生改变。**</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript 引擎除了执行脚本和模块之外，还可以执行函数，而函数体跟脚本和模块有一定的相似之处，如下。</p>
+<h2 id="函数体"><a href="#函数体" class="headerlink" title="函数体"></a>函数体</h2><p>执行函数的行为通常是在 JavaScript 代码执行时，注册宿主环境的某些事件触发的，而执行的过程就是执行函数体(函数的花括号中间的部分)。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(fuction()&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+<p>这里通过 setTimeout 函数注册了一个函数给宿主，在 2s 之后宿主就会执行这个函数；而宿主也会为这样的函数创建宏任务，在宏任务中可以执行的代码包括“脚本”、“模块”和“函数体”。其实函数体也是一个语句列表，而它跟脚本和模块比，函数体中的语句列表多了 return 语句可以用；实际上函数体有四种，如下：</p>
+<ul>
+<li>普通函数体</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异步函数体</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>生成器函数体</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异步生成器函数体</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>在学习了 import、export和函数体三种语法结构后，对 JavaScript 代码执行时的一些语法现象的理解也很重要，它就是 JavaScript 语法的全局机制：预处理和指令序言。</p>
+<ul>
+<li>预处理   // 理解 var 等声明语句的行为</li>
+<li>指令序言 // 理解严格模式</li>
+</ul>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>JavaScript 执行前会对脚本、模块和函数体中的语句进行预处理，预处理过程会提前处理 var、函数声明、class、const和let这些语句。</p>
+<ul>
+<li>var  // var 声明永远作用于脚本、模块和函数体这个级别，预处理阶段，不关心赋值的部分，只管在当前作用域声明这个变量</li>
+<li>function // function声明的行为原本跟 var 很相似，但是在最新的 JavaScript 标准中，对它进行了一定的修改，变复杂了；在全局，function 声明表现跟 var 相似，不同在于 function 声明不但在作用域加入了变量，还会给它赋值</li>
+<li>class  // class 声明的行为跟 function 和 var 都不一样，在 class 声明之前使用 class 名会报错，如下：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种</span></span><br><span class="line"><span class="built_in">console</span>.log(c)  <span class="comment">// 报错</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">c</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(c)  <span class="comment">// 报错，如果删掉 class c &#123;&#125;，就能正常打印 1</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">c</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<p>这里的第一个例子中把 class 放在了打印之后，这里直接会报错。<br>这里的第二个例子中把 class 放进了一个函数体内，在函数体外面定义了和 class 名相同的变量 c，在打印时，它任然会报错，而在去掉 class 声明则会直接打印出 1，也就是说，出现在后面的 class 声明会声明影响了前面语句的结果；这说明，class 声明也是会被预处理的，它会在作用域中创建变量，并且访问它是抛出错误。<br>这里的 class 设计比 function 和 var 更符合直觉，在遇到奇怪的用法时，它更倾向于直接抛出错误；而提前抛出错误是有利于代码发现问题的。  </p>
+<h3 id="指令序言"><a href="#指令序言" class="headerlink" title="指令序言"></a>指令序言</h3><p>脚本和模块都支持一种叫指令序言的语法，它最早是为了 use strict 设计的，它规定了一种给 JavaScript 代码添加元信息的方式；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// 直接输出 null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.call(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<p>在严格模式下，用 call 的方法调用 foo，传入 null 作为 this 值，在严格模式下它会原封不动的打印出来；如果去掉严格模式，打印的结果将会变成 global。  </p>
+<p>加入我们要声明一种文件不需要 lint 检查的指令，可以这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'no lint'</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSth</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以了，而 JavaScript 的指令序言是只有一个字符串直接量的表达式，它只能出现在脚本、模块和函数体的最前面。  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里从JavaScript语法的全局结构开始，学习了 JavaScript 的两种源文件：脚本和模块；最后将脚本和模块中可以包含的语句类型 import、export 和 正常的语句进行了学习；在学习语句的同时，为了更好的理解 JavaScript 的一些语法情况，对预处理器和指令序言进行了了解。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/15/apply-bind方法原生实现/" rel="next" title="apply,bind方法原生实现">
+                <i class="fa fa-chevron-left"></i> apply,bind方法原生实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#import-声明"><span class="nav-number">1.</span> <span class="nav-text">import 声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export-声明"><span class="nav-number">2.</span> <span class="nav-text">export 声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数体"><span class="nav-number">3.</span> <span class="nav-text">函数体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理"><span class="nav-number">3.1.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令序言"><span class="nav-number">3.2.</span> <span class="nav-text">指令序言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
