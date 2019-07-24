@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://img.chenfx.com.cn/favicon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在 JavaScript 标准中，把语句分成了两种：声明和语句；不过，他们的区分逻辑需要整理一下。  普通语句 语句块 空语句 表达式语句 if 语句 switch 语句 循环语句 for 循环 for in 循环 for of 循环 for await of 循环 while 循环 do while 循环   ret">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一共知道哪些JavaScript语句">
+<meta property="og:url" content="http://www.chenfx.com.cn/2019/07/24/一共知道哪些JavaScript语句/index.html">
+<meta property="og:site_name" content="record | chenfx">
+<meta property="og:description" content="在 JavaScript 标准中，把语句分成了两种：声明和语句；不过，他们的区分逻辑需要整理一下。  普通语句 语句块 空语句 表达式语句 if 语句 switch 语句 循环语句 for 循环 for in 循环 for of 循环 for await of 循环 while 循环 do while 循环   return 语句 break 语句 continue 语句 with 语句 thro">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-24T01:42:14.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一共知道哪些JavaScript语句">
+<meta name="twitter:description" content="在 JavaScript 标准中，把语句分成了两种：声明和语句；不过，他们的区分逻辑需要整理一下。  普通语句 语句块 空语句 表达式语句 if 语句 switch 语句 循环语句 for 循环 for in 循环 for of 循环 for await of 循环 while 循环 do while 循环   return 语句 break 语句 continue 语句 with 语句 thro">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfx.com.cn/2019/07/24/一共知道哪些JavaScript语句/"/>
+
+
+
+
+
+  <title>一共知道哪些JavaScript语句 | record | chenfx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">record | chenfx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfx , record everything……</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main" style="padding-bottom:88px;">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfx.com.cn/2019/07/24/一共知道哪些JavaScript语句/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenfx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="record | chenfx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一共知道哪些JavaScript语句</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T09:41:35+02:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 JavaScript 标准中，把语句分成了两种：声明和语句；不过，他们的区分逻辑需要整理一下。</p>
+<ul>
+<li>普通语句<ul>
+<li>语句块</li>
+<li>空语句</li>
+<li>表达式语句</li>
+<li>if 语句</li>
+<li>switch 语句</li>
+<li>循环语句<ul>
+<li>for 循环</li>
+<li>for in 循环</li>
+<li>for of 循环</li>
+<li>for await of 循环</li>
+<li>while 循环</li>
+<li>do while 循环</li>
+</ul>
+</li>
+<li>return 语句</li>
+<li>break 语句</li>
+<li>continue 语句</li>
+<li>with 语句</li>
+<li>throw 语句</li>
+<li>try 语句</li>
+<li>debugger 语句</li>
+</ul>
+</li>
+<li>声明型语句<ul>
+<li>var 语句</li>
+<li>let 语句</li>
+<li>const 语句</li>
+<li>class 语句</li>
+<li>函数声明<ul>
+<li>普通函数声明</li>
+<li>async 函数声明</li>
+<li>generator 函数声明</li>
+<li>async generator 函数声明</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>根据上面的分类，对这些语句进行学习。</p>
+<a id="more"></a>
+<h2 id="语句块"><a href="#语句块" class="headerlink" title="语句块"></a>语句块</h2><p>简单的理解，语句块就是一对大括号，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> x, y;</span><br><span class="line">  x = <span class="number">20</span>;</span><br><span class="line">  y = <span class="number">30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>语句块的意义和好处在于，让我们可以把多行语句视为同一行语句，这样，if、for 等语句定义起来更为简单；不过，语句块也会产生作用域，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>这里的 let 声明仅仅对语句块的作用域生效，于是在语句块外部试图访问语句块内部的变量就会报错。</p>
+<h2 id="空语句"><a href="#空语句" class="headerlink" title="空语句"></a>空语句</h2><p>空语句就是一个独立的分号，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
+<p>空语句的存在是从语言设计完备性的角度考虑，允许插入多个分号而不抛出错误。</p>
+<h2 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h2><p>if 语句是平时编码过程中很熟悉的条件判断语句，在满足条件时执行它里面对应的代码，它还可以有不同的分支结构，在满足不同条件时分别执行对应的条件块。</p>
+<h2 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h2><p>switch 语句和 if … else … 的功能类似，都是用不同的分支条件来只执行对应的分支结构，但是需要注意的是在各个分支结构中有 break 和没有 break 的情况。</p>
+<h2 id="循环语句-while、do…while"><a href="#循环语句-while、do…while" class="headerlink" title="循环语句(while、do…while)"></a>循环语句(while、do…while)</h2><p>while 和 do…while 也是经常使用的一类循环处理语句，那么他们两者到底有什么区别？<br>区别其实很简单，在 do…while 中循环体至少执行一次，而 while 有可能不会执行。</p>
+<h2 id="普通-for-循环"><a href="#普通-for-循环" class="headerlink" title="普通 for 循环"></a>普通 for 循环</h2><p>for 循环在冒泡排序算法中经常使用，那么它的使用也不多做介绍，看几个普通实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// do sth</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">100</span>; j++) &#123;</span><br><span class="line">  <span class="comment">// do sth</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> k = <span class="number">0</span>; k &lt; <span class="number">100</span>; k++) &#123;</span><br><span class="line">  <span class="comment">// do sth</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h2><p>for in 循环枚举对象的所有属性，这里可以体现对象的 enumerable 特征，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">'c'</span>, &#123;</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  value: <span class="number">30</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (item <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item);</span><br><span class="line">  <span class="comment">// 这里只会打印出 a 和 b，因为添加的属性 c 是不可枚举型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h2><p>for of 循环也是一个经常使用的语法，它可以用于数组，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item);</span><br><span class="line">  <span class="comment">// 1，2，3，4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里打印出了数组的所有数据，实际上它背后的原理是 iterator 机制。可以给任何一个对象添加 iterator，使它可以用于 for of 语句。</p>
+<h2 id="return、break、continue"><a href="#return、break、continue" class="headerlink" title="return、break、continue"></a>return、break、continue</h2><p>return 语句用于函数中，它终止函数的执行并且指定函数的返回值；<br>break 语句用于跳出循环或者 switch 语句；<br>continue 语句用于结束本次循环开始下一次循环；  </p>
+<p>break 和 continue 这两个语句都属于控制语句，用法也比较相似，唯一的不同就是他们控制的循环在处理时跳出的结果不一样。</p>
+<h2 id="with-语句"><a href="#with-语句" class="headerlink" title="with 语句"></a>with 语句</h2><p>with 语句是一个历史写法，它可以把对象的属性在它内部的作用域变成变量，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">with</span>(o) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个语句现在不推荐使用，因为它在处理数据时会改变数据定义时的环境，行为不一，不太好控制。</p>
+<h2 id="try-语句和-throw-语句"><a href="#try-语句和-throw-语句" class="headerlink" title="try 语句和 throw 语句"></a>try 语句和 throw 语句</h2><p>try 语句和 throw 语句用于异常处理，它们配合使用，在处理异常情况下非常有用。</p>
+<h2 id="debugger-语句"><a href="#debugger-语句" class="headerlink" title="debugger 语句"></a>debugger 语句</h2><p>debugger 语句通知调试器在此处断点，方便调试，而在调试器不挂载的情况下，它没有任何作用。</p>
+<h2 id="var、let、const"><a href="#var、let、const" class="headerlink" title="var、let、const"></a>var、let、const</h2><p>var 语句是古老的 JavaScript 语句声明变量的方法；<br>let、const 是 ES6 中新的变量声明方法，它们特性非常相似，在处理声明变量的过程中和 var 的区别是对作用域的影响范围不一样。</p>
+<h2 id="class-声明"><a href="#class-声明" class="headerlink" title="class 声明"></a>class 声明</h2><p>目前，class 声明只能写在构造函数中，它展示了构造函数、getter 和 setter 等方法的处理。</p>
+<h2 id="函数声明-function"><a href="#函数声明-function" class="headerlink" title="函数声明 function"></a>函数声明 function</h2><p>在前面学习了函数声明对全局作用域的影响，这里再学一下函数声明的几种类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> sleep(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> sleep(<span class="number">200</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，这里对语句部分进行了整体的构思学习，从分成普通语句和声明语句的角度进行了处理，利于记忆。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/23/在script标签中写export为什么会报错/" rel="next" title="在script标签中写export为什么会报错">
+                <i class="fa fa-chevron-left"></i> 在script标签中写export为什么会报错
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    <!-- 来必力City版安装代码 -->
+    
+    <!-- City版安装代码已完成 -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODYyNC81MTk1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenfx</p>
+              <p class="site-description motion-element" itemprop="description">blog | record everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语句块"><span class="nav-number">1.</span> <span class="nav-text">语句块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空语句"><span class="nav-number">2.</span> <span class="nav-text">空语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-语句"><span class="nav-number">3.</span> <span class="nav-text">if 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch-语句"><span class="nav-number">4.</span> <span class="nav-text">switch 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环语句-while、do…while"><span class="nav-number">5.</span> <span class="nav-text">循环语句(while、do…while)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通-for-循环"><span class="nav-number">6.</span> <span class="nav-text">普通 for 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-in-循环"><span class="nav-number">7.</span> <span class="nav-text">for in 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-of-循环"><span class="nav-number">8.</span> <span class="nav-text">for of 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#return、break、continue"><span class="nav-number">9.</span> <span class="nav-text">return、break、continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with-语句"><span class="nav-number">10.</span> <span class="nav-text">with 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try-语句和-throw-语句"><span class="nav-number">11.</span> <span class="nav-text">try 语句和 throw 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debugger-语句"><span class="nav-number">12.</span> <span class="nav-text">debugger 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#var、let、const"><span class="nav-number">13.</span> <span class="nav-text">var、let、const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class-声明"><span class="nav-number">14.</span> <span class="nav-text">class 声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数声明-function"><span class="nav-number">15.</span> <span class="nav-text">函数声明 function</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenfx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+        <div style="width:400px;margin:10px auto;">
+          <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010302001280" style="display:inline-block;text-decoration:none;border-bottom: 0px;height:16px;line-height:16px;">
+            <img src="https://www.cqgjj.cn/images/common.files/ghs.png" style="float:left; width: 16px; height: 16px;"/>
+            <p style="float:left;height:16px;line-height:16px;font-size: 13px;margin: 0px 0px 0px 5px; color:#939393;">
+              渝公网安备 50010302001280号 &nbsp;&nbsp; 渝ICP备16001477号
+            </p>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
