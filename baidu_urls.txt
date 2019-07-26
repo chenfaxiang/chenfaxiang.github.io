@@ -1,5 +1,5 @@
-http://www.chenfx.com.cn/2019/07/26/什么是表达式语句/
-http://www.chenfx.com.cn/2019/07/24/一共知道哪些JavaScript语句/
-http://www.chenfx.com.cn/2019/07/23/在script标签中写export为什么会报错/
-http://www.chenfx.com.cn/2019/07/15/apply-bind方法原生实现/
-http://www.chenfx.com.cn/2019/07/10/call的原生实现/
+https://www.chenfx.com.cn/2019/07/26/什么是表达式语句/
+https://www.chenfx.com.cn/2019/07/24/一共知道哪些JavaScript语句/
+https://www.chenfx.com.cn/2019/07/23/在script标签中写export为什么会报错/
+https://www.chenfx.com.cn/2019/07/15/apply-bind方法原生实现/
+https://www.chenfx.com.cn/2019/07/10/call的原生实现/
