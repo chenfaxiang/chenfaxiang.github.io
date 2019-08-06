@@ -312,7 +312,7 @@
 
       
         
-          <h2 id="Vue-js指令功能及用法"><a href="#Vue-js指令功能及用法" class="headerlink" title="Vue.js指令功能及用法"></a>Vue.js指令功能及用法</h2><p>以下内容用表格的方式说明了Vuejs中的相应指令的功能及用法，详情请看下面表格：</p>
+          <h2 id="Vue-js-指令功能及用法"><a href="#Vue-js-指令功能及用法" class="headerlink" title="Vue.js 指令功能及用法"></a>Vue.js 指令功能及用法</h2><p>以下内容用表格的方式说明了 Vuejs 中的相应指令的功能及用法，详情请看下面表格：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/29/vuejs-5/#more" rel="contents">
@@ -440,10 +440,11 @@
       
         
           <p>条件渲染</p>
-<p>（一）.v-for下标索引的两种使用方法</p>
-<p>1.在使用v-for进行数组数据的展示时，我们可以用一个特殊的变量$index，这个$index是默认的，它能够展示当前数组中的 下标索引 ，在代码中的写法是： 双大括号包$index ，这样就能够展示当前的索引值。如果需要得到索引值所对应的 键值 ，即只需要使用另外一个特殊的变量 $key 即可得到，同样也可以给对象键值定义一个变量。</p>
-<p>2.在v-for中给索引指定一个别名为index，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-<span class="keyword">for</span>=<span class="string">"(index,item) in content"</span></span><br></pre></td></tr></table></figure></p>
-<p>这样index就是索引的别名了，可以直接操作大括号包index查看当前数组的索引。</p>
+<p>（一）.v-for 下标索引的两种使用方法</p>
+<p>1.在使用 v-for 进行数组数据的展示时，我们可以用一个特殊的变量$index，这个$index 是默认的，它能够展示当前数组中的 下标索引 ，在代码中的写法是： 双大括号包$index ，这样就能够展示当前的索引值。如果需要得到索引值所对应的 键值 ，即只需要使用另外一个特殊的变量 $key 即可得到，同样也可以给对象键值定义一个变量。</p>
+<p>2.在 v-for 中给索引指定一个别名为 index，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-<span class="keyword">for</span>=<span class="string">"(index,item) in content"</span></span><br></pre></td></tr></table></figure>
+<p>这样 index 就是索引的别名了，可以直接操作大括号包 index 查看当前数组的索引。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/18/vuejs-4/#more" rel="contents">
@@ -570,8 +571,8 @@
 
       
         
-          <p>Class与Style绑定</p>
-<p>数据绑定的常见需求是操作元素的class列表和它的内联样式，我们用v-bind处理它们的时候只需要计算出表达式最终的字符串即可，但是，字符串的拼接容易出错；最后，vuejs中在v-bind用于class和style时，vuejs对它进行了增强，表达式的结果类型除了字符串之外，还可以是对象或数组。</p>
+          <p>Class 与 Style 绑定</p>
+<p>数据绑定的常见需求是操作元素的 class 列表和它的内联样式，我们用 v-bind 处理它们的时候只需要计算出表达式最终的字符串即可，但是，字符串的拼接容易出错；最后，vuejs 中在 v-bind 用于 class 和 style 时，vuejs 对它进行了增强，表达式的结果类型除了字符串之外，还可以是对象或数组。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/15/vuejs-3/#more" rel="contents">
@@ -698,7 +699,7 @@
 
       
         
-          <p>注意：在编写代码中今天使用了v-model=’’的形式，发现这个model后面绑定的值跟需要展示的大括号中的变量名一致即可，且这个modle一般是根据输入而对大括号中的值进行改变，因此它一般用到input上。</p>
+          <p>注意：在编写代码中今天使用了 v-model=’’的形式，发现这个 model 后面绑定的值跟需要展示的大括号中的变量名一致即可，且这个 modle 一般是根据输入而对大括号中的值进行改变，因此它一般用到 input 上。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/12/vuejs-2/#more" rel="contents">
@@ -826,8 +827,8 @@
       
         
           <p>一.安装</p>
-<p>通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装</p>
-<p>使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。</p>
+<p>通过 script 标签引入 js 文件/cdn 获取/csp 兼容版本/NPM 安装</p>
+<p>使用 cdn 和 csp 兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签 script 引入和 npm 安装是比较合适的方法。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/10/vuejs-1/#more" rel="contents">

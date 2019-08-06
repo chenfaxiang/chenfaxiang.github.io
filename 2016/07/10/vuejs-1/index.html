@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta name="description" content="一.安装 通过 script 标签引入 js 文件/cdn 获取/csp 兼容版本/NPM 安装 使用 cdn 和 csp 兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签 script 引入和 npm 安装是比较合适的方法。">
 <meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vuejs学习笔记(一)">
 <meta property="og:url" content="https://www.chenfx.com.cn/2016/07/10/vuejs-1/index.html">
 <meta property="og:site_name" content="record | chenfx">
-<meta property="og:description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta property="og:description" content="一.安装 通过 script 标签引入 js 文件/cdn 获取/csp 兼容版本/NPM 安装 使用 cdn 和 csp 兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签 script 引入和 npm 安装是比较合适的方法。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-1.png">
 <meta property="og:image" content="https://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-2.png">
-<meta property="og:updated_time" content="2017-11-30T09:00:36.123Z">
+<meta property="og:updated_time" content="2019-08-06T01:14:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vuejs学习笔记(一)">
-<meta name="twitter:description" content="一.安装 通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装 使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。">
+<meta name="twitter:description" content="一.安装 通过 script 标签引入 js 文件/cdn 获取/csp 兼容版本/NPM 安装 使用 cdn 和 csp 兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签 script 引入和 npm 安装是比较合适的方法。">
 <meta name="twitter:image" content="https://www.chenfx.com.cn/2016/07/10/vuejs-1/vue1-1.png">
 
 
@@ -314,39 +314,36 @@
 
       
         <p>一.安装</p>
-<p>通过script标签引入js文件/cdn获取/csp兼容版本/NPM安装</p>
-<p>使用cdn和csp兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签script引入和npm安装是比较合适的方法。</p>
+<p>通过 script 标签引入 js 文件/cdn 获取/csp 兼容版本/NPM 安装</p>
+<p>使用 cdn 和 csp 兼容版本时可能会出现版本滞后和其他的一些问题，因此不建议使用；使用标签 script 引入和 npm 安装是比较合适的方法。</p>
 <a id="more"></a>
-<p>script方法大家肯定都会，不做介绍；</p>
-<p>npm安装方法: $ npm install vue</p>
-<h1 id="获取CSP兼容版本"><a href="#获取CSP兼容版本" class="headerlink" title="获取CSP兼容版本"></a>获取CSP兼容版本</h1><p>$ npm install vue@csp</p>
-<h1 id="获取最新开发版本（源自github）"><a href="#获取最新开发版本（源自github）" class="headerlink" title="获取最新开发版本（源自github）"></a>获取最新开发版本（源自github）</h1><p>$ npm install yyx990803/vue#dev</p>
+<p>script 方法大家肯定都会，不做介绍；</p>
+<p>npm 安装方法: \$ npm install vue</p>
+<h2 id="获取-CSP-兼容版本"><a href="#获取-CSP-兼容版本" class="headerlink" title="获取 CSP 兼容版本"></a>获取 CSP 兼容版本</h2><p>\$ npm install vue@csp</p>
+<h2 id="获取最新开发版本（源自-github）"><a href="#获取最新开发版本（源自-github）" class="headerlink" title="获取最新开发版本（源自 github）"></a>获取最新开发版本（源自 github）</h2><p>\$ npm install yyx990803/vue#dev</p>
 <p>二.开始介绍</p>
-<p>从技术角度：vuejs专注于MVVM模型的ViewModel层。通过双向数据绑定把View层和Model层连接了起来。</p>
-<p>从哲学角度：vuejs希望通过一个尽量简单的API来提供反应式的数据绑定和可组合、复用的视图组件。它不是一个大而全的框架——它只是一个简单灵活的视图层。</p>
+<p>从技术角度：vuejs 专注于 MVVM 模型的 ViewModel 层。通过双向数据绑定把 View 层和 Model 层连接了起来。</p>
+<p>从哲学角度：vuejs 希望通过一个尽量简单的 API 来提供反应式的数据绑定和可组合、复用的视图组件。它不是一个大而全的框架——它只是一个简单灵活的视图层。</p>
 <p>1.ViewModel</p>
-<p>它是一个同步Model和View的对象，在vuejs中，每个vue实例都是一个ViewModel。它们是通过构造函数vue或其子类被创建出来的。</p>
+<p>它是一个同步 Model 和 View 的对象，在 vuejs 中，每个 vue 实例都是一个 ViewModel。它们是通过构造函数 vue 或其子类被创建出来的。</p>
 <p>var vm = new Vue({ /<em> options </em>/ });</p>
 <p>2.视图（View）</p>
-<p>视图是被Vue实例管理的DOM节点，每个Vue实例都关联着一个相应的DOM元素，当一个vue实例被创建时，它会递归遍历根元素的所有子节点，同时完成必要的数据绑定。</p>
-<p>在使用vuejs时，除自定义指令外几乎不用直接接触DOM；当数据发生变化时，视图会自动触发更新。</p>
+<p>视图是被 Vue 实例管理的 DOM 节点，每个 Vue 实例都关联着一个相应的 DOM 元素，当一个 vue 实例被创建时，它会递归遍历根元素的所有子节点，同时完成必要的数据绑定。</p>
+<p>在使用 vuejs 时，除自定义指令外几乎不用直接接触 DOM；当数据发生变化时，视图会自动触发更新。</p>
 <p>3.模型（Model）</p>
-<p>vuejs中的模型就是普通的JavaScript对象——也称为数据对象。可以操作他们的属性，同时正在观察它的vue实例也会收到提示。Vue实例代理了他们观察的数据对象的所有属性，所以一旦一个对象{a:1}被观察，那么vm.$data.a和vm.a将会返回相同的值，而设置 vm.a = 2 也会修改 vm.$data 。</p>
+<p>vuejs 中的模型就是普通的 JavaScript 对象——也称为数据对象。可以操作他们的属性，同时正在观察它的 vue 实例也会收到提示。Vue 实例代理了他们观察的数据对象的所有属性，所以一旦一个对象{a:1}被观察，那么 vm.$data.a和vm.a将会返回相同的值，而设置 vm.a = 2 也会修改 vm.$data 。</p>
 <p>4.指令（Directives）</p>
-<p>指令是一个带特殊前缀的HTML特性，可以让vuejs对一个DOM元素做各种处理。</p>
-<p>例如：<div v-text="message"></div></p>
-<p>此处div的指令为v-text，其值为message，Vuejs会让该div的文本内容与vue实例中的 message 属性值保持一致。 Directives可以封装任何DOM操作。</p>
+<p>指令是一个带特殊前缀的 HTML 特性，可以让 vuejs 对一个 DOM 元素做各种处理。</p>
+<p>例如：<code>&lt;div v-text=&quot;message&quot;&gt;&lt;/div&gt;</code></p>
+<p>此处 div 的指令为 v-text，其值为 message，Vuejs 会让该 div 的文本内容与 vue 实例中的 message 属性值保持一致。 Directives 可以封装任何 DOM 操作。</p>
 <p>5.过滤器（Filters）</p>
-<p>例如：<div></div></p>
-<p>这样在div的文本内容被更新之前，message 的值会先传给 capitalize 函数处理。</p>
+<p>例如：<code>&lt;div&gt;&lt;/div&gt;</code></p>
+<p>这样在 div 的文本内容被更新之前，message 的值会先传给 capitalize 函数处理。</p>
 <p>6.组件（Components）</p>
-<p>每个组件都是一个简单的vue实例，它通过vue.extend返回的自定义构造函数可以把这些组件实例化；不过用声明式的用法是通过Vue.component(id,constructor)注册这些组件，一旦组件被注册，它们就可以在Vue实例的模板中以自定义的元素形式使用。</p>
-<my-component>
-
-<p>`<!-- mycomponent --></p>
-<p></p></my-component><p></p>
+<p>每个组件都是一个简单的 vue 实例，它通过 vue.extend 返回的自定义构造函数可以把这些组件实例化；不过用声明式的用法是通过 Vue.component(id,constructor)注册这些组件，一旦组件被注册，它们就可以在 Vue 实例的模板中以自定义的元素形式使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component&gt;</span><br><span class="line"></span><br><span class="line"><span class="string">`&lt;!-- mycomponent --&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/my-component&gt;</span></span><br></pre></td></tr></table></figure>
 <p>7.响应的数据绑定</p>
-<p>通过指令 v-if 的值真假与否来进行文案展示，通过对指令 v-if 的值进行真假改变达到效果——vuejs不仅可以绑定文本到数据，也可以绑定DOM结构到数据。如下图：</p>
+<p>通过指令 v-if 的值真假与否来进行文案展示，通过对指令 v-if 的值进行真假改变达到效果——vuejs 不仅可以绑定文本到数据，也可以绑定 DOM 结构到数据。如下图：</p>
 <img src="/2016/07/10/vuejs-1/vue1-1.png" title="vue学习图片1">
 <hr>
 <img src="/2016/07/10/vuejs-1/vue1-2.png" title="vue学习图片2">
@@ -527,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#获取CSP兼容版本"><span class="nav-number">1.</span> <span class="nav-text">获取CSP兼容版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取最新开发版本（源自github）"><span class="nav-number">2.</span> <span class="nav-text">获取最新开发版本（源自github）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取-CSP-兼容版本"><span class="nav-number">1.</span> <span class="nav-text">获取 CSP 兼容版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取最新开发版本（源自-github）"><span class="nav-number">2.</span> <span class="nav-text">获取最新开发版本（源自 github）</span></a></li></ol></div>
             
 
           </div>

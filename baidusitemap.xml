@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.chenfx.com.cn/2016/07/29/vuejs-5/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2016/07/18/vuejs-4/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2016/07/15/vuejs-3/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2016/07/12/vuejs-2/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2016/07/10/vuejs-1/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2017/06/18/css3-new-features/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
+    <loc>https://www.chenfx.com.cn/2017/01/05/compare-attr-prop/</loc>
+    <lastmod>2019-08-06</lastmod>
+  </url>  <url>
     <loc>https://www.chenfx.com.cn/2019/08/06/%E5%8F%B3%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2019-08-06</lastmod>
   </url>  <url>
@@ -160,31 +181,10 @@
     <loc>https://www.chenfx.com.cn/2016/05/10/wx-develop-2/</loc>
     <lastmod>2019-04-12</lastmod>
   </url>  <url>
-    <loc>https://www.chenfx.com.cn/2017/01/05/compare-attr-prop/</loc>
-    <lastmod>2018-06-19</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2017/06/18/css3-new-features/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
     <loc>https://www.chenfx.com.cn/2017/03/08/vue-webpack/</loc>
     <lastmod>2017-11-30</lastmod>
   </url>  <url>
     <loc>https://www.chenfx.com.cn/2016/05/02/wx-develop-1/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2016/07/29/vuejs-5/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2016/07/18/vuejs-4/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2016/07/15/vuejs-3/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2016/07/12/vuejs-2/</loc>
-    <lastmod>2017-11-30</lastmod>
-  </url>  <url>
-    <loc>https://www.chenfx.com.cn/2016/07/10/vuejs-1/</loc>
     <lastmod>2017-11-30</lastmod>
   </url>  <url>
     <loc>https://www.chenfx.com.cn/2017/01/20/leancloud-weixin-min/</loc>
