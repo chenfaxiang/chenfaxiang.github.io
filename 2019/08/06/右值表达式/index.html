@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,微信公众号," />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -79,23 +79,18 @@
 
 
 
-<meta name="description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
-<meta name="keywords" content="JavaScript,微信公众号">
+<meta name="description" content="前面学习了表达式的一些结构，其中关于赋值表达式，对它的左边部分(左值表达式)进行了学习，而留下了它右边的部分(右值表达式)；在一些通用的计算机语言设计理论中，能够出现在赋值表达式右边的叫做右值表达式(RightHandSideExpression)，而在 JavaScript 标准中，规定了在等号右边的表达式叫做条件表">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信公众平台编辑模式简介">
-<meta property="og:url" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/index.html">
+<meta property="og:title" content="右值表达式">
+<meta property="og:url" content="https://www.chenfx.com.cn/2019/08/06/右值表达式/index.html">
 <meta property="og:site_name" content="record | chenfx">
-<meta property="og:description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
+<meta property="og:description" content="前面学习了表达式的一些结构，其中关于赋值表达式，对它的左边部分(左值表达式)进行了学习，而留下了它右边的部分(右值表达式)；在一些通用的计算机语言设计理论中，能够出现在赋值表达式右边的叫做右值表达式(RightHandSideExpression)，而在 JavaScript 标准中，规定了在等号右边的表达式叫做条件表达式(ConditionalExpression)，并且在 JavaScript">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-main.png">
-<meta property="og:image" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-kfz.png">
-<meta property="og:image" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-gz.png">
-<meta property="og:image" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-cd.png">
-<meta property="og:updated_time" content="2019-04-12T11:35:21.951Z">
+<meta property="og:updated_time" content="2019-08-06T01:10:11.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信公众平台编辑模式简介">
-<meta name="twitter:description" content="微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。">
-<meta name="twitter:image" content="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/wx-platform-main.png">
+<meta name="twitter:title" content="右值表达式">
+<meta name="twitter:description" content="前面学习了表达式的一些结构，其中关于赋值表达式，对它的左边部分(左值表达式)进行了学习，而留下了它右边的部分(右值表达式)；在一些通用的计算机语言设计理论中，能够出现在赋值表达式右边的叫做右值表达式(RightHandSideExpression)，而在 JavaScript 标准中，规定了在等号右边的表达式叫做条件表达式(ConditionalExpression)，并且在 JavaScript">
 
 
 
@@ -125,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/"/>
+  <link rel="canonical" href="https://www.chenfx.com.cn/2019/08/06/右值表达式/"/>
 
 
 
 
 
-  <title>微信公众平台编辑模式简介 | record | chenfx</title>
+  <title>右值表达式 | record | chenfx</title>
   
 
 
@@ -248,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.chenfx.com.cn/2016/05/01/wx-public-platform/">
+    <link itemprop="mainEntityOfPage" href="https://www.chenfx.com.cn/2019/08/06/右值表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chenfx">
@@ -265,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微信公众平台编辑模式简介</h1>
+          <h1 class="post-title" itemprop="name headline">右值表达式</h1>
         
 
         <div class="post-meta">
@@ -277,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-01T16:30:06+08:00">
-                2016-05-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-06T09:09:30+02:00">
+                2019-08-06
               </time>
             
 
@@ -315,32 +310,37 @@
       
 
       
-        <p>微信是现在社交软件中必不可少的软件，但是在使用软件的同时大家还经常被公众号或者已关注商家的推送消息提醒，作为一个爱倒腾的人，于是我准备也去一探究竟。</p>
+        <p>前面学习了表达式的一些结构，其中关于赋值表达式，对它的左边部分(左值表达式)进行了学习，而留下了它右边的部分(右值表达式)；<br>在一些通用的计算机语言设计理论中，能够出现在赋值表达式右边的叫做右值表达式(RightHandSideExpression)，而在 JavaScript 标准中，规定了在等号右边的表达式叫做条件表达式(ConditionalExpression)，并且在 JavaScript 标准中，右值表达式的字样从没出现过。<br>JavaScript 标准也规定了左值表达式同时都是条件表达式，此外，左值表达式也可以通过跟一定的运算符组合，逐级构成更复杂的结构，直到成为右值表达式。<br>对于右值表达式来说，可以理解为以左值表达式为最小单位开始构成的，下面学习左值表达式是如何一步步构成更为复杂的语法结构。如下：</p>
 <a id="more"></a>
-<h2 id="申请开发者账号（微信公众订阅号）"><a href="#申请开发者账号（微信公众订阅号）" class="headerlink" title="申请开发者账号（微信公众订阅号）"></a>申请开发者账号（微信公众订阅号）</h2><p>开发者账号可以申请公众号和企业号，两者区别通过字面意思就能够很清楚的知道，作为小编肯定只能申请公众号了，它是个人开发者捣鼓的选择，没有企业号那样多的要求。</p>
 <ul>
-<li><p>申请公众号<br>进入<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">微信公众号官网</a>首先注册账号，输入邮箱、密码等操作并进行邮箱验证后即注册成功。注册成功后进行公众号类型选择，个人捣鼓选择订阅号即可，点击确定，下一步勾选个人，输入身份证姓名、身份证号及上传手持身份证照片，再输入手机号码进行验证，最后输入自己的公众号名称、公众号描述及地点点击完成即可；提交申请后，一般会在7天内搞定的，我的貌似两天就好了。</p>
+<li>更新表达式 UpdateExpression<br>左值表达式搭配 ++ – 运算符就形成了更新表达式(自增、自减)</li>
+<li><p>一元运算表达式 UnaryExpression<br>更新表达式搭配一元运算符，可以形成一元运算表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> a.b;</span><br><span class="line"><span class="keyword">void</span> a;</span><br><span class="line"><span class="keyword">typeof</span> a;</span><br><span class="line">-a;</span><br><span class="line">~a;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编辑模式操作<br>在一切准备妥当之后即可进行练手了，进入<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">微信公众号官网</a>进行登录，登录成功之后会看见如下界面：</p>
-<img src="/2016/05/01/wx-public-platform/wx-platform-main.png" title="登陆成功所见图片">
-<p>在微信开发中编辑模式和开发者模式两者不能同时进行，但是开发者模式开始并没有默认开启，在你没有想好作为开发者是用代码进行控制得时候就不必关心这个问题了；上图左侧可以看见不同的栏，其中功能栏的群发功能、自动回复、自定义菜单；管理栏的素材管理这几个功能就能够完成入门者在编辑模式的小需求了；如果需要你已经完全可以进行代码开发，那么你在上图左侧最下边可以看见开发者模式，在基本配置中启用即可，如下图：</p>
-<img src="/2016/05/01/wx-public-platform/wx-platform-kfz.png" title="开发者模式开启">
-<p>作为入门者首先可以通过编辑模式感受一下之后再进行此操作。</p>
+<li><p>乘方表达式 ExponentiationExpression<br>乘方表达式是由更新表达式构成，它使用 ** 符号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">++i ** <span class="number">20</span></span><br><span class="line"><span class="number">2</span> ** <span class="number">30</span></span><br><span class="line">(<span class="number">-2</span>) ** <span class="number">30</span> 或者 -(<span class="number">2</span> ** <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<p>并且 ** 运算是右结合的，它跟正常的运算符不一样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> ** (<span class="number">3</span> ** <span class="number">2</span>); <span class="comment">// 它的执行其实是这样 4 ** (3 ** 2)</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>言归正传，这里说的是编辑模式，那么继续；首先看自动回复功能，点击之后可以看见有三个模块，分别为：被添加自动回复、消息自动回复、关键词自动回复，通过词语意思就大概能够明白，这里分别可以进行文字、图片、语音、视频的添加操作；这里重点说明一下被添加自动回复和关键词自动回复的规则；</li>
+<li><p>乘法表达式 MultiplicativeExpression *、/、%</p>
+</li>
+<li>加法表达式 +、-</li>
+<li><p>移位表达式<br>&lt;&lt;、&gt;&gt;、&gt;&gt;&gt;(无符号右移)<br>以为运算符把操作数看成二进制表示的整数后进行操作；左移 n 位相当于乘以 2 的 n 次方，右移 n 位相当于除以 2 取整 n 次；而普通的移位会保持正负数，无符号移位会把建好视为符号位 1 同时参与移位，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">-1</span> &gt;&gt;&gt; <span class="number">1</span>; <span class="comment">// 2147483647 也就是 2 的 31 次方</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系表达式 RelationalExpression<br>&lt;=、&gt;=、&lt;、&gt;、instanceof、in</p>
+</li>
+<li>相等表达式<br>==、!=、===、!===<br>==和===计算是不太一样的，而类型不同的变量用 == 比较时有如下三条规则：<ul>
+<li>undefined 与 null 相等</li>
+<li>字符串和 bool 都转为数字再比较</li>
+<li>对象转换成 primitive 类型再比较</li>
 </ul>
-<ol>
-<li>被添加自动回复<br>当公众号被关注时进行消息提醒，关注过公众号的人都知道，如果没见过那就随便去关注一个公众号瞧一瞧吧。。。。。。</li>
-<li>关键词自动回复的规则<br>这里的规则可以和被添加自动回复相关联，在自动回复中可以加入引导提示，让用户进行关键词输入，这样就可以通过关键词自动回复的规则进行其他的操作了，这里的规则可以添加多达200个，完全可以满足娱乐者的要求了吧。。。下面来看一下图片就好：<img src="/2016/05/01/wx-public-platform/wx-platform-gz.png" title="被关注自动回复和关键词自动回复规则"></li>
-<li>菜单管理<br>菜单管理中能够对公众号下方一排菜单进行管理，根据自己的想法进行添加即可，如下图：<img src="/2016/05/01/wx-public-platform/wx-platform-cd.png" title="菜单编辑">
-素材管理功能是将你自己添加的图文素材等进行集中管理，看自己的需求操作咯。。。在以上的操作中基本能满足出入这的捣鼓了，赶紧去测试测试吧。。。</li>
-</ol>
-<ul>
-<li><p>开发者模式需要在有一定编程知识基础上进行操作，看每个人的不同情况吧，有兴趣的自己去瞎掰呗，反正就是动手干。。</p>
 </li>
-<li><p>有说得不对的地方请指正，大家共同学习。</p>
-</li>
+<li>位运算表达式<br>&amp;(按位与)、|(按位或)、^(按位异或)</li>
+<li>逻辑与和逻辑或表达式<br>&amp;&amp;、||</li>
+<li>条件表达式 ConditionalExpression<br>condition ? expression1 : expression2</li>
 </ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里对表达式右边的部分进行了学习，学到了更新表达式、一元表达式、乘方表达式、乘法表达是等，还有一点就是各表达式的优先级顺序待后续整理。</p>
 
       
     </div>
@@ -360,8 +360,6 @@
           
             <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            <a href="/tags/微信公众号/" rel="tag"># 微信公众号</a>
-          
         </div>
       
 
@@ -373,15 +371,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/26/什么是表达式语句/" rel="next" title="什么是表达式语句">
+                <i class="fa fa-chevron-left"></i> 什么是表达式语句
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/02/wx-develop-1/" rel="prev" title="1.微信公众平台开发模式(微信上输入后进行默认回复)">
-                1.微信公众平台开发模式(微信上输入后进行默认回复) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -514,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#申请开发者账号（微信公众订阅号）"><span class="nav-number">1.</span> <span class="nav-text">申请开发者账号（微信公众订阅号）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
