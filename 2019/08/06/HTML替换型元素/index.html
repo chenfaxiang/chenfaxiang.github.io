@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="record | chenfx">
 <meta property="og:description" content="替换型元素顾名思义就是把文件的内容引入并替换掉自身位置的一类元素标签；首先，问题是引入一个 css 和 js 它们两个所用的标签属性 一个是 link 的 href，一个是 script 的 src，下面开始学习。 替换型元素包括以下几种：  script 标签 img 标签 picture 标签 video 标签 audio 标签 iframe 标签">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T14:38:41.434Z">
+<meta property="og:updated_time" content="2019-08-13T00:38:30.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML替换型元素">
 <meta name="twitter:description" content="替换型元素顾名思义就是把文件的内容引入并替换掉自身位置的一类元素标签；首先，问题是引入一个 css 和 js 它们两个所用的标签属性 一个是 link 的 href，一个是 script 的 src，下面开始学习。 替换型元素包括以下几种：  script 标签 img 标签 picture 标签 video 标签 audio 标签 iframe 标签">
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -248,7 +248,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chenfx">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -272,7 +272,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-06T09:09:30+02:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-06T15:09:30+08:00">
                 2019-08-06
               </time>
             
@@ -376,7 +376,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=<span class="string">"http://www.baidu.com"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>但是在移动端，iframe 受到了很多限制，它无法像浏览器端一样指定大小，里面的内容会被完全平铺到父级页面上，同时很多网页也会通过 http 协议头禁止自己被放入 iframe 中；除此之外，iframe 还是各种安全问题的重灾区，像 opener、window.name 甚至 css 的 opacity 都是入侵者可以利用的漏洞；因此，iframe 标签是能不用就不用吧。</p>
 <p>在新标准中为 iframe 加入了 sandbox 模式和 srcdoc 属性，这两个属性为 iframe 带来了一定的新场景，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe sandbox srcdoc=<span class="string">"&lt;p&gt;Yeah, you can see it &lt;a href="</span>/gallery?mode=cover&amp;amp;amp;page=<span class="number">1</span><span class="string">"&gt;in my gallery&lt;/a&gt;."</span>&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe sandbox srcdoc=<span class="string">"&lt;p&gt;Yeah, you can see it &lt;a href="</span>/gallery?mode=cover&amp;amp;amp;page=<span class="number">1</span><span class="string">"&gt;in my gallery&lt;/a&gt;."</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>这里使用 srcdoc 属性创建一个新文档嵌入在 iframe 中，同时使用 sandbox 来进行隔离。这样，这个 iframe 就不涉及任何跨域问题了。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>开篇通过对 script 标签的学习和对 link 标签的解释(替换型标签和链接型标签)来解释了开头的问题，后面依次对替换型标签(script、img、picture、video、audio、iframe)进行了学习。对 img 标签的 srcset 属性和 iframe 标签的 sandbox 和 srcdoc 属性有了新的认识。</p>
 
@@ -396,7 +396,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
           
         </div>
       
@@ -491,6 +491,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/author.jpg"
+                alt="chenfx" />
+            
               <p class="site-author-name" itemprop="name">chenfx</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -539,6 +543,12 @@
 
           
           
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
 
           
           
@@ -578,7 +588,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -588,9 +598,22 @@
 </div>
 
 
+  <div class="powered-by">
+  由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
 
 
 
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Gemini
+    </a> v5.1.3
+  </div>
 
 
 
@@ -718,6 +741,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
